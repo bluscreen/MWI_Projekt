@@ -8,21 +8,21 @@ import de.dhbw.grails.openData.Staat
 class BootStrap {
 
 	def init = { servletContext ->
-		Staat deutschland = new Staat(name:'Deutschland', laengengrad: '10', breitengrad:'20')
-		if(!deutschland.save()) {
-			log.error("Deutschland ist kaputt")
-			log.error("${deutschland.errors}")
-		}
-		Ort karlsruhe = new Ort(name:'Karlsruhe', laengengrad: '11', breitengrad: '20', staat:deutschland)
-		if(!karlsruhe.save()) {
-			log.error("Karlsruhe ist kaputt")
-			log.error("${karlsruhe.errors}")
-		}
-		Bildungseinrichtung dhbw = new Bildungseinrichtung(name:'DHBW Karlsruhe', ort:karlsruhe)
-		if(!dhbw.save()) {
-			log.error("DHBW ist kaputt")
-			log.error("${dhbw.errors}")
-		}
+//		Staat deutschland = new Staat(name:'Deutschland', laengengrad: '10', breitengrad:'20')
+//		if(!deutschland.save()) {
+//			log.error("Deutschland ist kaputt")
+//			log.error("${deutschland.errors}")
+//		}
+//		Ort karlsruhe = new Ort(name:'Karlsruhe', laengengrad: '11', breitengrad: '20', staat:deutschland)
+//		if(!karlsruhe.save()) {
+//			log.error("Karlsruhe ist kaputt")
+//			log.error("${karlsruhe.errors}")
+//		}
+//		Bildungseinrichtung dhbw = new Bildungseinrichtung(name:'DHBW Karlsruhe', ort:karlsruhe)
+//		if(!dhbw.save()) {
+//			log.error("DHBW ist kaputt")
+//			log.error("${dhbw.errors}")
+//		}
 //		Person mensch = new Person(nachname:'Mustermann', vorname:'Maya')
 //		Beruf doenermann = new Beruf(name:'Doenermann')
 //		if(!doenermann.save()) {
