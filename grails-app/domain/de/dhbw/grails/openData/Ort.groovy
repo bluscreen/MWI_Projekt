@@ -2,14 +2,17 @@ package de.dhbw.grails.openData
 
 class Ort {
 	def language
+	
 	String name
 	String postleitzahl
 	Staat staat
-
+	
 	// TODO TBD
 	def laengengrad
 	def breitengrad
 
+	static belongsTo = Staat
+	
 	static hasMany=[bildungseinrichtungen:Bildungseinrichtung]
 
 	static constraints = {

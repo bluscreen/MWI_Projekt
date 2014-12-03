@@ -2,15 +2,18 @@ package de.dhbw.grails.openData
 
 class Bildungseinrichtung {
 	def language
+	
 	String name
 	Ort ort
 	String email
 	String webpage
+	
 	def laengengrad
 	def breitengrad
-	
 
-	static hasMany=[alumni:Person]
+	static belongsTo = Ort 
+	
+	static hasMany=[alumni:Person, abschluesse:Abschluss]
 
 	static constraints = {
 		name(blank:false, nullable: false, size:2..40)

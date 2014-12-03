@@ -2,12 +2,15 @@ package de.dhbw.grails.openData
 
 class Person {
 	def language
+	
 	String nachname
 	String vorname
 	Date geburtsdatum
 	
-	// uns interessiert nur ein beruf...
 	Beruf beruf
+	
+	static belongsTo = Beruf
+	
 	static hasMany=[abschluesse:Abschluss]
 	
     static constraints = {

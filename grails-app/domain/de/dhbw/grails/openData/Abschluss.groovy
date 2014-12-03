@@ -1,22 +1,23 @@
 package de.dhbw.grails.openData
 /**
- * 
- * blah
  * @author dhammacher
  *
  */
 class Abschluss {
-	// TODO TBD
 	def language
+	
 	String thema
 	String titel
 	Date abschlussdatum
 	String note
-	Person person
 	
+	Person person
 	Bildungseinrichtung bildungseinrichtung
+	
+	static belongsTo = [Person, Bildungseinrichtung]
 
     static constraints = {
 		bildungseinrichtung(nullable:false)
+		person(nullable:false)
     }
 }
