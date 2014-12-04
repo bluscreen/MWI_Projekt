@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	
+
+
 		<meta name="layout" content="main"/>
 		<title>openData</title>
 		<asset:stylesheet src="leaflet.css" />
@@ -45,7 +46,7 @@
 				</ul>
 				<br/>
 				Deine Suche ergab x Treffer
-			</div>
+		
 			 <div id="map"></div>
 			
 				  
