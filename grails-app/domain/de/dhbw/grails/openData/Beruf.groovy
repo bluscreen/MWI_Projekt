@@ -1,7 +1,7 @@
 package de.dhbw.grails.openData
 
 class Beruf {
-	def language
+	String language
 	
 	String name
 	String firma
@@ -10,5 +10,11 @@ class Beruf {
 	
     static constraints = {
 		name(blank:false, nullable: false, size:2..40)
+		firma(nullable:true)
+		language(nullable:true)
     }
+	
+	String toString() {
+		name
+	}
 }

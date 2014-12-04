@@ -1,7 +1,7 @@
 package de.dhbw.grails.openData
 
 class Person {
-	def language
+	String language
 	
 	String nachname
 	String vorname
@@ -17,5 +17,11 @@ class Person {
 		nachname(blank:false, nullable: false, size:2..40)
 		vorname(blank:false, nullable: false, size:2..40)
 		beruf(nullable:true)
+		language(nullable:true)
     }
+	
+	String toString()
+	{
+		vorname + " " + nachname
+	}
 }

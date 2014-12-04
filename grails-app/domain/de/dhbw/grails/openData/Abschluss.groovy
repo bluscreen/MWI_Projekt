@@ -4,12 +4,12 @@ package de.dhbw.grails.openData
  *
  */
 class Abschluss {
-	def language
+	String language
 	
 	String thema
 	String titel
-	Date abschlussdatum
 	String note
+	Date abschlussdatum
 	
 	Person person
 	Bildungseinrichtung bildungseinrichtung
@@ -19,5 +19,10 @@ class Abschluss {
     static constraints = {
 		bildungseinrichtung(nullable:false)
 		person(nullable:false)
+		language(nullable:true)
     }
+	
+	String toString() {
+		titel
+	}
 }

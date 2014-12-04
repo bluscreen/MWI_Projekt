@@ -50,11 +50,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${staatInstance?.tld}">
+				<g:if test="${staatInstance?.language}">
 				<li class="fieldcontain">
-					<span id="tld-label" class="property-label"><g:message code="staat.tld.label" default="Tld" /></span>
+					<span id="language-label" class="property-label"><g:message code="staat.language.label" default="Language" /></span>
 					
-						<span class="property-value" aria-labelledby="tld-label"><g:fieldValue bean="${staatInstance}" field="tld"/></span>
+						<span class="property-value" aria-labelledby="language-label"><g:fieldValue bean="${staatInstance}" field="language"/></span>
 					
 				</li>
 				</g:if>

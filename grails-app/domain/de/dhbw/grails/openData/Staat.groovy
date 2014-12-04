@@ -1,11 +1,11 @@
 package de.dhbw.grails.openData
 
 class Staat {
-	def language
+	String language
 	String name
 
-	def laengengrad
-	def breitengrad
+	String laengengrad
+	String breitengrad
 
 	static hasMany=[orte:Ort]
 	
@@ -13,6 +13,7 @@ class Staat {
 		name(blank:false, nullable: false, size:2..40)
 		laengengrad(blank:false, nullable:false)
 		breitengrad(blank:false, nullable:false)
+		language(nullable:true)
 	}
 	
 	String toString(){
