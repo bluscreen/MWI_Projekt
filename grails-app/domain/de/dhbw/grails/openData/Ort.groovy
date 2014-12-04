@@ -1,15 +1,15 @@
 package de.dhbw.grails.openData
 
 class Ort {
-	def language
+	String language
 	
 	String name
 	String postleitzahl
-	Staat staat
 	
-	// TODO TBD
-	def laengengrad
-	def breitengrad
+	String laengengrad
+	String breitengrad
+	
+	Staat staat
 
 	static belongsTo = Staat
 	
@@ -21,6 +21,7 @@ class Ort {
 		laengengrad(blank:false, nullable:false)
 		breitengrad(blank:false, nullable:false)
 		postleitzahl(nullable:true)
+		language(nullable:true)
 	}
 
 	String toString(){

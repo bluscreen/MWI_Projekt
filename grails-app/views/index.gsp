@@ -23,7 +23,7 @@
 	    <li><g:submitButton name="create" value="Suche"/> </li>
 	
 		</ul>	
-			
+			nn
 			gzugzjkkl
 			<label style="margin-top: 3em">Suchergebnisse</label>
 			  

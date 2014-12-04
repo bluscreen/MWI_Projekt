@@ -29,12 +29,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: staatInstance, field: 'tld', 'error')} ">
-	<label for="tld">
-		<g:message code="staat.tld.label" default="Tld" />
+<div class="fieldcontain ${hasErrors(bean: staatInstance, field: 'language', 'error')} ">
+	<label for="language">
+		<g:message code="staat.language.label" default="Language" />
 		
 	</label>
-	<g:textField name="tld" value="${staatInstance?.tld}"/>
+	<g:textField name="language" value="${staatInstance?.language}"/>
 
 </div>
 

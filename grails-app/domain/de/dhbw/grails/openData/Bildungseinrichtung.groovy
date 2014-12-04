@@ -1,15 +1,16 @@
 package de.dhbw.grails.openData
 
 class Bildungseinrichtung {
-	def language
+	String language
 	
 	String name
-	Ort ort
 	String email
 	String webpage
 	
-	def laengengrad
-	def breitengrad
+	String laengengrad
+	String breitengrad
+	
+	Ort ort
 
 	static belongsTo = Ort 
 	
@@ -22,6 +23,7 @@ class Bildungseinrichtung {
 		webpage(url:true, nullable:true)
 		laengengrad(nullable:true)
 		breitengrad(nullable:true)
+		language(nullable:true)
 	}
 
 	String toString() {
