@@ -35,8 +35,9 @@
 				</ul>
 			
 		</div>
-		<div id="page-body" role="main">
-			
+		<div>
+		
+ 		</div>
 			<div id="controller-list" role="navigation">
 				<h2>Available Controllers:</h2>
 				<ul>

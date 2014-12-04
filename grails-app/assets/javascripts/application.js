@@ -8,6 +8,8 @@
 //= require jquery
 //= require_tree .
 //= require_self
+//= require jquery
+//= require jquery-ui/js/jquery-ui-1.10.3.custom.min
 
 if (typeof jQuery !== 'undefined') {
 	(function($) {
