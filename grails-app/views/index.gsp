@@ -11,6 +11,18 @@
 		
 	</head>
 	<body>
+	<section class="module parallax parallax-1">
+		  <div class="container">
+		    <h1>OpenData</h1>
+		  </div>
+	</section>
+
+	<section class="module content">
+  		<div class="container">
+		  <h2>Lorem Ipsum Dolor</h2>
+		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+		  
+
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div id="status" role="complementary">
 			
@@ -66,5 +78,7 @@
 				.openPopup();
 			 </g:javascript>
 		</div>
+		</div>
+		</section>
 	</body>
 </html>
