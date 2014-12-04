@@ -25,7 +25,7 @@
 	
 		</ul>	
 			nn
-			gzugzjkkl
+			gzugzjkkl bla bla
 			<label style="margin-top: 3em">Suchergebnisse</label>
 			  
    				<ul>
