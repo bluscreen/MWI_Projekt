@@ -7,39 +7,45 @@
 		<title>openData</title>
 		<asset:stylesheet src="leaflet.css" />
 		<asset:stylesheet src="screen.css" />
+		<asset:stylesheet src="main.css"/>
+
+
 
 		
 	</head>
 	<body>
 	<section class="module parallax parallax-1">
-		  <div class="container">
-		    <h1>OpenData</h1>
-		  </div>
+		
+		  <h1>OpenData</h1>
+		 
 	</section>
 
 	<section class="module content">
   		<div class="container">
-		  <h2>Lorem Ipsum Dolor</h2>
-		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-		  
-
+		
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div id="status" role="complementary">
+		<div id="status"  role="complementary" >
 			
 		<ul>
 		
-	    <li><g:textField name="staat" placeholder="Staat"/></li>
-	   	<li><g:textField name="ort" placeholder="Ort"/></li>
-	   	<li><g:textField name="bildungseinrichtung" placeholder="Bildungseinrichtung"/></li>
-	 	<li><g:textField name="person" placeholder="Person"/></li>
-	    <li><g:textField name="beruf" placeholder="Beruf"/></li>
-	    <li><g:submitButton name="create" value="Suche"/> </li>
+	    <li><g:textField class="L" name="staat" placeholder="Staat"/></li>
+	   	<li><g:textField class="L" name="ort" placeholder="Ort"/></li>
+	   	<li><g:textField class="L" name="bildungseinrichtung" placeholder="Bildungseinrichtung"/></li>
+	 	<li><g:textField class="L" name="person" placeholder="Person"/></li>
+	    <li><g:textField class="L" name="beruf" placeholder="Beruf"/></li>
+	    <li><g:submitButton  name="suche" value="Suche"/> </li>
 	
-		</ul>	
-			nn
-			gzugzjkkl bla bla vv
-			<label style="margin-top: 3em">Suchergebnisse</label>
-			  
+		</ul>
+			
+			<label >Suchergebnisse</label>
+			jkdalsjLKAJS
+			KJlkjslJSXKJ
+			ALSJDIAUJD
+			IJDKAJXKYMXLKAS
+			JDIAJSKLXMLKASJDLKJAKLk kkkkkkk
+			JXKLAJLS
+			KXLSKDLKSLDK
+			Deine Suche ergab x Treffer
    				<ul>
   				<g:each var="i" in="${bildungseinrichtung}">
     			<li> ${i.name}</li>
@@ -47,9 +53,7 @@
 				</ul>
 			
 		</div>
-		<div>
 		
- 		</div>
 			<div id="controller-list" role="navigation">
 				<h2>Available Controllers:</h2>
 				<ul>
@@ -58,7 +62,8 @@
 					</g:each>
 				</ul>
 				<br/>
-				Deine Suche ergab x Treffer
+				
+				
 		
 			 <div id="map"></div>
 			
@@ -78,7 +83,7 @@
 				.openPopup();
 			 </g:javascript>
 		</div>
-		</div>
+		
 		</section>
 	</body>
 </html>

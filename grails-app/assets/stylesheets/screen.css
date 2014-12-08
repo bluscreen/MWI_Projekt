@@ -1,16 +1,18 @@
 #status {
 				background-color: #eee;
 				border: .2em solid #fff;
-				margin: 2em 2em 1em;
+				margin: 2em 2em 2em;
 				padding: 1em;
-				width: 12em;
+				width: 18em;
 				float: left;
+				
+				
 				-moz-box-shadow: 0px 0px 1.25em #ccc;
 				-webkit-box-shadow: 0px 0px 1.25em #ccc;
 				box-shadow: 0px 0px 1.25em #ccc;
 				-moz-border-radius: 0.6em;
 				-webkit-border-radius: 0.6em;
-				border-radius: 0.6em;
+				border-radius: 1em;
 			}
 
 			.ie6 #status {
@@ -20,12 +22,15 @@
 			#status ul {
 				font-size: 0.9em;
 				list-style-type: none;
-				margin-bottom: 0.6em;
-				padding: 0;
+				margin-bottom: 5em;
+				padding: 1em;
+			
 			}
 
 			#status li {
 				line-height: 1.3;
+				margin-bottom: 1em;
+				
 			}
 
 			#status h1 {
@@ -48,7 +53,30 @@
 				line-height: 1.5;
 				margin: 0.25em 0;
 			}
-
+			
+		   .L {	background: #FFF url(lupe.png) no-repeat 3px 3px; 
+		    	padding-left: 25px;
+		   		border: 3px solid #EBE6E2;
+		   		
+   				 border-radius: 5px;
+				-webkit-transition: all 0.3s ease-out;
+				-moz-transition: all 0.3s ease-out;
+				-ms-transition: all 0.3s ease-out;
+				-o-transition: all 0.3s ease-out;
+				transition: all 0.3s ease-out;
+				}
+				
+			#suche {
+			float: right;
+			border: 3px solid #EBE6E2;
+		   		
+   				 border-radius: 5px;
+				-webkit-transition: all 0.3s ease-out;
+				-moz-transition: all 0.3s ease-out;
+				-ms-transition: all 0.3s ease-out;
+				-o-transition: all 0.3s ease-out;
+				transition: all 0.3s ease-out;
+			}
 			#controller-list ul {
 				list-style-position: inside;
 			}

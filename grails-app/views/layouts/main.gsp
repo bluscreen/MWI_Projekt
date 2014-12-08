@@ -16,13 +16,14 @@
   		<g:javascript library="jquery"/>
  		<g:javascript library="jquery-ui"/> 
   		<r:layoutResources/>
-  	
+ 
+  <g:loadbootstrap/> 
   		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
 		<g:layoutHead/>
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><asset:image src="logo_1248738_web.jpg" alt="Grails"/></div>
+		<div ><asset:image src="logo_1248738_web.jpg" alt="Grails"/></div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
