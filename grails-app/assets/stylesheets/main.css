@@ -55,12 +55,11 @@ body {
   margin: 0 auto;
  
 }
-
-section.module.parallax #stripe {
+.stripe {
 
 	height: 200px;
 	margin:  auto;
-	background: rgba(97, 85, 104, 0.8);
+	background: rgba(38, 31, 41, 0.75);
 
 }
 /* ============================================================
@@ -93,13 +92,13 @@ section.module.parallax {
   background-size: cover;
 }
 section.module.parallax h1 {
-  color: rgba(97, 85, 104, 0.8);
+  color: rgba(250, 250, 250, 0.6);
   font-size: 48px;
-  line-height: 600px;
+  line-height: 200x;
   font-weight: 700;
   text-align: center;
- 
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding-bottom:50px;
 }
 section.module.parallax-1 {
   background-image: url("world-map.gif");
@@ -128,6 +127,8 @@ section.module.parallax-2 {
 	background-color: #b6b6b6;
 	height: 40px;
 }
+
+.test{overflow:hidden}
 
 /* replace with .no-boxshadow body if you have modernizr available */
 .ie6 body,

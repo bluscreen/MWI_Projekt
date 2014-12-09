@@ -14,10 +14,10 @@
 		
 	</head>
 	<body>
-	<section class="module parallax parallax-1">
-		
+	<section class="module parallax parallax-1 test">
+		<div class="stripe">
 		  <h1>OpenData</h1>
-		 
+		 </div>
 	</section>
 
 	<section class="module content">

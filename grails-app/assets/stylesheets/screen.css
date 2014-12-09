@@ -67,8 +67,8 @@
 				}
 				
 			#suche {
-			float: right;
-			border: 3px solid #EBE6E2;
+				float: right;
+				border: 3px solid #EBE6E2;
 		   		
    				 border-radius: 5px;
 				-webkit-transition: all 0.3s ease-out;
