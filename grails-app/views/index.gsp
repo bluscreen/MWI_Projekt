@@ -45,7 +45,7 @@
 					<li><g:submitButton name="suche" value="Suche" /></li>
 
 				</ul>
-
+				
 				<label>Suchergebnisse</label> jkdalsjLKAJS KJlkjslJSXKJ ALSJDIAUJD
 				IJDKAJXKYMXLKAS JDIAJSKLXMLKASJDLKJAKLk kkkkkkk JXKLAJLS
 				KXLSKDLKSLDK Deine Suche ergab x Treffer
@@ -58,7 +58,19 @@
 				</ul>
 
 			</div>
-
+			<g:genModalButton 
+				id="ModalDynamixBASIC" 
+				divId="MyBasicDiv1"
+				title="Create New MyUser"
+				value="Generate New MyUser Remote Form Example?" />
+			<div id="MyBasicDiv1">
+				<g:modalForm 
+					id="ModalDynamixBASIC" 
+					title="My Modal Title"
+					modalTemplate="/modaldynamix/modalbasic"
+					modalTemplatePage="formBasic"
+					 />
+			</div>
 			<div id="map"></div>
 
 			<g:javascript>
