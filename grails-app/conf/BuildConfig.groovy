@@ -63,8 +63,8 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.8'
         compile ":asset-pipeline:1.9.9"
 		compile ":jquery-ui:1.10.3"
-		compile ":modaldynamix:0.12"
 		compile ":twitter-bootstrap:3.3.1"
+		compile ":modalbox:0.4"
 
 		
 

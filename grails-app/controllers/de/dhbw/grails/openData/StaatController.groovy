@@ -18,6 +18,11 @@ class StaatController {
     def show(Staat staatInstance) {
         respond staatInstance
     }
+	
+	def popup()
+	{
+		
+	}
 
     def create() {
         respond new Staat(params)

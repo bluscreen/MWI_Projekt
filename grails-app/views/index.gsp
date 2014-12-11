@@ -8,10 +8,7 @@
 <asset:stylesheet src="leaflet.css" />
 <asset:stylesheet src="screen.css" />
 <asset:stylesheet src="main.css" />
-
-
-
-
+<modalbox:modalIncludes />
 </head>
 <body>
 	<section class="module parallax parallax-1 test">
@@ -33,6 +30,11 @@
 
 			<a href="#page-body" class="skip"><g:message
 					code="default.link.skip.label" default="Skip to content&hellip;" /></a>
+			
+			<modalbox:createLink controller="staat" action="popup" 
+				title="Ich bin das Popup!" width="600" height="300"
+				linkname="Popdoener" />
+				
 			<div id="status" role="complementary">
 
 				<ul>
@@ -57,19 +59,6 @@
 					</g:each>
 				</ul>
 
-			</div>
-			<g:genModalButton 
-				id="ModalDynamixBASIC" 
-				divId="MyBasicDiv1"
-				title="Create New MyUser"
-				value="Generate New MyUser Remote Form Example?" />
-			<div id="MyBasicDiv1">
-				<g:modalForm 
-					id="ModalDynamixBASIC" 
-					title="My Modal Title"
-					modalTemplate="/modaldynamix/modalbasic"
-					modalTemplatePage="formBasic"
-					 />
 			</div>
 			<div id="map"></div>
 
