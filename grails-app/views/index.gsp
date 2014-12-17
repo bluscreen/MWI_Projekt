@@ -8,6 +8,7 @@
 <asset:stylesheet src="leaflet.css" />
 <asset:stylesheet src="screen.css" />
 <asset:stylesheet src="main.css" />
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <modalbox:modalIncludes />
 </head>
 <body>
@@ -21,37 +22,52 @@
 				no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
 				dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
 				tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-				voluptua.</div>
+				voluptua.
+				<h2>
+				[[ skrəʊl daʊn ]] </h2>
+				</div>
 		</div>
 	</section>
-
+	
+	<section class="container">
+	
+		<div><g:select class="languages" name="system.language" from="${['Deutsch', 'Englisch', '...']}" value="${language}"
+          noSelection="['':'Sprache']"/></div>
+	
+	</section>
+	
 	<section class="module content">
 		<div class="container">
+		
+		
+		
+    <!-- Modal HTML -->
 
 			<a href="#page-body" class="skip"><g:message
 					code="default.link.skip.label" default="Skip to content&hellip;" /></a>
-			
-			<modalbox:createLink controller="staat" action="popup" 
+					
+		<modalbox:createLink controller="staat" action="popup" 
 				title="Ich bin das Popup!" width="600" height="300"
-				linkname="Popdoener" />
+				linkname="Read more..." />
 				
+			
+    
 			<div id="status" role="complementary">
 
 				<ul>
-
-					<li><g:textField class="suchbox" name="staat" placeholder="Staat" /></li>
-					<li><g:textField class="suchbox" name="ort" placeholder="Ort" /></li>
-					<li><g:textField class="suchbox" name="bildungseinrichtung" placeholder="Bildungseinrichtung" /></li>
-					<li><g:textField class="suchbox" name="person" placeholder="Person" /></li>
-					<li><g:textField class="suchbox" name="beruf" placeholder="Beruf" /></li>
-					<li><g:submitButton name="suche" value="Suche" /></li>
+					
+					<li><g:textField class="searchfields" name="staat" placeholder="Staat" /></li>
+					<li><g:textField class="searchfields" name="ort" placeholder="Ort" /></li>
+					<li><g:textField class="searchfields" name="bildungseinrichtung" placeholder="Bildungseinrichtung" /></li>
+					<li><g:textField class="searchfields" name="person" placeholder="Person" /></li>
+					<li><g:textField class="searchfields" name="beruf" placeholder="Beruf" /></li>
+					<li><g:submitButton id="searchButton" name=" "/></li>
 
 				</ul>
 				
-				<label>Suchergebnisse</label> jkdalsjLKAJS KJlkjslJSXKJ ALSJDIAUJD
-				IJDKAJXKYMXLKAS JDIAJSKLXMLKASJDLKJAKLk kkkkkkk JXKLAJLS
-				KXLSKDLKSLDK Deine Suche ergab x Treffer
+				
 				<ul>
+				<li>ergebnisse</li>
 					<g:each var="i" in="${bildungseinrichtung}">
 						<li>
 							${i.name}
@@ -60,8 +76,11 @@
 				</ul>
 
 			</div>
+			
+			
+	
 			<div id="map"></div>
-
+			
 			<g:javascript>
 			 	 // create a map in the "map" div, set the view to a given place and zoom
 				var map = L.map('map').setView([49.0158491, 8.4095339], 13);
