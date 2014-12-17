@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
 
 
-<meta name="layout" content="main" />
-<title>openData</title>
-<asset:stylesheet src="leaflet.css" />
-<asset:stylesheet src="screen.css" />
-<asset:stylesheet src="main.css" />
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<modalbox:modalIncludes />
+		<meta name="layout" content="main" />
+		<title>openData</title>
+		<asset:stylesheet src="leaflet.css" />
+		<asset:stylesheet src="screen.css" />
+		<asset:stylesheet src="main.css" />
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-<script type="text/javascript">
+		<script type="text/javascript">
 function calculateMiddlePoint(){
 	var koord = new Array();
 
@@ -52,9 +51,9 @@ function calculateMiddlePoint(){
 		showPopup();
 	}
 }
-</script>
-</head>
-<body>
+		</script>
+	</head>
+	<body>
 	<section class="module parallax parallax-1 test">
 		<div class="stripe">
 			<div class="left">OpenData</div>

@@ -29,6 +29,4 @@
 # "temporary" build files
 /target
 
-.classpath
-.gitignore
-/grailsw.bat
+.*
