@@ -105,9 +105,9 @@ function calculateMiddlePoint(){
 				
 				<ul>
 				<li>ergebnisse</li>
-					<g:each var="i" in="${bildungseinrichtung}">
+					<g:each var="i" in="${doener}">
 						<li>
-							${i.name}
+							${i}
 						</li>
 					</g:each>
 				</ul>
