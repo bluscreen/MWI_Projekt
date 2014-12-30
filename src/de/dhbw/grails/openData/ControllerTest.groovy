@@ -1,9 +1,9 @@
 /**
  * 
  */
-package de.dhbw.grails.openData;
+package de.dhbw.grails.openData
 
-import java.text.SimpleDateFormat
+import org.apache.commons.logging.LogFactory
 
 import de.dhbw.grails.openData.controller.Controller
 import de.dhbw.grails.openData.controller.datatype.Alumnus
@@ -24,77 +24,121 @@ import de.dhbw.grails.openData.controller.datatype.Language
  */
 public class ControllerTest {
 
+	private static final log = LogFactory.getLog(this)
+
 	/**
+	 *  TODO [DH] Bitte hier zusammenfassend dokumentieren, was im Test alles getestet wird
+	 *   und wie die Testsequenzen im Einzelnen aufgebaut sind, um dies sicher zu stellen
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
-
 		// List of search parameter sets
-		List<String[]> search = new ArrayList<String[]>();
-		search.add([null, null, null, null, null, null]);
-		search.add([null, null, null, null, null, "de"]);
-		search.add(["BLABLABLA##123", null, null, null, null, "de"]);
-		search.add([null, "BLABLABLA##123", null, null, null, "de"]);
-		search.add([null, null, "BLABLABLA##123", null, null, "de"]);
-		search.add([null, null, null, "BLABLABLA##123", null, "de"]);
-		search.add([null, null, null, null, "BLABLABLA##123", "de"]);
+		List<String[]> search = new ArrayList<String[]>()
+		// TODO [DH] Bitte einen Dummy Header für die Liste erzeugen, oder Bezug erwähnen
+		search.add([
+			null,
+			null,
+			null,
+			null,
+			null,
+			null
+		])
+		search.add([
+			null,
+			null,
+			null,
+			null,
+			null,
+			"de"
+		])
+		search.add([
+			"BLABLABLA##123",
+			null,
+			null,
+			null,
+			null,
+			"de"
+		])
+		search.add([
+			null,
+			"BLABLABLA##123",
+			null,
+			null,
+			null,
+			"de"
+		])
+		search.add([
+			null,
+			null,
+			"BLABLABLA##123",
+			null,
+			null,
+			"de"
+		])
+		search.add([
+			null,
+			null,
+			null,
+			"BLABLABLA##123",
+			null,
+			"de"
+		])
+		search.add([
+			null,
+			null,
+			null,
+			null,
+			"BLABLABLA##123",
+			"de"
+		])
 
 		// to know whether the parameters are set
-		boolean searchParameterSet = false;
+		boolean searchParameterSet = false
 
-		log("--- Start test ---");
-		log("--- Get controller instance ---");
-		Controller controller = new Controller();
-		log("done");
+		log.info "--- Start test ---"
+		log.info "--- Get controller instance ---"
+		Controller controller = new Controller()
+		log.info "done"
 
-		System.out.println("");
-
-		log("--- Get all education institutes ---");
+		log.info "--- Get all education institutes ---"
 		List<EducationInstituteBasicInformation> eduInstBasInfList = controller
-				.getAllEducationInstitutes();
-		log("Got " + eduInstBasInfList.size() + " objects:");
+				.getAllEducationInstitutes()
+		log.info "Got " + eduInstBasInfList.size() + " objects:"
 		for (EducationInstituteBasicInformation educationInstituteBasicInformation : eduInstBasInfList) {
-			log("id: <" + educationInstituteBasicInformation.getId()
+			log.info ("id: <" + educationInstituteBasicInformation.getId()
 					+ ">, latitude: <"
 					+ educationInstituteBasicInformation.getLatitude()
 					+ ">, longitude: <"
-					+ educationInstituteBasicInformation.getLongitude() + ">");
+					+ educationInstituteBasicInformation.getLongitude() + ">")
 		}
-		log("done");
+		log.info "done"
 
-		System.out.println("");
-
-		log("--- Get all languages ---");
-		List<Language> languageList = controller.getLanguagesList();
-		log("Got " + languageList.size() + " languages:");
+		log.info "--- Get all languages ---"
+		List<Language> languageList = controller.getLanguagesList()
+		log.info "Got " + languageList.size() + " languages:"
 		for (Language language : languageList) {
-			log("id: <" + language.getLanguageId() + ">, label: <"
-					+ language.getLanguageName() + ">");
+			log.info("id: <" + language.getLanguageId() + ">, label: <"
+					+ language.getLanguageName() + ">")
 		}
-		log("done");
+		log.info "done"
 
 		for (Language language : languageList) {
 
-			System.out.println("");
-
-			log("--- Using language <" + language.getLanguageId() + "> ---");
-
-			System.out.println("");
-
-			log("Get education institute by id");
+			log.info "--- Using language <" + language.getLanguageId() + "> ---"
+			log.info "Get education institute by id"
 			for (EducationInstituteBasicInformation educationInstituteBasicInformation : eduInstBasInfList) {
-				log("parameter: id: <"
-						+ educationInstituteBasicInformation.getId()
-						+ ">, language: <" + language.getLanguageId() + ">");
+				log.info "parameter: id: <"
+				+ educationInstituteBasicInformation.getId()
+				+ ">, language: <" + language.getLanguageId() + ">"
 				EducationInstitute educationInstitute = controller
 						.getEducationInstituteById(
 						educationInstituteBasicInformation.getId(),
-						language.getLanguageId());
+						language.getLanguageId())
 				if(educationInstitute == null) {
-					log("education institute is null");
+					log.info "education institute is null"
 				} else {
-					log("id: <" + educationInstitute.getId() + ">, name: <"
+					log.info("id: <" + educationInstitute.getId() + ">, name: <"
 							+ educationInstitute.getName() + ">, city: <"
 							+ educationInstitute.getCity() + ">, description: <"
 							+ educationInstitute.getEducationInstituteDescription()
@@ -110,35 +154,35 @@ public class ControllerTest {
 							+ ">, year of foundation: <"
 							+ educationInstitute.getYearOfFoundation()
 							+ ">, zip code: <" + educationInstitute.getZipCode()
-							+ ">");
+							+ ">")
 
-					log("job statistic:");
+					log.info "job statistic:"
 
 					List<JobStatisticDataset> jobStatisticList = educationInstitute
-							.getJobStatistic();
+							.getJobStatistic()
 
 					for (JobStatisticDataset jsd : jobStatisticList) {
-						log("job title: <" + jsd.getJobTitle() + ">, rate: <"
-								+ jsd.getRate() + ">");
+						log.info("job title: <" + jsd.getJobTitle() + ">, rate: <"
+								+ jsd.getRate() + ">")
 					}
 
-					log("end of job statistic")
+					log.info "end of job statistic"
 
-					log("alumni:");
+					log.info "alumni:"
 
 					List<Alumnus> alumni = educationInstitute
-							.getAlumni();
+							.getAlumni()
 
 					for (Alumnus alumnus : alumni) {
-						log("name: <" + alumnus.getAlumniName() + ">, job: <"
-								+ alumnus.getJobTitle() + ">, wikipedia:<"+alumnus.getWikipediaHyperlink()+">");
+						log.info("name: <" + alumnus.getAlumniName() + ">, job: <"
+								+ alumnus.getJobTitle() + ">, wikipedia:<"+alumnus.getWikipediaHyperlink()+">")
 					}
-					log("end of alumni")
+					log.info "end of alumni"
 
 					if(!searchParameterSet) {
-						String educationInstituteName = educationInstitute.getName();
-						String state = educationInstitute.getState();
-						String city = educationInstitute.getCity();
+						String educationInstituteName = educationInstitute.getName()
+						String state = educationInstitute.getState()
+						String city = educationInstitute.getCity()
 
 						if(educationInstituteName != null && !educationInstituteName.isEmpty()
 						&& state != null && !state.isEmpty()
@@ -150,110 +194,186 @@ public class ControllerTest {
 						&& alumni.get(0).getJobTitle() != null
 						&& !alumni.get(0).getJobTitle().isEmpty())
 						{
-							String alumnusName = alumni.get(0).getAlumniName();
-							String jobTitle = alumni.get(0).getJobTitle();
+							String alumnusName = alumni.get(0).getAlumniName()
+							String jobTitle = alumni.get(0).getJobTitle()
 
 							// set search languages static. Otherwise there would be to much datasets...
-							List<String> searchLanguages = new ArrayList<String>();
-							searchLanguages.add("de");
-							searchLanguages.add("en");
+							List<String> searchLanguages = new ArrayList<String>()
+							searchLanguages.add("de")
+							searchLanguages.add("en")
 
 							for(String searchLanguage : searchLanguages) {
 
 								// Only some "typical" parameter sets to not have to much parameter sets
-
-								search.add([state, null, null, null, null, language]);
-								search.add([null, city, null, null, null, language]);
-								search.add([null, null, educationInstituteName, null, null, language]);
-								search.add([null, null, null, alumnusName, null, language]);
-								search.add([null, null, null, null, jobTitle, language]);
-								search.add([state, city, null, null, null, language]);
-								search.add([state, city, null, null, jobTitle, language]);
-								search.add([state, city, educationInstituteName, null, null, language]);
-								search.add([state, city, educationInstituteName, alumnusName, null, language]);
-								search.add([state, city, educationInstituteName, alumnusName, jobTitle, language]);
-								search.add([state, null, educationInstituteName, null, null, language]);
-								search.add([null, city, educationInstituteName, null, null, language]);
+								search.add([
+									state,
+									null,
+									null,
+									null,
+									null,
+									language
+								])
+								search.add([
+									null,
+									city,
+									null,
+									null,
+									null,
+									language
+								])
+								search.add([
+									null,
+									null,
+									educationInstituteName,
+									null,
+									null,
+									language
+								])
+								search.add([
+									null,
+									null,
+									null,
+									alumnusName,
+									null,
+									language
+								])
+								search.add([
+									null,
+									null,
+									null,
+									null,
+									jobTitle,
+									language
+								])
+								search.add([
+									state,
+									city,
+									null,
+									null,
+									null,
+									language
+								])
+								search.add([
+									state,
+									city,
+									null,
+									null,
+									jobTitle,
+									language
+								])
+								search.add([
+									state,
+									city,
+									educationInstituteName,
+									null,
+									null,
+									language
+								])
+								search.add([
+									state,
+									city,
+									educationInstituteName,
+									alumnusName,
+									null,
+									language
+								])
+								search.add([
+									state,
+									city,
+									educationInstituteName,
+									alumnusName,
+									jobTitle,
+									language
+								])
+								search.add([
+									state,
+									null,
+									educationInstituteName,
+									null,
+									null,
+									language
+								])
+								search.add([
+									null,
+									city,
+									educationInstituteName,
+									null,
+									null,
+									language
+								])
 							}
 
-							searchParameterSet = true;
+							searchParameterSet = true
 						}
 
 					}
 				}
-				log("done")
+				log.info "done"
 
-				System.out.println("");
-
-				log("--- Get job statistic by id ---");
+				log.info "--- Get job statistic by id ---"
 				for (EducationInstituteBasicInformation educationInstituteBasicInformation2 : eduInstBasInfList) {
-					log("parameter: id: <"
+					log.info("parameter: id: <"
 							+ educationInstituteBasicInformation.getId()
-							+ ">, language: <" + language.getLanguageId() + ">");
+							+ ">, language: <" + language.getLanguageId() + ">")
+
 					List<JobStatisticDataset> jobStatisticList2 = controller
 							.getJobStatisticDatasetsByEducationInstituteid(
 							educationInstituteBasicInformation2.getId(),
-							language.getLanguageId());
+							language.getLanguageId())
 					for (JobStatisticDataset jsd : jobStatisticList2) {
-						log("job title: <" + jsd.getJobTitle() + ">, rate: <"
-								+ jsd.getRate() + ">");
+						log.info("job title: <" + jsd.getJobTitle() + ">, rate: <"
+								+ jsd.getRate() + ">")
 					}
-					log("done");
+					log.info "done"
 
-					System.out.println("");
-
-					log("Get texts");
-					log("Address: <" + controller.getText(Controller.TEXTID_Address, language.getLanguageId()) + ">");
-					log("Alumni: <" + controller.getText(Controller.TEXTID_Alumni, language.getLanguageId()) + ">");
-					log("City: <" + controller.getText(Controller.TEXTID_City, language.getLanguageId()) + ">");
-					log("Education Institute: <" + controller.getText(Controller.TEXTID_Education_Institute, language.getLanguageId()) + ">");
-					log("Email: <" + controller.getText(Controller.TEXTID_EMail, language.getLanguageId()) + ">");
-					log("Job: <" + controller.getText(Controller.TEXTID_Job, language.getLanguageId()) + ">");
-					log("Name: <" + controller.getText(Controller.TEXTID_Name, language.getLanguageId()) + ">");
-					log("Person: <" + controller.getText(Controller.TEXTID_Person, language.getLanguageId()) + ">");
-					log("Phone: <" + controller.getText(Controller.TEXTID_Phone, language.getLanguageId()) + ">");
-					log("State: <" + controller.getText(Controller.TEXTID_State, language.getLanguageId()) + ">");
-					log("Year of foundation: <" + controller.getText(Controller.TEXTID_Year_Of_Foundation, language.getLanguageId()) + ">");
+					log.info "Get texts"
+					log.info "Address: <" + controller.getText(Controller.TEXTID_Address, language.getLanguageId()) + ">"
+					log.info "Alumni: <" + controller.getText(Controller.TEXTID_Alumni, language.getLanguageId()) + ">"
+					log.info "City: <" + controller.getText(Controller.TEXTID_City, language.getLanguageId()) + ">"
+					log.info "Education Institute: <" + controller.getText(Controller.TEXTID_Education_Institute, language.getLanguageId()) + ">"
+					log.info "Email: <" + controller.getText(Controller.TEXTID_EMail, language.getLanguageId()) + ">"
+					log.info "Job: <" + controller.getText(Controller.TEXTID_Job, language.getLanguageId()) + ">"
+					log.info "Name: <" + controller.getText(Controller.TEXTID_Name, language.getLanguageId()) + ">"
+					log.info "Person: <" + controller.getText(Controller.TEXTID_Person, language.getLanguageId()) + ">"
+					log.info "Phone: <" + controller.getText(Controller.TEXTID_Phone, language.getLanguageId()) + ">"
+					log.info "State: <" + controller.getText(Controller.TEXTID_State, language.getLanguageId()) + ">"
+					log.info "Year of foundation: <" + controller.getText(Controller.TEXTID_Year_Of_Foundation, language.getLanguageId()) + ">"
 
 				}
 			}
 		}
 
-		System.out.println("");
-
-		log("--- Test search function ---");
-
-		System.out.println("");
+		log.info "--- Test search function ---"
 
 		for (String[] parameters : search) {
 
-			String search_state = parameters[0];
-			String search_city = parameters[1];
-			String search_educationInstitute = parameters[2];
-			String search_alumnus = parameters[3];
-			String search_job = parameters[4];
-			String languageid = parameters[5];
+			String search_state = parameters[0]
+			String search_city = parameters[1]
+			String search_educationInstitute = parameters[2]
+			String search_alumnus = parameters[3]
+			String search_job = parameters[4]
+			String languageid = parameters[5]
 
-			log("search parameters: search_state: <" + search_state
+			log.info ("search parameters: search_state: <" + search_state
 					+ ">, search_city: <" + search_city
 					+ ">, search_educationInstitute: <"
 					+ search_educationInstitute + ">, search_alumnus: <"
 					+ search_alumnus + ">, search_job: <" + search_job
-					+ ">, languageid: <" + languageid + ">");
+					+ ">, languageid: <" + languageid + ">")
 
 			List<EducationInstitute> eduInstList = controller
 					.searchEducationInstitutes(search_state, search_city,
 					search_educationInstitute, search_alumnus,
-					search_job, languageid);
+					search_job, languageid)
 
 			if(eduInstList == null || eduInstList.size() == 0) {
-				log("no results");
+				log.info "no results"
 			} else {
-				log("results:")
+				log.info "results:"
 			}
 
 			for (EducationInstitute educationInstitute : eduInstList) {
-				log("id: <" + educationInstitute.getId() + ">, name: <"
+				log.info("id: <" + educationInstitute.getId() + ">, name: <"
 						+ educationInstitute.getName() + ">, city: <"
 						+ educationInstitute.getCity() + ">, description: <"
 						+ educationInstitute.getEducationInstituteDescription()
@@ -269,45 +389,32 @@ public class ControllerTest {
 						+ ">, year of foundation: <"
 						+ educationInstitute.getYearOfFoundation()
 						+ ">, zip code: <" + educationInstitute.getZipCode()
-						+ ">");
+						+ ">")
 
-				log("job statistic:");
+				log.info "job statistic:"
 
 				List<JobStatisticDataset> jobStatisticList = educationInstitute
-						.getJobStatistic();
+						.getJobStatistic()
 
 				for (JobStatisticDataset jsd : jobStatisticList) {
-					log("job title: <" + jsd.getJobTitle() + ">, rate: <"
-							+ jsd.getRate() + ">");
+					log.info("job title: <" + jsd.getJobTitle() + ">, rate: <"
+							+ jsd.getRate() + ">")
 				}
-				log("end of job statistic")
+				log.info "end of job statistic"
 
+				log.info "alumni:"
 
-				log("alumni:");
-
-				List<Alumnus> alumni = educationInstitute
-						.getAlumni();
+				List<Alumnus> alumni = educationInstitute.getAlumni()
 
 				for (Alumnus alumnus : alumni) {
-					log("name: <" + alumnus.getAlumniName() + ">, job: <"
-							+ alumnus.getJobTitle() + ">, wikipedia:<"+alumnus.getWikipediaHyperlink()+">");
+					log.info("name: <" + alumnus.getAlumniName() + ">, job: <"
+							+ alumnus.getJobTitle() + ">, wikipedia:<"+alumnus.getWikipediaHyperlink()+">")
 				}
 
-				log("end of alumni");
-				log("end of results");
+				log.info "end of alumni"
+				log.info "end of results"
 			}
-			System.out.println("");
 		}
-
-		log("done");
+		log.info "done"
 	}
-
-	private static String getTimestamp() {
-		return "[" + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss:SSS").format(new Date()) + "]";
-	}
-
-	private static void log(String string) {
-		System.out.println(getTimestamp() + " " + string);
-	}
-
 }

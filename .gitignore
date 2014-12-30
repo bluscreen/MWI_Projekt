@@ -28,5 +28,6 @@
 
 # "temporary" build files
 /target
+/target-eclipse
 
 .*

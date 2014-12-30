@@ -1,4 +1,4 @@
-package de.dhbw.grails.openData.controller;
+package de.dhbw.grails.openData.controller
 
 import de.dhbw.grails.openData.DatabaseInterface
 import de.dhbw.grails.openData.controller.datatype.EducationInstitute
@@ -9,14 +9,53 @@ import de.dhbw.grails.openData.controller.datatype.Language
 
 /**
  * Class for retrieving data from the Controller in general.
- * 
  * You should only use ONE instance of this class for performance reasons.
+ * 
+ * TODO [DH] Since only one instance of this class shall be used, 
+ * this class might be refactored towards using the dbi as class property variable
+ * to reduce duplicate code
  */
 public class Controller {
 
 	// For caching: Caching is possible. The language table will not be updated
 	// during runtime.
-	List<Language> languageList = null;
+	List<Language> languageList = null
+
+	public final static String TEXTID_State = "P17"
+	public final static String TEXTID_City = "Q515"
+	public final static String TEXTID_Person = "Q215627"
+	public final static String TEXTID_Name = "Q82799"
+	public final static String TEXTID_Education_Institute = "Q2385804"
+	public final static String TEXTID_Job = "P106"
+	public final static String TEXTID_Year_Of_Foundation = "P571"
+	public final static String TEXTID_Phone = "P1329"
+	public final static String TEXTID_Alumni = "Q508719"
+	public final static String TEXTID_Address = "P319608"
+	public final static String TEXTID_EMail = "P968"
+
+
+	/**
+	 * TODO [DH] Bitte aussagekräftiger Kommentar: was passiert hier 
+	 * und warum in der gewählten Form?
+	 * @param <K>
+	 * @param <V>
+	 */
+	private class MaxSizeHashMap<K, V> extends LinkedHashMap<K, V> {
+		private static final long serialVersionUID = 1L
+		private final int maxSize
+
+		public MaxSizeHashMap(int maxSize) {
+			this.maxSize = maxSize
+		}
+
+		@Override
+		protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+			return size() > maxSize
+		}
+	}
+
+	private final MaxSizeHashMap<String, String> textCache = new MaxSizeHashMap<String, String>(
+	300) // TODO [DH] warum 300?
 
 	/**
 	 * @return a list containing a Language object of each supported language
@@ -24,63 +63,40 @@ public class Controller {
 	public List<Language> getLanguagesList() {
 
 		if (languageList == null) {
-			DatabaseInterface dbi = DatabaseInterface.getInstance();
-			languageList = dbi.getLanguagesList();
+			DatabaseInterface dbi = DatabaseInterface.getInstance()
+			languageList = dbi.getLanguagesList()
 		}
 
-		return languageList;
+		return languageList
 	}
-
-	public final static String TEXTID_State = "P17";
-	public final static String TEXTID_City = "Q515";
-	public final static String TEXTID_Person = "Q215627";
-	public final static String TEXTID_Name = "Q82799";
-	public final static String TEXTID_Education_Institute = "Q2385804";
-	public final static String TEXTID_Job = "P106";
-	public final static String TEXTID_Year_Of_Foundation = "P571";
-	public final static String TEXTID_Phone = "P1329";
-	public final static String TEXTID_Alumni = "Q508719";
-	public final static String TEXTID_Address = "P319608";
-	public final static String TEXTID_EMail = "P968";
-
-	private class MaxSizeHashMap<K, V> extends LinkedHashMap<K, V> {
-		private static final long serialVersionUID = 1L;
-		private final int maxSize;
-
-		public MaxSizeHashMap(int maxSize) {
-			this.maxSize = maxSize;
-		}
-
-		@Override
-		protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-			return size() > maxSize;
-		}
-	}
-
-	private final MaxSizeHashMap<String, String> textCache = new MaxSizeHashMap<String, String>(
-	300);
 
 	/**
 	 * @param textid
-	 *            the TEXTID constant value of the corresponding text
+	 *            the TEXTID constant value of the corresponding text 
 	 * @param languageid
 	 *            the id of the language
 	 * @return the requested text in the requested language or null
+	 * 
+	 * 
+	 * TODO: [DH] Bitte Refactoring: Methodennamen anpassen
+	 * aktuell erschließt sich aus dem Methodennamen nicht, was hier passiert
+	 * außerdem ist diese Methode keine typische Getter Methode
 	 */
 	public String getText(String textid, String languageid) {
 
 		// Use the concatenated textid + languageid as key for caching
-		String key = textid + languageid;
+		String key = textid + languageid
 
 		if (textCache.containsKey(key)) {
-			return textCache.get(key);
+			return textCache.get(key)
 		}
 
-		DatabaseInterface dbi = DatabaseInterface.getInstance();
-		String text = dbi.getText(textid, languageid);
-		textCache.put(key, text);
+		DatabaseInterface dbi = DatabaseInterface.getInstance()
+		// TODO [DH] getText refactoring im DBI
+		String text = dbi.getText(textid, languageid)
+		textCache.put(key, text)
 
-		return text;
+		return text
 	}
 
 	/**
@@ -113,41 +129,41 @@ public class Controller {
 			String search_educationInstitute, String search_alumnus,
 			String search_job, String languageid) {
 
-		DatabaseInterface dbi = DatabaseInterface.getInstance();
+		DatabaseInterface dbi = DatabaseInterface.getInstance()
 
 		// If the search field is null or empty --> wildcard (null value)
 		String state_id = (search_state == null || search_state.isEmpty() ? null
 				: dbi.getItemIdByLabel(DatabaseInterface.CATEGORY_STATES,
-				search_state, languageid));
+				search_state, languageid))
 		String city_id = (search_city == null || search_city.isEmpty() ? null
 				: dbi.getItemIdByLabel(DatabaseInterface.CATEGORY_CITIES,
-				search_city, languageid));
+				search_city, languageid))
 		String educationInstitute_id = (search_educationInstitute == null
 				|| search_educationInstitute.isEmpty() ? null : dbi
 				.getItemIdByLabel(
 				DatabaseInterface.CATEGORY_EDUCATION_INSTITUTES,
-				search_educationInstitute, languageid));
+				search_educationInstitute, languageid))
 		String alumnus_id = (search_alumnus == null || search_alumnus.isEmpty() ? null
 				: dbi.getItemIdByLabel(DatabaseInterface.CATEGORY_PERSONS,
-				search_alumnus, languageid));
+				search_alumnus, languageid))
 		String job_id = (search_job == null || search_job.isEmpty() ? null
 				: dbi.getItemIdByLabel(DatabaseInterface.CATEGORY_JOBS,
-				search_job, languageid));
+				search_job, languageid))
 
 		// Search the relevant ids
 		List<String> educationInstituteids = dbi.searchEducationInstituteids(
 				state_id, city_id, educationInstitute_id, alumnus_id, job_id,
-				languageid);
-		List<EducationInstitute> educationInstitutes = new ArrayList<>();
+				languageid)
+		List<EducationInstitute> educationInstitutes = new ArrayList<>()
 
 		// Get the data
 		for (String educationInstituteid : educationInstituteids) {
 			EducationInstitute educationInstitute = dbi
-					.getEducationInstituteById(educationInstituteid, languageid);
-			educationInstitutes.add(educationInstitute);
+					.getEducationInstituteById(educationInstituteid, languageid)
+			educationInstitutes.add(educationInstitute)
 		}
 
-		return educationInstitutes;
+		return educationInstitutes
 	}
 
 	/**
@@ -156,8 +172,8 @@ public class Controller {
 	 *         institutes
 	 */
 	public List<EducationInstituteBasicInformation> getAllEducationInstitutes() {
-		DatabaseInterface dbi = DatabaseInterface.getInstance();
-		return dbi.getAllEducationInstitutes();
+		DatabaseInterface dbi = DatabaseInterface.getInstance()
+		return dbi.getAllEducationInstitutes()
 	}
 
 	/**
@@ -170,8 +186,8 @@ public class Controller {
 	 */
 	public EducationInstitute getEducationInstituteById(
 			String educationInstituteid, String languageid) {
-		DatabaseInterface dbi = DatabaseInterface.getInstance();
-		return dbi.getEducationInstituteById(educationInstituteid, languageid);
+		DatabaseInterface dbi = DatabaseInterface.getInstance()
+		return dbi.getEducationInstituteById(educationInstituteid, languageid)
 	}
 
 	/**
@@ -184,8 +200,8 @@ public class Controller {
 	 */
 	public List<JobStatisticDataset> getJobStatisticDatasetsByEducationInstituteid(
 			String educationInstituteid, String languageid) {
-		DatabaseInterface dbi = DatabaseInterface.getInstance();
+		DatabaseInterface dbi = DatabaseInterface.getInstance()
 		return dbi.getJobStatisticDatasetsByEducationInstituteid(
-				educationInstituteid, languageid);
+		educationInstituteid, languageid)
 	}
 }
