@@ -23,7 +23,7 @@ class Database {
 
 	final String jdbcURL = "jdbc:mysql://localhost:3306/"
 	final String jdbcUSR = "root"
-	final String jdbcPWD = "root"
+	final String jdbcPWD = "purerH4\$\$"
 
 	public Connection getConnection() {
 		if(con==null) buildConnection()
@@ -45,8 +45,8 @@ class Database {
 		con = null
 
 		try {
-			Class.forName(driverClass);
-			log.info "JDBC-Driver Class " + driverClass + " sucessfully found"
+			Class.forName(driverClass).newInstance()
+			log.info "JDBC-Driver Class " + driverClass + " sucessfully instanciated"
 			con = DriverManager.getConnection(
 					jdbcURL + activeDbName, jdbcUSR, jdbcPWD);
 		} catch (ClassNotFoundException e) {

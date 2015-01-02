@@ -10,9 +10,6 @@ import de.dhbw.grails.openData.Language;
  * Class for retrieving data from the Controller in general.
  * You should only use ONE instance of this class for performance reasons.
  * 
- * TODO [DH] Since only one instance of this class shall be used, 
- * this class might be refactored towards using the dbi as class property variable
- * to reduce duplicate code
  */
 @Singleton
 public class GlobalDAO {

@@ -7,7 +7,7 @@ import java.sql.SQLException
 
 /**
  * TODO [DH] Dokumentation und Refactoring (siehe TODOS) 
- * alle bisherigen get* Methoden (bitte statt get hier find o.ä. Schlagwort für Namensgebung benutzen)
+ * Anmerkung: alle bisherigen get* Methoden (bitte statt get hier find o.ä. Schlagwort für Namensgebung benutzen)
  * weisen im wesentlichen Duplicate Code auf
  *
  */
