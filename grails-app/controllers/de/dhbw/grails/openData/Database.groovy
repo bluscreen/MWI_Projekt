@@ -23,7 +23,7 @@ class Database {
 
 	final String jdbcURL = "jdbc:mysql://localhost:3306/"
 	final String jdbcUSR = "root"
-	final String jdbcPWD = "purerH4\$\$"
+	final String jdbcPWD = 'purerH4$$'
 
 	public Connection getConnection() {
 		if(con==null) buildConnection()
@@ -45,12 +45,17 @@ class Database {
 		con = null
 
 		try {
-			Class.forName(driverClass).newInstance()
+			Class.forName(driverClass)
 			log.info "JDBC-Driver Class " + driverClass + " sucessfully instanciated"
-			con = DriverManager.getConnection(
-					jdbcURL + activeDbName, jdbcUSR, jdbcPWD);
 		} catch (ClassNotFoundException e) {
 			log.error "No JDBC Driver found!", e
+			return
+		}
+		
+		try{
+			String connector = jdbcURL + activeDbName
+			log.info "trying to connect to " + connector + " as " + jdbcUSR + "/" + jdbcPWD
+			con = DriverManager.getConnection(connector , jdbcUSR, jdbcPWD);
 		} catch (SQLException e) {
 			log.error "Couldnt establish JDBC Connection", e
 		}

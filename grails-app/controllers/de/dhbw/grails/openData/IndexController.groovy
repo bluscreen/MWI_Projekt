@@ -4,18 +4,9 @@ class IndexController {
 
 	
 	def index() {
-
 		log.info "index() called"
-		//		def doenerer = SpecialController.instance
-		//		[ doener: doenerer.getAllEducationInstitutes() ]
-		
-		
-//		log.info SingleTestor.instance
-		
-		log.info GlobalDAO.instance.checkIT()
-		
-
-		[doener: GlobalDAO.instance.getLanguagesList() ]
+		[doener: GlobalDAO.instance.checkIT() ]
+//		[doener: GlobalDAO.instance.getLanguagesList() ]
 	}
 
 	def popup() {

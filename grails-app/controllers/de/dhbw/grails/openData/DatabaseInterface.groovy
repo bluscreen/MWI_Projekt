@@ -708,7 +708,7 @@ public class DatabaseInterface {
 					String languageId = rs.getString("language")
 					String languageName = rs.getString("text")
 
-					Language language = new Language(languageId, languageName)
+					Language language = new Language(languageId: languageId, languageName: languageName)
 					languageList.add(language)
 				}
 				try {
