@@ -5,13 +5,6 @@ package de.dhbw.grails.openData
 
 import org.apache.commons.logging.LogFactory
 
-import de.dhbw.grails.openData.controller.Controller
-import de.dhbw.grails.openData.controller.datatype.Alumnus
-import de.dhbw.grails.openData.controller.datatype.EducationInstitute
-import de.dhbw.grails.openData.controller.datatype.EducationInstituteBasicInformation
-import de.dhbw.grails.openData.controller.datatype.JobStatisticDataset
-import de.dhbw.grails.openData.controller.datatype.Language
-
 
 
 /**
@@ -22,7 +15,7 @@ import de.dhbw.grails.openData.controller.datatype.Language
  * - this test depends on real data and not on mock data
  * - the used data (e. g. for the search functionality) are not static (in some parts) but real data
  */
-public class ControllerTest {
+public class GlobalDAOTest {
 
 	private static final log = LogFactory.getLog(this)
 
@@ -98,7 +91,7 @@ public class ControllerTest {
 
 		log.info "--- Start test ---"
 		log.info "--- Get controller instance ---"
-		Controller controller = new Controller()
+		GlobalDAO controller = new GlobalDAO()
 		log.info "done"
 
 		log.info "--- Get all education institutes ---"
@@ -327,17 +320,17 @@ public class ControllerTest {
 					log.info "done"
 
 					log.info "Get texts"
-					log.info "Address: <" + controller.getText(Controller.TEXTID_Address, language.getLanguageId()) + ">"
-					log.info "Alumni: <" + controller.getText(Controller.TEXTID_Alumni, language.getLanguageId()) + ">"
-					log.info "City: <" + controller.getText(Controller.TEXTID_City, language.getLanguageId()) + ">"
-					log.info "Education Institute: <" + controller.getText(Controller.TEXTID_Education_Institute, language.getLanguageId()) + ">"
-					log.info "Email: <" + controller.getText(Controller.TEXTID_EMail, language.getLanguageId()) + ">"
-					log.info "Job: <" + controller.getText(Controller.TEXTID_Job, language.getLanguageId()) + ">"
-					log.info "Name: <" + controller.getText(Controller.TEXTID_Name, language.getLanguageId()) + ">"
-					log.info "Person: <" + controller.getText(Controller.TEXTID_Person, language.getLanguageId()) + ">"
-					log.info "Phone: <" + controller.getText(Controller.TEXTID_Phone, language.getLanguageId()) + ">"
-					log.info "State: <" + controller.getText(Controller.TEXTID_State, language.getLanguageId()) + ">"
-					log.info "Year of foundation: <" + controller.getText(Controller.TEXTID_Year_Of_Foundation, language.getLanguageId()) + ">"
+					log.info "Address: <" + controller.getText(GlobalDAO.TEXTID_Address, language.getLanguageId()) + ">"
+					log.info "Alumni: <" + controller.getText(GlobalDAO.TEXTID_Alumni, language.getLanguageId()) + ">"
+					log.info "City: <" + controller.getText(GlobalDAO.TEXTID_City, language.getLanguageId()) + ">"
+					log.info "Education Institute: <" + controller.getText(GlobalDAO.TEXTID_Education_Institute, language.getLanguageId()) + ">"
+					log.info "Email: <" + controller.getText(GlobalDAO.TEXTID_EMail, language.getLanguageId()) + ">"
+					log.info "Job: <" + controller.getText(GlobalDAO.TEXTID_Job, language.getLanguageId()) + ">"
+					log.info "Name: <" + controller.getText(GlobalDAO.TEXTID_Name, language.getLanguageId()) + ">"
+					log.info "Person: <" + controller.getText(GlobalDAO.TEXTID_Person, language.getLanguageId()) + ">"
+					log.info "Phone: <" + controller.getText(GlobalDAO.TEXTID_Phone, language.getLanguageId()) + ">"
+					log.info "State: <" + controller.getText(GlobalDAO.TEXTID_State, language.getLanguageId()) + ">"
+					log.info "Year of foundation: <" + controller.getText(GlobalDAO.TEXTID_Year_Of_Foundation, language.getLanguageId()) + ">"
 
 				}
 			}

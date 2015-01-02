@@ -1,38 +1,25 @@
 <!DOCTYPE html>
 <html>
 	<head>
-
-
-		<meta name="layout" content="main" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>openData</title>
+  		<g:javascript library="jquery"/>
+ 		<g:javascript library="jquery-ui"/>
 		<asset:stylesheet src="leaflet.css" />
 		<asset:stylesheet src="screen.css" />
 		<asset:stylesheet src="main.css" />
-		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
+		<asset:stylesheet src="application.css"/>
+		<asset:javascript src="application.js"/>
+		<modalbox:modalIncludes />
 		<script type="text/javascript">
 function calculateMiddlePoint(){
 	var koord = new Array();
 
-
 	koord[0] = new Object();
 	koord[0]["latitude"] = 50;
 	koord[0]["longitude"] = 20;
-	//koord[0]["Wohnort"] = "Dresden";
-
-	/*koord[1] = new Object();
-	koord[1]["latitude"] = 40;
-	koord[1]["longitude"] = 40;
-	//koord[1]["Wohnort"] = "Berlin";
-
-	koord[2] = new Object();
-	koord[2]["latitude"] = 75.026461;
-	koord[2]["longitude"] = 75.026461;
-	//koord[1]["Wohnort"] = "Berlin";
-
-	koord[3] = new Object();
-	koord[3]["latitude"] = 0;
-	koord[3]["longitude"] = 0;*/
 
 	clearMarkerArray();
 	
@@ -53,8 +40,9 @@ function calculateMiddlePoint(){
 }
 		</script>
 	</head>
+	
 	<body>
-	<section class="module parallax parallax-1 test">
+		<section class="module parallax parallax-1 test">
 		<div class="stripe">
 			<div class="left">OpenData</div>
 			<div class="right">Lorem ipsum dolor sit amet, consetetur
@@ -64,44 +52,35 @@ function calculateMiddlePoint(){
 				no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
 				dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
 				tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-				voluptua.
-				<h2>
-				[[ skrəʊl daʊn ]] </h2>
+				voluptua.<br/>
+				<h2>[[ skrəʊl daʊn ]] </h2>
 				</div>
 		</div>
-	</section>
+		</section>
 	
-	<section class="container">
+		<section class="container">
 	
 		<div><g:select class="languages" name="system.language" from="${['Deutsch', 'Englisch', '...']}" value="${language}"
           noSelection="['':'Sprache']"/></div>
 	
-	</section>
+		</section>
 	
-	<section class="module content">
+		<section class="module content">
 		<div class="container">
 		
-		
-		
-    <!-- Modal HTML -->
-
 			<a href="#page-body" class="skip"><g:message
 					code="default.link.skip.label" default="Skip to content&hellip;" /></a>
 					
 			<div id="status" role="complementary">
-
 				<ul>
-					
 					<li><g:textField class="searchfields" name="staat" placeholder="Staat" /></li>
 					<li><g:textField class="searchfields" name="ort" placeholder="Ort" /></li>
 					<li><g:textField class="searchfields" name="bildungseinrichtung" placeholder="Bildungseinrichtung" /></li>
 					<li><g:textField class="searchfields" name="person" placeholder="Person" /></li>
 					<li><g:textField class="searchfields" name="beruf" placeholder="Beruf" /></li>
-					<li><g:submitButton id="searchButton" name=" "/></li>
+					<li><g:submitButton id="searchButton" name="search"/></li>
 					<input type="button" value="hehe" onclick="calculateMiddlePoint();"/>
-
 				</ul>
-				
 				
 				<ul>
 				<li>ergebnisse</li>
@@ -137,7 +116,7 @@ function calculateMiddlePoint(){
 				function showMarker(latitude, longitude){
 					poly =  L.marker([latitude, longitude]);
 					markerArray.push(poly);
-					poly.addTo(map).bindPopup('<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e123<br>54290 Trier</b><p><img src=\ "test.jpg\" width=\ "180\" height=\"113\"></p>${modalbox.createLink(controller:"staat", action:"popup", title:"Ich bin das Popup!", width:"600", height:"300", linkname:"Read more...")}</font>');
+					poly.addTo(map).bindPopup('<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e123<br>54290 Trier</b><br/> ${modalbox.createLink(controller:"index", action:"popup", title:"Ich bin das Popup!", width:"600", height:"300", linkname:"Read more...")}</font>');
 				}
 				
 				//zoom and center
@@ -152,6 +131,6 @@ function calculateMiddlePoint(){
 			 </g:javascript>
 		</div>
 
-	</section>
-</body>
+		</section>
+	</body>
 </html>

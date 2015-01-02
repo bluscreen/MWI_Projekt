@@ -5,34 +5,16 @@ import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
 
-import de.dhbw.grails.openData.controller.datatype.Alumnus
-import de.dhbw.grails.openData.controller.datatype.EducationInstitute
-import de.dhbw.grails.openData.controller.datatype.EducationInstituteBasicInformation
-import de.dhbw.grails.openData.controller.datatype.JobStatisticDataset
-import de.dhbw.grails.openData.controller.datatype.Language
-
 /**
  * TODO [DH] Dokumentation und Refactoring (siehe TODOS) 
  * alle bisherigen get* Methoden (bitte statt get hier find o.ä. Schlagwort für Namensgebung benutzen)
  * weisen im wesentlichen Duplicate Code auf
  *
  */
+
+@Singleton
 public class DatabaseInterface {
-	private Database db
-	private static DatabaseInterface instance = null
-
-	public static DatabaseInterface getInstance() {
-		if (instance == null) {
-			instance = new DatabaseInterface()
-		}
-
-		return instance
-	}
-
-	private DatabaseInterface() {
-		db = new Database()
-		db.buildConnection()
-	}
+	private Database db = Database.instance
 
 	public static final String CATEGORY_PERSONS = "persons_"
 	public static final String CATEGORY_JOBS = "jobs_"

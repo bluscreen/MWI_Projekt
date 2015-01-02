@@ -1,4 +1,4 @@
-package de.dhbw.grails.openData.controller.datatype;
+package de.dhbw.grails.openData;
 
 
 

@@ -1,10 +1,9 @@
-package de.dhbw.grails.openData.controller
+package de.dhbw.grails.openData
 
-import de.dhbw.grails.openData.DatabaseInterface
-import de.dhbw.grails.openData.controller.datatype.EducationInstitute
-import de.dhbw.grails.openData.controller.datatype.EducationInstituteBasicInformation
-import de.dhbw.grails.openData.controller.datatype.JobStatisticDataset
-import de.dhbw.grails.openData.controller.datatype.Language
+import de.dhbw.grails.openData.EducationInstitute;
+import de.dhbw.grails.openData.EducationInstituteBasicInformation;
+import de.dhbw.grails.openData.JobStatisticDataset;
+import de.dhbw.grails.openData.Language;
 
 
 /**
@@ -15,8 +14,8 @@ import de.dhbw.grails.openData.controller.datatype.Language
  * this class might be refactored towards using the dbi as class property variable
  * to reduce duplicate code
  */
-public class Controller {
-
+@Singleton
+public class GlobalDAO {
 	// For caching: Caching is possible. The language table will not be updated
 	// during runtime.
 	List<Language> languageList = null
@@ -63,8 +62,7 @@ public class Controller {
 	public List<Language> getLanguagesList() {
 
 		if (languageList == null) {
-			DatabaseInterface dbi = DatabaseInterface.getInstance()
-			languageList = dbi.getLanguagesList()
+			languageList = DatabaseInterface.instance.getLanguagesList()
 		}
 
 		return languageList
@@ -91,9 +89,8 @@ public class Controller {
 			return textCache.get(key)
 		}
 
-		DatabaseInterface dbi = DatabaseInterface.getInstance()
 		// TODO [DH] getText refactoring im DBI
-		String text = dbi.getText(textid, languageid)
+		String text = DatabaseInterface.instance.getText(textid, languageid)
 		textCache.put(key, text)
 
 		return text
@@ -124,41 +121,44 @@ public class Controller {
 	 * @return a list of all found education institutes that match to the
 	 *         parameters. Null if all parameters are null or empty
 	 */
+	public List<String> checkIT()
+	{
+		return ["xyx","yxy","YYYY"]
+	}
+	
 	public List<EducationInstitute> searchEducationInstitutes(
 			String search_state, String search_city,
 			String search_educationInstitute, String search_alumnus,
 			String search_job, String languageid) {
 
-		DatabaseInterface dbi = DatabaseInterface.getInstance()
-
 		// If the search field is null or empty --> wildcard (null value)
 		String state_id = (search_state == null || search_state.isEmpty() ? null
-				: dbi.getItemIdByLabel(DatabaseInterface.CATEGORY_STATES,
+				: DatabaseInterface.instance.getItemIdByLabel(DatabaseInterface.CATEGORY_STATES,
 				search_state, languageid))
 		String city_id = (search_city == null || search_city.isEmpty() ? null
-				: dbi.getItemIdByLabel(DatabaseInterface.CATEGORY_CITIES,
+				: DatabaseInterface.instance.getItemIdByLabel(DatabaseInterface.CATEGORY_CITIES,
 				search_city, languageid))
 		String educationInstitute_id = (search_educationInstitute == null
-				|| search_educationInstitute.isEmpty() ? null : dbi
+				|| search_educationInstitute.isEmpty() ? null : DatabaseInterface.instance
 				.getItemIdByLabel(
 				DatabaseInterface.CATEGORY_EDUCATION_INSTITUTES,
 				search_educationInstitute, languageid))
 		String alumnus_id = (search_alumnus == null || search_alumnus.isEmpty() ? null
-				: dbi.getItemIdByLabel(DatabaseInterface.CATEGORY_PERSONS,
+				: DatabaseInterface.instance.getItemIdByLabel(DatabaseInterface.CATEGORY_PERSONS,
 				search_alumnus, languageid))
 		String job_id = (search_job == null || search_job.isEmpty() ? null
-				: dbi.getItemIdByLabel(DatabaseInterface.CATEGORY_JOBS,
+				: DatabaseInterface.instance.getItemIdByLabel(DatabaseInterface.CATEGORY_JOBS,
 				search_job, languageid))
 
 		// Search the relevant ids
-		List<String> educationInstituteids = dbi.searchEducationInstituteids(
+		List<String> educationInstituteids = DatabaseInterface.instance.searchEducationInstituteids(
 				state_id, city_id, educationInstitute_id, alumnus_id, job_id,
 				languageid)
 		List<EducationInstitute> educationInstitutes = new ArrayList<>()
 
 		// Get the data
 		for (String educationInstituteid : educationInstituteids) {
-			EducationInstitute educationInstitute = dbi
+			EducationInstitute educationInstitute = DatabaseInterface.instance
 					.getEducationInstituteById(educationInstituteid, languageid)
 			educationInstitutes.add(educationInstitute)
 		}
@@ -172,8 +172,7 @@ public class Controller {
 	 *         institutes
 	 */
 	public List<EducationInstituteBasicInformation> getAllEducationInstitutes() {
-		DatabaseInterface dbi = DatabaseInterface.getInstance()
-		return dbi.getAllEducationInstitutes()
+		return DatabaseInterface.instance.getAllEducationInstitutes()
 	}
 
 	/**
@@ -186,8 +185,7 @@ public class Controller {
 	 */
 	public EducationInstitute getEducationInstituteById(
 			String educationInstituteid, String languageid) {
-		DatabaseInterface dbi = DatabaseInterface.getInstance()
-		return dbi.getEducationInstituteById(educationInstituteid, languageid)
+		return DatabaseInterface.instance.getEducationInstituteById(educationInstituteid, languageid)
 	}
 
 	/**
@@ -200,8 +198,7 @@ public class Controller {
 	 */
 	public List<JobStatisticDataset> getJobStatisticDatasetsByEducationInstituteid(
 			String educationInstituteid, String languageid) {
-		DatabaseInterface dbi = DatabaseInterface.getInstance()
-		return dbi.getJobStatisticDatasetsByEducationInstituteid(
+		return DatabaseInterface.instance.getJobStatisticDatasetsByEducationInstituteid(
 		educationInstituteid, languageid)
 	}
 }
