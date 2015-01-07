@@ -14,31 +14,69 @@
 		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
 		<modalbox:modalIncludes />
-		<script type="text/javascript">
-function calculateMiddlePoint(){
-	var koord = new Array();
-
-	koord[0] = new Object();
-	koord[0]["latitude"] = 50;
-	koord[0]["longitude"] = 20;
-
-	clearMarkerArray();
 	
-	if(koord.length != 1){
-		for(var i=0; i<koord.length; i++){
-			showMarker(koord[i]["latitude"], koord[i]["longitude"]);
-		}
+		<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+		<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
+		</head>
+		<body>
+		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+		<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+		<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
 		
-		fitTheBounds();
-	}
+		<!-- Example data. -->
+		<script src="/mapbox.js/assets/data/realworld.388.js"></script>
 
-	//Nur eine Position
-	else{
-		showMarker(koord[0]["latitude"], koord[0]["longitude"]);	
-		fitTheBounds();
-		showPopup();
-	}
-}
+
+
+		<script type="text/javascript">
+		function calculateMiddlePoint(){
+			/*var koord = new Array();
+		
+		
+			koord[0] = new Object();
+			koord[0][0] = 2.1;
+			koord[0][1] = 2.1;
+			//koord[0]["Wohnort"] = "Dresden";
+		
+			koord[1] = new Object();
+			koord[1][0] = 2;
+			koord[1][1] = 2;
+			//koord[1]["Wohnort"] = "Berlin";
+		
+			koord[2] = new Object();
+			koord[2][0] = 15.026461;
+			koord[2][1] = 15.026461;
+			//koord[1]["Wohnort"] = "Berlin";
+		
+			koord[3] = new Object();
+			koord[3][0] = 0;
+			koord[3][1] = 0;*/
+			//alert("soso13");
+			clearMarkers();
+			//alert("soso177");
+			if(koord.length != 1){
+				for(var i=0; i<koord.length; i++){
+					//showMarker(koord[i]["latitude"], koord[i]["longitude"]);
+					//cluster(koord[i]["latitude"], koord[i]["longitude"]);
+					cluster(koord[i][0], koord[i][1]);
+				}
+				//alert("soso14");
+				fitTheBounds();
+				//alert("soso15");
+			}
+		
+			//Nur eine Position
+			else{
+				//alert("soso2");
+				showMarker(koord[0][0], koord[0][1]);
+				//alert("soso3");	
+				fitTheBounds();
+				//alert("soso4");
+				showPopup();
+			}
+		
+			//alert("soso5");
+		}
 		</script>
 	</head>
 	
@@ -100,6 +138,7 @@ function calculateMiddlePoint(){
 			
 			<g:javascript>
 			    var markerArray = null;
+			    var markers = null;
 			    var poly = null;
 			 	 // create a map in the "map" div, set the view to a given place and zoom
 				var map = L.map('map').setView([49.0158491, 8.4095339], 13);
@@ -108,8 +147,9 @@ function calculateMiddlePoint(){
 				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> und <a href="http://www.openstreetmap.org/copyright">Mitwirkende</a>, <a href="http://creativecommons.org/licenses/by-sa/2.0/deed.de">CC-BY-SA</a>'
 				}).addTo(map);
 				 
-				 function clearMarkerArray(){
+				 function clearMarkers(){
 					markerArray = new Array();
+					markers = new L.MarkerClusterGroup();			
 				 }
 				 
 				 
@@ -117,18 +157,29 @@ function calculateMiddlePoint(){
 				function showMarker(latitude, longitude){
 					poly =  L.marker([latitude, longitude]);
 					markerArray.push(poly);
-					poly.addTo(map).bindPopup('<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e123<br>54290 Trier</b><br/> ${modalbox.createLink(controller:"index", action:"popup", title:"Ich bin das Popup!", width:"600", height:"300", linkname:"Read more...")}</font>');
+					poly.addTo(map).bindPopup('<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e123<br>54290 Trier</b><p><img src=\ "test.jpg\" width=\ "180\" height=\"113\"></p>${modalbox.createLink(controller:"index", action:"popup", title:"Ich bin das Popup!", width:"600", height:"300", linkname:"Read more...")}</font>');
 				}
 				
+				//Objekte gruppieren
+				 function cluster(latitude, longitude){
+					poly =  L.marker([latitude, longitude]);
+					poly.bindPopup('<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e123<br>54290 Trier</b><p><img src=\ "test.jpg\" width=\ "180\" height=\"113\"></p>${modalbox.createLink(controller:"index", action:"popup", title:"Ich bin das Popup!", width:"600", height:"300", linkname:"Read more...")}</font>');
+				 	markerArray.push(poly);
+					markers.addLayer(poly);
+				 }
+				 
 				//zoom and center
 				 function fitTheBounds(){
 				 	var group = new L.featureGroup(markerArray);
+				 	map.addLayer(markers);
 					map.fitBounds(group.getBounds());
 				 }
-				 
+ 
 				 function showPopup(){
 				 	poly.openPopup();
 				 }
+				 
+
 			 </g:javascript>
 		</div>
 
