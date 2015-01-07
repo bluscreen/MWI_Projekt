@@ -25,14 +25,9 @@
 		<script src="/mapbox.js/assets/data/realworld.388.js"></script>
 
 		<script type="text/javascript">
-		function calculateMiddlePoint(<%=educationInstitues%>){
-			var koord = new Array();
+		function calculateMiddlePoint(){
+			//var koord = new Array();
 			
-			for(var i=0; i<<%=educationInstitues%>.size(); i++){
-
-				koord[i][0] = <%=educationInstitues%>[i].latitude;
-				koord[i][1] = <%=educationInstitues%>[i].longitude;
-			}
 			
 			/*var koord = new Array();
 			koord[0] = new Object();
