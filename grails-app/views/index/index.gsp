@@ -14,11 +14,9 @@
 		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
 		<modalbox:modalIncludes />
-	
+	 	
 		<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
 		<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
-		</head>
-		<body>
 		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
 		<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
 		<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
@@ -26,13 +24,17 @@
 		<!-- Example data. -->
 		<script src="/mapbox.js/assets/data/realworld.388.js"></script>
 
-
-
 		<script type="text/javascript">
-		function calculateMiddlePoint(){
+		function calculateMiddlePoint(<%=educationInstitues%>){
+			var koord = new Array();
+			
+			for(var i=0; i<<%=educationInstitues%>.size(); i++){
+
+				koord[i][0] = <%=educationInstitues%>[i].latitude;
+				koord[i][1] = <%=educationInstitues%>[i].longitude;
+			}
+			
 			/*var koord = new Array();
-		
-		
 			koord[0] = new Object();
 			koord[0][0] = 2.1;
 			koord[0][1] = 2.1;
@@ -157,13 +159,14 @@
 				function showMarker(latitude, longitude){
 					poly =  L.marker([latitude, longitude]);
 					markerArray.push(poly);
-					poly.addTo(map).bindPopup('<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e123<br>54290 Trier</b><p><img src=\ "test.jpg\" width=\ "180\" height=\"113\"></p>${modalbox.createLink(controller:"index", action:"popup", title:"Ich bin das Popup!", width:"600", height:"300", linkname:"Read more...")}</font>');
+					//poly.addTo(map).bindPopup('<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e123<br>54290 Trier</b><p><img src=\ "test.jpg\" width=\ "180\" height=\"113\"></p>${modalbox.createLink(controller:"index", action:"popup", title:"Ich bin das Popup!", width:"600", height:"300", linkname:"Read more...")}</font>');
 				}
 				
 				//Objekte gruppieren
 				 function cluster(latitude, longitude){
 					poly =  L.marker([latitude, longitude]);
-					poly.bindPopup('<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e123<br>54290 Trier</b><p><img src=\ "test.jpg\" width=\ "180\" height=\"113\"></p>${modalbox.createLink(controller:"index", action:"popup", title:"Ich bin das Popup!", width:"600", height:"300", linkname:"Read more...")}</font>');
+					//poly.bindPopup('<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e123<br>54290 Trier</b><p><img src=\ "test.jpg\" width=\ "180\" height=\"113\"></p>${modalbox.createLink(controller:"index", action:"popup", title:"Ich bin das Popup!", width:"600", height:"300", linkname:"Read more...")}</font>');
+				 	poly.bindPopup('<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e123<br>54290 Trier</b><p><img src=\ "test.jpg\" width=\ "180\" height=\"113\"></p><a href="${createLink(action: 'popup') }">Read more...</a></font>');
 				 	markerArray.push(poly);
 					markers.addLayer(poly);
 				 }
