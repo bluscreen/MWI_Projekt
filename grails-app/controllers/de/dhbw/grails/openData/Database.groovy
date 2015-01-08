@@ -1,72 +1,141 @@
 package de.dhbw.grails.openData;
 
-import java.sql.Connection
+import java.nio.file.Path
+import java.nio.file.Paths
+import java.nio.file.StandardWatchEventKinds
+import java.nio.file.WatchEvent
+import java.nio.file.WatchKey
+import java.nio.file.WatchService
 import java.sql.DriverManager
 import java.sql.SQLException
 
-import javax.annotation.PostConstruct;
+import com.mysql.jdbc.Connection
 
 /**
- * 
- * @author 
- * 
- * [DH] Some Refactoring has been done here..
- *
+ * @author Raffaela F., Benny R.
  */
-@Singleton
 class Database {
-	private Connection con
+	private Connection con;
 
-	final String driverClass = "com.mysql.jdbc.Driver"
+	final String driverClass = "com.mysql.jdbc.Driver";
 
-	private String activeDbName = "wikidata2"
+	private static String database_schema = "";
+	public static void setDatabaseSchema(String database_schema) {
+		Database.database_schema = database_schema;
+		println "schema: " + database_schema;
+	}
+	private static String database_path = "";
+	public static void setDatabasePath(String database_path) {
+		Database.database_path = database_path;
+		println "path: " + database_path;
+	}
+	private static String database_username = "";
+	public static void setDatabaseUsername(String database_username) {
+		Database.database_username = database_username;
+		println "username: " + database_username;
+	}
+	private static String database_password = "";
+	public static void setDatabasePassword(String database_password) {
+		Database.database_password = database_password;
+		println "password: " + database_password;
+	}
 
-	final String jdbcURL = "jdbc:mysql://localhost:3306/"
-	final String jdbcUSR = "root"
-	final String jdbcPWD = 'purerH4$$'
+	public Database() {
+
+		// TODO: Pfad zum Config-File. Der steht auf dem Server noch nicht fest.
+		Path myDir = Paths
+				.get("C:\\Users\\Raffis\\Desktop");
+
+
+		// Read db settings from file
+		ConfigScanner parser = new ConfigScanner(myDir.toString()
+				+ "\\DB_PROPERTIES");
+		try {
+			parser.processLineByLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		new Thread() {
+
+					@Override
+					public void run() {
+						while(true) {
+
+							try {
+								// Create a watcher for changes in file system
+								WatchService watcher = myDir.getFileSystem().newWatchService();
+								myDir.register(watcher, StandardWatchEventKinds.ENTRY_MODIFY);
+
+								WatchKey watckKey = watcher.take();
+
+								List<WatchEvent<?>> events = watckKey.pollEvents();
+								for (WatchEvent event : events) {
+
+									// Changes in file "DB_PROPERTIES"? --> read file
+									if (event.context().toString()
+									.equalsIgnoreCase("DB_PROPERTIES")) {
+
+										// Read db settings from file
+										parser = new ConfigScanner(myDir.toString()
+												+ "\\DB_PROPERTIES");
+										try {
+											parser.processLineByLine();
+										} catch (IOException e) {
+											e.printStackTrace();
+										}
+
+										Database.this.rebuildConnection();
+									}
+								}
+
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				}.start();
+	}
 
 	public Connection getConnection() {
-		if(con==null) buildConnection()
-		if(con==null) throw new RuntimeException("NO SQL CONNECTION OMGLAWL!!")
-		return con
+		if(con==null) {
+			buildConnection();
+		}
+		if(con==null) {
+			throw new RuntimeException("No sql connection");
+		}
+		return con;
 	}
 
-	public void rebuildConnection(String newDatabaseReference) {
-		this.setNewReference(newDatabaseReference)
-		this.closeConnection()
-		this.buildConnection()
-	}
-
-	private void setNewReference(String newDatabaseReference) {
-		activeDbName = newDatabaseReference
+	public void rebuildConnection() {
+		this.closeConnection();
+		this.buildConnection();
 	}
 
 	private void buildConnection() {
-		con = null
+		con = null;
 
 		try {
-			Class.forName(driverClass)
-			log.info "JDBC-Driver Class " + driverClass + " sucessfully instanciated"
+			Class.forName(driverClass);
 		} catch (ClassNotFoundException e) {
-			log.error "No JDBC Driver found!", e
-			return
+			e.printStackTrace();
 		}
-		
+
 		try{
-			String connector = jdbcURL + activeDbName
-			log.info "trying to connect to " + connector + " as " + jdbcUSR + "/" + jdbcPWD
-			con = DriverManager.getConnection(connector , jdbcUSR, jdbcPWD);
+			//TODO:String connector = database_path + "_" + database_schema;
+			String connector = database_path + database_schema;
+			con = DriverManager.getConnection("jdbc:mysql://" + connector , database_username, database_password);
 		} catch (SQLException e) {
-			log.error "Couldnt establish JDBC Connection", e
+			e.printStackTrace();
 		}
 	}
 
 	private void closeConnection() {
 		if (con != null) {
 			try {
-				con.close()
+				con.close();
 			} catch (SQLException e) {
-				log.error "Error trying to close JDBC Connection", e
+				e.printStackTrace();
 			}
 		}
 	}

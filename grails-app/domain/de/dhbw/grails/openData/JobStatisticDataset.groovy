@@ -2,6 +2,8 @@ package de.dhbw.grails.openData;
 
 
 /**
+ * @author Raffaela F., Benny R.
+ * 
  * Class for storing a dataset of job statistic of an educational institute
  */
 public class JobStatisticDataset {

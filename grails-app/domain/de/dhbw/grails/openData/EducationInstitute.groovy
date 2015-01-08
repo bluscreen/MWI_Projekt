@@ -2,6 +2,8 @@ package de.dhbw.grails.openData;
 
 
 /**
+ * @author Raffaela F., Benny R.
+ *
  * Class for storing detailed information about an education institute
  */
 public class EducationInstitute extends EducationInstituteBasicInformation {
