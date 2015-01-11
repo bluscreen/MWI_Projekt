@@ -37,4 +37,13 @@ public class Alumnus {
 	public String getWikipediaHyperlink() {
 		return wikipediaHyperlink;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Alumnus [alumniName=" + alumniName + ", jobTitle=" + jobTitle
+				+ ", wikipediaHyperlink=" + wikipediaHyperlink + "]";
+	}
+	
+	
 }

@@ -37,4 +37,12 @@ public class EducationInstituteBasicInformation {
 	public String getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		return "EducationInstituteBasicInformation [longitude=" + longitude
+				+ ", latitude=" + latitude + ", id=" + id + "]";
+	}
+	
+	
 }

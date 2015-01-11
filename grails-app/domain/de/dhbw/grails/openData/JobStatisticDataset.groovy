@@ -57,4 +57,12 @@ public class JobStatisticDataset {
 	public double getRate() {
 		return rate;
 	}
+
+	@Override
+	public String toString() {
+		return "JobStatisticDataset [jobTitle=" + jobTitle + ", number="
+				+ number + ", total=" + total + ", rate=" + rate + "]";
+	}
+	
+	
 }

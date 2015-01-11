@@ -44,7 +44,7 @@ class Database {
 
 		// TODO: Pfad zum Config-File. Der steht auf dem Server noch nicht fest.
 		Path myDir = Paths
-				.get("C:\\Users\\Raffis\\Desktop");
+				.get("C:\\TEMP\\alumnetConfig");
 
 
 		// Read db settings from file
@@ -90,6 +90,9 @@ class Database {
 								}
 
 							} catch (Exception e) {
+								/**
+						 * [DH] This should have some real exception handling
+						 */
 								e.printStackTrace();
 							}
 						}

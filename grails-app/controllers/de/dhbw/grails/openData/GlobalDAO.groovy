@@ -8,7 +8,19 @@ package de.dhbw.grails.openData;
  * Class for retrieving data from the controller in general.
  *
  * You should only use ONE instance of this class for performance reasons.
+ * 
+ * 
+ * 
+ * 
+ * 10.01 [DH] This architecture might cause concurrency issues
+ *  Following changes necessary to integrate this class 
+ * with groovy singleton pattern:
+ * - Singleton annotation added
+ * 
  */
+
+
+@Singleton
 public class GlobalDAO {
 
 	// For caching: Caching is possible. The language table will not be updated
@@ -19,7 +31,7 @@ public class GlobalDAO {
 	 * @return a list containing a Language object of each supported language
 	 */
 	public List<Language> getLanguagesList() {
-
+		log.debug "getLanguagesList() called"
 		if (languageList == null) {
 			DatabaseInterface dbi = DatabaseInterface.getInstance();
 			languageList = dbi.findLanguagesList();
@@ -65,7 +77,7 @@ public class GlobalDAO {
 	 * @return the requested text in the requested language or null
 	 */
 	public String getText(String textid, String languageid) {
-
+		log.debug "getText() called"
 		// Use the concatenated textid + languageid as key for caching
 		String key = textid + languageid;
 
@@ -109,7 +121,8 @@ public class GlobalDAO {
 			String search_state, String search_city,
 			String search_educationInstitute, String search_alumnus,
 			String search_job, String languageid) {
-
+			log.info "searchEducationInstitutes() called"
+			
 		DatabaseInterface dbi = DatabaseInterface.getInstance();
 
 		// If the search field is null or empty --> wildcard (null value)
@@ -153,6 +166,8 @@ public class GlobalDAO {
 	 *         institutes
 	 */
 	public List<EducationInstituteBasicInformation> getAllEducationInstitutes() {
+		log.info "getAllEducationInstitutes() called"
+		// TODO should languageid be included here?
 		DatabaseInterface dbi = DatabaseInterface.getInstance();
 		return dbi.findAllEducationInstitutes();
 	}
@@ -167,6 +182,7 @@ public class GlobalDAO {
 	 */
 	public EducationInstitute getEducationInstituteById(
 			String educationInstituteid, String languageid) {
+			log.info "getEducationInstitutesById() called"
 		DatabaseInterface dbi = DatabaseInterface.getInstance();
 		return dbi.findEducationInstituteById(educationInstituteid, languageid);
 	}
@@ -181,8 +197,9 @@ public class GlobalDAO {
 	 */
 	public List<JobStatisticDataset> getJobStatisticDatasetsByEducationInstituteid(
 			String educationInstituteid, String languageid) {
+			log.info "getJobStatisticDatasetsByEducationInstituteId() called"
 		DatabaseInterface dbi = DatabaseInterface.getInstance();
 		return dbi.findJobStatisticDatasetsByEducationInstituteid(
-				educationInstituteid, languageid);
+		educationInstituteid, languageid);
 	}
 }

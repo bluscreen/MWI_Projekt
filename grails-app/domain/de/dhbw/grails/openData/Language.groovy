@@ -28,4 +28,12 @@ public class Language {
 	public String getLanguageId() {
 		return languageId;
 	}
+
+	@Override
+	public String toString() {
+		return "Language [languageName=" + languageName + ", languageId="
+				+ languageId + "]";
+	}
+	
+	
 }
