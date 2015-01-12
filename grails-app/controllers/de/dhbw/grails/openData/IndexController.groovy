@@ -1,5 +1,7 @@
 package de.dhbw.grails.openData
 
+import org.springframework.web.servlet.support.RequestContextUtils
+
 
 /**
  * @author dhammacher
@@ -52,11 +54,17 @@ class IndexController {
 	 */
 	def updateLanguage() {
 		log.info "updateLanguage() called"
-		if(params['id'] == null || params['id' == ""]) {
-			// TODO determine language from browser
+		def locale = RequestContextUtils.getLocale(request)
+		log.info "determined locale: " + locale
+		if(params['lang'] == null || params['lang' == ""]) {
+			GlobalDAO.instance.getLanguagesList().each {i->
+				if(i.getLanguageId()==locale.getLanguage()){
+					session.setAttribute("systemLanguage", i.getLanguageId())
+				}
+			}
 		}
 		else{
-			session.setAttribute("systemLanguage", params['id'])
+			session.setAttribute("systemLanguage", params['lang'])
 		}
 		log.info "session language:" + session.getAttribute("systemLanguage")
 	}
@@ -94,14 +102,14 @@ class IndexController {
 
 	def popup() {
 		log.info "popup() called"
-		
+
 		def id = params['id']
-		
+
 		log.info "params:"
 		params.each {i->
 			log.info "__"+ i
 		}
-		
+
 		if(id == null){
 			id=1;
 		}

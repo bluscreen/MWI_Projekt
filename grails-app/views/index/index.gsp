@@ -13,7 +13,6 @@
 		<asset:stylesheet src="main.css" />
 		<asset:stylesheet src="application.css" />
 		<asset:javascript src="application.js" />
-		<modalbox:modalIncludes />
 	
 	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
 	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
@@ -66,7 +65,7 @@
 			<div>
 				<g:select class="languages" name="systemLanguage"
 					onchange="${remoteFunction( action:'updateLanguage',
-	                                          params: '\'id=\'+escape(this.value)',
+	                                          params: '\'lang=\'+escape(this.value)',
 											  onComplete: 'location.reload()')}"
 					from="${labels.getLanguagesList()}" optionKey="languageId"
 					optionValue="languageName"
