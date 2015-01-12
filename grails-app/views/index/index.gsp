@@ -157,7 +157,7 @@
 					//Objekte gruppieren
 					 function cluster(latitude, longitude){
 						poly =  L.marker([latitude, longitude]);
-						poly.bindPopup('<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e123<br>54290 Trier</b><p><img src=\"test.jpg\" width=\"180\" height=\"113\"></p><a href="${createLink(action: 'popup') }">Read more...</a></font>');
+						poly.bindPopup('<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e123<br>54290 Trier</b><p><img src=\"test.jpg\" width=\"180\" height=\"113\"></p><a href="${createLink(action: 'popup', id: '1') }">Read more...</a></font>');
 					 	markerArray.push(poly);
 						markers.addLayer(poly);
 					 }

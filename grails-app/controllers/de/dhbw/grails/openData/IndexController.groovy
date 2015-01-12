@@ -7,7 +7,7 @@ package de.dhbw.grails.openData
  *
  */
 class IndexController {
-	
+
 	/**
 	 * main method to provide the view with search results
 	 * @return
@@ -93,6 +93,20 @@ class IndexController {
 	}
 
 	def popup() {
-		[doener:["1", "doener"]]
+		log.info "popup() called"
+		
+		def id = params['id']
+		
+		log.info "params:"
+		params.each {i->
+			log.info "__"+ i
+		}
+		
+		if(id == null){
+			id=1;
+		}
+
+		[educationInstitute: GlobalDAO.instance.getEducationInstituteById(id, session.getAttribute("systemLanguage")),
+			jobStatistics: GlobalDAO.instance.getJobStatisticDatasetsByEducationInstituteid(id, session.getAttribute("systemLanguage"))]
 	}
 }
