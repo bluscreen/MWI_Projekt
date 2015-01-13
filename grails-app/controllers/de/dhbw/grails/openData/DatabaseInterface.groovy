@@ -34,9 +34,9 @@ public class DatabaseInterface {
 	public static final String CATEGORY_CITIES = "cities_";
 	public static final String CATEGORY_EDUCATION_INSTITUTES = "education_institutes_";
 
-	public static final String VIEW_NAME_SUFU = "sufu_view";
-	public static final String VIEW_NAME_PERSON = "persons_view";
-	public static final String VIEW_NAME_EDUCATION_INSTITUTE = "educationinstitutes_view";
+	public static final String VIEW_NAME_SUFU = "sufu_mview";
+	public static final String VIEW_NAME_PERSON = "persons_mview";
+	public static final String VIEW_NAME_EDUCATION_INSTITUTE = "educationinstitutes_mview";
 
 
 	/**
@@ -869,7 +869,7 @@ public class DatabaseInterface {
 
 			con = db.getConnection();
 			PreparedStatement pstmt = con
-					.prepareStatement("SELECT label, description FROM properties WHERE language = ? AND property_id = ?");
+					.prepareStatement("SELECT label, description FROM gui_texts WHERE language = ? AND property_id = ?");
 
 			pstmt.setString(1, languageid);
 			pstmt.setString(2, textid);

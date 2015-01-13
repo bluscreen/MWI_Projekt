@@ -75,7 +75,7 @@
 		</section>
 	
 		<section class="module content">
-			<div class="container">
+			<div>
 	
 				<a href="#page-body" class="skip"><g:message
 						code="default.link.skip.label" default="Skip to content&hellip;" /></a>
