@@ -55,7 +55,6 @@ class IndexController {
 	/**
 	 * AJAX Method to update system language stored in session
 	 * trigger = selectbox
-	 * TODO call this initially
 	 * @return
 	 */
 	def updateLanguage() {
