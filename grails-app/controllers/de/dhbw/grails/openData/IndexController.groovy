@@ -1,5 +1,7 @@
 package de.dhbw.grails.openData
 
+import grails.converters.JSON
+
 import org.springframework.web.servlet.support.RequestContextUtils
 
 
@@ -26,7 +28,7 @@ class IndexController {
 		// Look if no search parameters are set
 		boolean searchAll = (session.getAttribute("s_staat") == null || session.getAttribute("s_staat") == "") && (session.getAttribute("s_ort") == null || session.getAttribute("s_ort") == "") && (session.getAttribute("s_bildungseinrichtung") == null || session.getAttribute("s_bildungseinrichtung") == "") && (session.getAttribute("s_person") == null || session.getAttribute("s_person") == "") && (session.getAttribute("s_beruf") == null || session.getAttribute("s_beruf") == "")
 
-		def searchResult
+		List<EducationInstitute> searchResult = []
 		if(searchAll) {
 			// user is here for the first time
 			searchResult = GlobalDAO.instance.getAllEducationInstitutes()
@@ -42,14 +44,21 @@ class IndexController {
 					session.getAttribute("systemLanguage"))
 		}
 
-		log.info "search returned " + searchResult.size() + " results, printing:"
-		searchResult.each {i->
-			log.info "__" + i
-		}
+		int foundAmount = searchResult.size()
+		log.info "search returned " + foundAmount + " results, printing:"
 
+		String markerString = "";
+		String line
+		searchResult.eachWithIndex { elem, idx->
+			line = "[" + elem.latitude + ", " + elem.longitude + ", \"" + elem.id + "\"]"
+			line += ((idx+1)<foundAmount) ? ",\n" : "\n"
+			markerString += line
+		}
+		log.debug "markerString: " + markerString
 		[languages: GlobalDAO.instance.getLanguagesList(),
 			labels: GlobalDAO.instance,
-			institutes: searchResult ]
+			institutes: searchResult,
+			markers: markerString ]
 	}
 
 	/**

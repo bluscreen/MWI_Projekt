@@ -12,7 +12,7 @@
 		<asset:stylesheet src="screen.css" />
 		<asset:stylesheet src="main.css" />
 		<asset:stylesheet src="application.css" />
-		<asset:javascript src="application.js" />
+		<g:javascript src="application.js" />
 		
 	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
 	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
@@ -20,22 +20,20 @@
 	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
 	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
 	
-	<!-- Example data. -->
-	<script src="/mapbox.js/assets/data/realworld.388.js"></script>
-	
 	<script type="text/javascript">
+		<g:applyCodec encodeAs="none"> var koord = [ ${markers} ]; </g:applyCodec>
 			function calculateMiddlePoint(){
 				clearMarkers();
 				if(koord.length != 1){
 					for(var i=0; i<koord.length; i++){
-						cluster(koord[i][0], koord[i][1]);
+						cluster(koord[i][0], koord[i][1], koord[i][2]);
 					}
 					fitTheBounds();
 				}
 			
 				//Nur eine Position
 				else{
-					showMarker(koord[0][0], koord[0][1]);
+					showMarker(koord[0][0], koord[0][1],koord[i][2]);
 					fitTheBounds();
 					showPopup();
 				}
@@ -43,7 +41,7 @@
 			</script>
 	</head>
 	
-	<body>
+	<body onload="calculateMiddlePoint();">
 		<section class="module parallax parallax-1 test">
 			<div class="stripe">
 				<div class="left">OpenData</div>
@@ -60,29 +58,20 @@
 			</div>
 		</section>
 	
-		<section class="container">
-	
-			<div>
-				<g:select class="languages" name="systemLanguage"
+		<section class="module content">
+			<div class="container">
+				<a href="#page-body" class="skip"><g:message
+						code="default.link.skip.label" default="Skip to content&hellip;" /></a>
+				<div id="status">
+					<g:form action="index"> 
+					<ul>
+						<li><g:select class="languages" name="systemLanguage"
 					onchange="${remoteFunction( action:'updateLanguage',
 	                                          params: '\'lang=\'+escape(this.value)',
 											  onComplete: 'location.reload()')}"
 					from="${languages}" optionKey="languageId"
 					optionValue="languageName"
-					value="${session.getAttribute("systemLanguage")}" />
-			</div>
-	
-		</section>
-	
-		<section class="module content">
-			<div>
-	
-				<a href="#page-body" class="skip"><g:message
-						code="default.link.skip.label" default="Skip to content&hellip;" /></a>
-	
-				<div id="status">
-					<g:form action="index"> 
-					<ul>
+					value="${session.getAttribute("systemLanguage")}" /></li>
 						<li><g:textField class="searchfields" 
 								name="staat"
 								placeholder="${labels.getText(labels.TEXTID_State, session.getAttribute("systemLanguage"))}"
@@ -114,7 +103,6 @@
 								onchange="${remoteFunction( action:'updateSearchParam',
 	                                          params: '\'beruf=\'+escape(this.value)')}"/></li>
 						<li><g:submitButton id="searchButton" name="search" /></li>
-						<input type="button" value="hehe" onclick="calculateMiddlePoint();" />
 					</ul>
 					</g:form>
 					<ul>
@@ -154,9 +142,9 @@
 					}
 						
 					//Objekte gruppieren
-					 function cluster(latitude, longitude){
+					 function cluster(latitude, longitude, objid){
 						poly =  L.marker([latitude, longitude]);
-						poly.bindPopup('<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e123<br>54290 Trier</b><p><img src=\"test.jpg\" width=\"180\" height=\"113\"></p><a href="${createLink(action: 'popup', id: '1') }">Read more...</a></font>');
+						poly.bindPopup('<font color=\"black\">ID: '+ objid +'<br><a href="<g:createLink action="popup" id="'+objid+'"/>" target="_blank">Read more...</a></font>');
 					 	markerArray.push(poly);
 						markers.addLayer(poly);
 					 }
