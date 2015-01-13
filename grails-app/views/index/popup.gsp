@@ -8,8 +8,15 @@
 </head>
 
 <body>
-
-	<table style="width: 100%">
+	
+	<div class="container1">
+		<div id="textBox" class="box" ><b>Text Box</b> ${educationInstitute?.educationInstituteDescription}</div>
+		<div id="statisticBox" class="box">Statistic Box</div>
+		
+	</div>
+	
+	<div class="container2">
+	<table id="infoBox" class="box">
 		<tr>
 			<td><b>Name der Bildungseinrichtung:</b> ${educationInstitute?.name}<br>
 			<br> <b>Typ der Bildungseinrichtung:</b> unklar<br>
@@ -22,11 +29,15 @@
 				<div id="anzahlStudiengaenge"></div>
 				<br> <b>Studiengänge mit Absolventen:</b>
 				<div id="studiengaengeAbsolventen"></div></td>
-			<td>
-				<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
-			</td>
 		</tr>
-	</table>
+		</table>
+		
+		<div id="alumniBox" class="box">Alumni Box </div>
+		
+				
+			
+		</div>
+	
 </body>
 </html>
 

@@ -1,0 +1,60 @@
+
+
+.container1 {
+	height: 50%;
+}
+
+.container2{
+	height: 50%;
+}
+
+#textBox{
+	
+	height: 90%;
+	width: 40%;
+	float: left;	
+}
+
+
+#statisticBox{
+	
+	height: 90%;
+	width: 55%;
+	float: right;	
+}
+
+#alumniBox{
+	
+	height: 90%;
+	width: 40%;
+	float: left;
+}
+
+
+#infoBox{
+	
+	height: 90%;
+	width: 50%;
+	float: right;
+}
+
+.box{
+	
+	background-color: rgba(43, 48, 59, 0.6);
+	border: 1px solid gray;
+	border-radius: 2px 2px 2px 2px;
+	-webkit-box-shadow: 10px 11px 56px -5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 11px 56px -5px rgba(0,0,0,0.75);
+	box-shadow: 10px 11px 60px -5px rgba(0,0,0,0.75);
+	padding: 10px;
+}
+
+body {
+	max-width: 90%;
+	margin: 50px auto;
+	background-image: url("world-map.gif");
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
