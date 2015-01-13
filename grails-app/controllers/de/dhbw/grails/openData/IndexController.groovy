@@ -42,7 +42,8 @@ class IndexController {
 			log.info "__" + i
 		}
 
-		[labels: GlobalDAO.instance,
+		[languages: GlobalDAO.instance.getLanguagesList(),
+			labels: GlobalDAO.instance,
 			institutes: searchResult ]
 	}
 
@@ -55,7 +56,7 @@ class IndexController {
 	def updateLanguage() {
 		log.info "updateLanguage() called"
 		def locale = RequestContextUtils.getLocale(request)
-		log.info "determined locale: " + locale
+		log.info "spring determined language: " + locale.getLanguage()
 		if(params['lang'] == null || params['lang' == ""]) {
 			GlobalDAO.instance.getLanguagesList().each {i->
 				if(i.getLanguageId()==locale.getLanguage()){

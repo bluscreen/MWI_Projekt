@@ -67,7 +67,7 @@
 					onchange="${remoteFunction( action:'updateLanguage',
 	                                          params: '\'lang=\'+escape(this.value)',
 											  onComplete: 'location.reload()')}"
-					from="${labels.getLanguagesList()}" optionKey="languageId"
+					from="${languages}" optionKey="languageId"
 					optionValue="languageName"
 					value="${session.getAttribute("systemLanguage")}" />
 			</div>

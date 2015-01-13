@@ -11,10 +11,10 @@
 
 	<table style="width: 100%">
 		<tr>
-			<td><b>Name der Bildungseinrichtung:</b> XYZ<br>
-			<br> <b>Typ der Bildungseinrichtung:</b> XYz<br>
-			<br> <b>Adresse:</b><br> Goethe-Uni<br> 1234 Karlruhe<br>
-				Carlsonstrasse 12<br>
+			<td><b>Name der Bildungseinrichtung:</b> ${educationInstitute?.name}<br>
+			<br> <b>Typ der Bildungseinrichtung:</b> unklar<br>
+			<br> <b>Adresse:</b><br> ${educationInstitute?.streetAndHouseNumber}<br>
+				${educationInstitute?.zipCode} ${educationInstitute?.city }<br>
 			<br>
 
 				<div id="anzahlAbsolventen"></div>
