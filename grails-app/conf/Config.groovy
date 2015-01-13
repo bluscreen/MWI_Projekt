@@ -92,15 +92,6 @@ grails.web.disable.multipart=false
 // request parameters to mask when logging exceptions
 grails.exceptionresolver.params.exclude = ['password']
 
-// configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
-grails.hibernate.cache.queries = false
-
-// configure passing transaction's read-only attribute to Hibernate session, queries and criterias
-// set "singleSession = false" OSIV mode in hibernate configuration after enabling
-grails.hibernate.pass.readonly = false
-// configure passing read-only to OSIV session by default, requires "singleSession = false" OSIV mode
-grails.hibernate.osiv.readonly = false
-
 environments {
 	development {
 		grails.logging.jul.usebridge = true
@@ -113,8 +104,6 @@ environments {
 
 // log4j configuration
 log4j.main = {
-	// Example of changing the log pattern for the default console appender:
-	//
 	appenders {
 		console name:'stdout', 
 				layout:pattern(conversionPattern: '[%d] %c{2} %m%n'),
@@ -130,10 +119,7 @@ log4j.main = {
 			'org.codehaus.groovy.grails.web.mapping',        // URL mapping
 			'org.codehaus.groovy.grails.commons',            // core / classloading
 			'org.codehaus.groovy.grails.plugins',            // plugins
-			'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-			'org.springframework',
-			'org.hibernate',
-			'net.sf.ehcache.hibernate'
+			'org.springframework'
 }
 
 grails.assets.minifyJs = false

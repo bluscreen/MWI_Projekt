@@ -16,6 +16,11 @@ class IndexController {
 	 */
 	def index() {
 		log.info "index() called"
+
+		if(session.getAttribute("systemLanguage") == null || session.getAttribute("systemLanguage") == "") {
+			log.info "systemLanguage is null or empty: call updateLanguage to try to determine it"
+			updateLanguage()
+		}
 		log.info "system language:" + session.getAttribute("systemLanguage")
 
 		// Look if no search parameters are set
@@ -59,6 +64,7 @@ class IndexController {
 		log.info "spring determined language: " + locale.getLanguage()
 		if(params['lang'] == null || params['lang' == ""]) {
 			GlobalDAO.instance.getLanguagesList().each {i->
+				log.info i.getLanguageId()
 				if(i.getLanguageId()==locale.getLanguage()){
 					session.setAttribute("systemLanguage", i.getLanguageId())
 				}
