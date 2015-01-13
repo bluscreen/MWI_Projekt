@@ -12,7 +12,7 @@
 		<asset:stylesheet src="screen.css" />
 		<asset:stylesheet src="main.css" />
 		<asset:stylesheet src="application.css" />
-		<g:javascript src="application.js" />
+		<asset:javascript src="application.js" />
 		
 	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
 	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
@@ -53,25 +53,26 @@
 					Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
 					sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
 					et dolore magna aliquyam erat, sed diam voluptua.<br />
-					<h2>[[ skrəʊl daʊn ]]</h2>
+					<h2>[[ skrəʊl daʊn ]]</h2><br/>
+					<g:select class="languages" name="systemLanguage"
+					onchange="${remoteFunction( action:'updateLanguage',
+	                                          params: '\'lang=\'+escape(this.value)',
+											  onComplete: 'location.reload()')}"
+					from="${languages}" optionKey="languageId"
+					optionValue="languageName"
+					value="${session.getAttribute("systemLanguage")}" />
 				</div>
 			</div>
 		</section>
 	
 		<section class="module content">
 			<div class="container">
+			
 				<a href="#page-body" class="skip"><g:message
 						code="default.link.skip.label" default="Skip to content&hellip;" /></a>
 				<div id="status">
 					<g:form action="index"> 
 					<ul>
-						<li><g:select class="languages" name="systemLanguage"
-					onchange="${remoteFunction( action:'updateLanguage',
-	                                          params: '\'lang=\'+escape(this.value)',
-											  onComplete: 'location.reload()')}"
-					from="${languages}" optionKey="languageId"
-					optionValue="languageName"
-					value="${session.getAttribute("systemLanguage")}" /></li>
 						<li><g:textField class="searchfields" 
 								name="staat"
 								placeholder="${labels.getText(labels.TEXTID_State, session.getAttribute("systemLanguage"))}"
