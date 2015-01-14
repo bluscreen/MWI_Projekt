@@ -40,26 +40,34 @@ class Database {
 		println "password: " + database_password;
 	}
 
+	// DEV VALUE:		"C:\\TEMP\\alumnetConfig"
+	// PROD VALUE:		"/opt/wikidata/config"
+
+	public static final String confPath = "C:\\TEMP\\alumnetConfig"
+	public static final String filePath = "\\db_properties"
+	
+//	public static final String confPath = "/opt/wikidata/config"
+//	public static final String filePath = "/db_properties"
+
 	public Database() {
 
-		// TODO: Pfad zum Config-File. Der steht auf dem Server noch nicht fest.
 		Path myDir = Paths
-				.get("C:\\TEMP\\alumnetConfig");
-
+				.get(confPath);
 
 		// Read db settings from file
 		ConfigScanner parser = new ConfigScanner(myDir.toString()
-				+ "\\DB_PROPERTIES");
+				+ filePath);
 		try {
 			parser.processLineByLine();
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error "Problem reading File:", e
 		}
 
 		new Thread() {
 
 					@Override
 					public void run() {
+						log.info "Thread for ConfigScanner is running. Filepath is:" + Database.confPath
 						while(true) {
 
 							try {
@@ -78,22 +86,23 @@ class Database {
 
 										// Read db settings from file
 										parser = new ConfigScanner(myDir.toString()
-												+ "\\DB_PROPERTIES");
+												+ filePath);
 										try {
 											parser.processLineByLine();
 										} catch (IOException e) {
-											e.printStackTrace();
+											log.error "Problem reading File:", e
 										}
 
+										// TODO [DH] this looks kind of invalid
 										Database.this.rebuildConnection();
 									}
 								}
 
 							} catch (Exception e) {
 								/**
-						 * [DH] This should have some real exception handling
+						 *  TODO [DH] This should have some real exception handling
 						 */
-								e.printStackTrace();
+								log.error "Something went wrong:", e
 							}
 						}
 					}
@@ -105,6 +114,7 @@ class Database {
 			buildConnection();
 		}
 		if(con==null) {
+			log.error "getConnection() Connection still null"
 			throw new RuntimeException("No sql connection");
 		}
 		return con;
@@ -121,7 +131,7 @@ class Database {
 		try {
 			Class.forName(driverClass);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			log.error "Driver not found ", e
 		}
 
 		try{
@@ -129,7 +139,7 @@ class Database {
 			String connector = database_path + database_schema;
 			con = DriverManager.getConnection("jdbc:mysql://" + connector , database_username, database_password);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error "SQL Exception trying to get Connection ", e
 		}
 	}
 
@@ -138,7 +148,7 @@ class Database {
 			try {
 				con.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				log.error "Error trying to close connection", e
 			}
 		}
 	}

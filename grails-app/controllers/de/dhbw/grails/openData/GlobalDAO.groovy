@@ -146,8 +146,7 @@ public class GlobalDAO {
 
 		// Search the relevant ids
 		List<String> educationInstituteids = dbi.searchEducationInstituteids(
-				state_id, city_id, educationInstitute_id, alumnus_id, job_id,
-				languageid);
+				state_id, city_id, educationInstitute_id, alumnus_id, job_id);
 		List<EducationInstitute> educationInstitutes = new ArrayList<>();
 
 		// Get the data
@@ -167,7 +166,6 @@ public class GlobalDAO {
 	 */
 	public List<EducationInstituteBasicInformation> getAllEducationInstitutes() {
 		log.info "getAllEducationInstitutes() called"
-		// TODO should languageid be included here?
 		DatabaseInterface dbi = DatabaseInterface.getInstance();
 		return dbi.findAllEducationInstitutes();
 	}

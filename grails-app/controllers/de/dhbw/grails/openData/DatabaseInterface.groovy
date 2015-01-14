@@ -373,14 +373,12 @@ public class DatabaseInterface {
 	 *            the id of "alumnus name". Null will be handled as wildcard.
 	 * @param job_id
 	 *            the id of "job". Null will be handled as wildcard.
-	 * @param languageid
-	 *            the id of the search language
 	 * @return a list of all found education institute ids that match to the
 	 *         parameters. If all parameters are wildcards, null will be returned.
 	 */
 	public List<String> searchEducationInstituteids(String state_id,
 			String city_id, String educationInstitute_id, String alumnus_id,
-			String job_id, String languageid) {
+			String job_id) {
 
 		List<String> educationInstituteids = new ArrayList<String>();
 		Connection con = null;

@@ -18,7 +18,6 @@ class IndexController {
 	 */
 	def index() {
 		log.info "index() called"
-
 		if(session.getAttribute("systemLanguage") == null || session.getAttribute("systemLanguage") == "") {
 			log.debug "systemLanguage is null or empty: call updateLanguage to try to determine it"
 			updateLanguage()
@@ -26,7 +25,11 @@ class IndexController {
 		log.debug "system language:" + session.getAttribute("systemLanguage")
 
 		// Look if no search parameters are set
-		boolean searchAll = (session.getAttribute("s_staat") == null || session.getAttribute("s_staat") == "") && (session.getAttribute("s_ort") == null || session.getAttribute("s_ort") == "") && (session.getAttribute("s_bildungseinrichtung") == null || session.getAttribute("s_bildungseinrichtung") == "") && (session.getAttribute("s_person") == null || session.getAttribute("s_person") == "") && (session.getAttribute("s_beruf") == null || session.getAttribute("s_beruf") == "")
+		boolean searchAll = ((params['staat'] == null || params['staat'] == "")
+		&& (params['ort'] == null || params['ort'] == "")
+		&& (params['bildungseinrichtung'] == null || params['bildungseinrichtung'] == "")
+		&& (params['person'] == null || params['person'] == "")
+		&& (params['beruf'] == null ||params['beruf'] == ""))
 
 		List<EducationInstitute> searchResult = []
 		if(searchAll) {
@@ -36,12 +39,12 @@ class IndexController {
 		else {
 			// user entered search param(s)
 			searchResult = GlobalDAO.instance.searchEducationInstitutes(
-					session.getAttribute("s_staat"),
-					session.getAttribute("s_ort"),
-					session.getAttribute("s_bildungseinrichtung"),
-					session.getAttribute("s_person") ,
-					session.getAttribute("s_beruf"),
-					session.getAttribute("systemLanguage"))
+			params['staat'],
+			params['ort'],
+			params['bildungseinrichtung'],
+			params['person'],
+			params['beruf'],
+			session.getAttribute("systemLanguage"))
 		}
 
 		int foundAmount = searchResult.size()
@@ -54,6 +57,7 @@ class IndexController {
 			line += ((idx+1)<foundAmount) ? ",\n" : "\n"
 			markerString += line
 		}
+		
 		log.debug "markerString: " + markerString
 		[languages: GlobalDAO.instance.getLanguagesList(),
 			labels: GlobalDAO.instance,
@@ -87,9 +91,11 @@ class IndexController {
 	/**
 	 * AJAX Method to update search params stored in session
 	 * trigger = each param
+	 * TODO this might be obsolete soon, as it is more efficient holding these values in get request/URL	
 	 * @return
 	 */
 
+	@Deprecated
 	def updateSearchParam() {
 		log.info "updateSearchParam() called"
 		log.info "param staat: " + params['staat']

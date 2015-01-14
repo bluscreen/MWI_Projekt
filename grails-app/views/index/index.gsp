@@ -21,6 +21,7 @@
 	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
 	
 	<script type="text/javascript">
+		// include coordinates from search here
 		<g:applyCodec encodeAs="none"> var koord = [ ${markers} ]; </g:applyCodec>
 			function calculateMiddlePoint(){
 				clearMarkers();
@@ -57,13 +58,13 @@
 					<g:select class="languages" name="systemLanguage"
 					onchange="${remoteFunction( action:'updateLanguage',
 	                                          params: '\'lang=\'+escape(this.value)',
-											  onComplete: 'location.reload()')}"
+											  onComplete: 'location.reload();'}"
 					from="${languages}" optionKey="languageId"
 					optionValue="languageName"
 					value="${session.getAttribute("systemLanguage")}" />
 				</div>
 			</div>
-		</section>
+		</section> 
 	
 		<section class="module content">
 			<div class="container">
@@ -71,41 +72,32 @@
 				<a href="#page-body" class="skip"><g:message
 						code="default.link.skip.label" default="Skip to content&hellip;" /></a>
 				<div id="status">
-					<g:form action="index"> 
+					<g:form action="index" method="get"> 
 					<ul>
 						<li><g:textField class="searchfields" 
 								name="staat"
 								placeholder="${labels.getText(labels.TEXTID_State, session.getAttribute("systemLanguage"))}"
-								value="${session.getAttribute("s_staat")}" 
-								onchange="${remoteFunction( action:'updateSearchParam',
-	                                          params: '\'staat=\'+escape(this.value)')}"/></li>
+								value="${params['staat']}" /></li>
 						<li><g:textField class="searchfields" 
 								name="ort"
 								placeholder="${labels.getText(labels.TEXTID_City, session.getAttribute("systemLanguage")) }"
-								value="${session.getAttribute("s_ort")}" 
-								onchange="${remoteFunction( action:'updateSearchParam',
-	                                          params: '\'ort=\'+escape(this.value)')}"/></li>
+								value="${params['ort']}" /></li>
 						<li><g:textField class="searchfields"
 								name="bildungseinrichtung"
 								placeholder="${labels.getText(labels.TEXTID_Education_Institute, session.getAttribute("systemLanguage")) }"
-								value="${session.getAttribute("s_bildungseinrichtung")}" 
-								onchange="${remoteFunction( action:'updateSearchParam',
-	                                          params: '\'bildungseinrichtung=\'+escape(this.value)')}"/></li>
+								value="${params['bildungseinrichtung']}"/></li>
 						<li><g:textField class="searchfields" 
 								name="person"
 								placeholder="${labels.getText(labels.TEXTID_Person, session.getAttribute("systemLanguage")) }"
-								value="${session.getAttribute("s_person")}" 
-								onchange="${remoteFunction( action:'updateSearchParam',
-	                                          params: '\'person=\'+escape(this.value)')}"/></li>
+								value="${params['person']}"/></li>
 						<li><g:textField class="searchfields" 
 								name="beruf"
 								placeholder="${labels.getText(labels.TEXTID_Job, session.getAttribute("systemLanguage")) }"
-								value="${session.getAttribute("s_beruf")}" 
-								onchange="${remoteFunction( action:'updateSearchParam',
-	                                          params: '\'beruf=\'+escape(this.value)')}"/></li>
-						<li><g:submitButton id="searchButton" name="search" /></li>
+								value="${params['beruf']}"/></li>
+						<li><g:submitButton id="searchButton" name="search"/></li>
 					</ul>
 					</g:form>
+					
 					<ul>
 						<li>ergebnisse: ${session.getAttribute("systemLanguage")}</li>
 						<g:each var="i" in="${institutes}">
@@ -114,9 +106,7 @@
 							</li>
 						</g:each>
 					</ul>
-	
 				</div>
-	
 	
 				<div id="map"></div>
 	
@@ -134,7 +124,6 @@
 						markerArray = new Array();
 						markers = new L.MarkerClusterGroup();			
 					 }
-					 
 					 
 					// add a marker in the given location, attach some popup content to it and open the popup
 					function showMarker(latitude, longitude){
