@@ -58,7 +58,7 @@
 					<g:select class="languages" name="systemLanguage"
 					onchange="${remoteFunction( action:'updateLanguage',
 	                                          params: '\'lang=\'+escape(this.value)',
-											  onComplete: 'location.reload();'}"
+											  onComplete: 'location.reload();')}"
 					from="${languages}" optionKey="languageId"
 					optionValue="languageName"
 					value="${session.getAttribute("systemLanguage")}" />
