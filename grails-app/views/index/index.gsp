@@ -5,14 +5,14 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>openData</title>
-		<g:javascript library="application" />
-		<g:javascript library="jquery" />
-		<g:javascript library="jquery-ui" />
+		<g:javascript library="jquery"/>
+<r:require module="jquery-ui"/>
 		<asset:stylesheet src="leaflet.css" />
 		<asset:stylesheet src="screen.css" />
 		<asset:stylesheet src="main.css" />
 		<asset:stylesheet src="application.css" />
 		<asset:javascript src="application.js" />
+		<r:layoutResources/>
 		
 	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
 	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
@@ -39,7 +39,8 @@
 					showPopup();
 				}
 			}
-			</script>
+
+  </script>
 	</head>
 	
 	<body onload="calculateMiddlePoint();">
@@ -106,7 +107,9 @@
 							</li>
 						</g:each>
 					</ul>
+					
 				</div>
+	
 	
 				<div id="map"></div>
 	
@@ -149,9 +152,17 @@
 					 function showPopup(){
 					 	poly.openPopup();
 					 }
+					 
+					 $(function() {
+    $( "#dialog" ).dialog();
+  });
 				 </g:javascript>
 			</div>
-	
+	<div id="dialog" title="Basic dialog">
+  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
+
 		</section>
+		<r:layoutResources/>
 	</body>
 </html>

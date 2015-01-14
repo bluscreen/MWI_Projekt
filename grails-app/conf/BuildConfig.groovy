@@ -60,12 +60,15 @@ grails.project.dependency.resolution = {
 		// plugins for the compile step
 //		compile ':cache:1.1.8'
 		compile ":asset-pipeline:1.9.9"
-		compile ":jquery-ui:1.10.3"
-		compile ":twitter-bootstrap:3.3.1"
+//		compile ":simple-modal:1.0"
+//		compile ":twitter-bootstrap:3.3.1"
 //		compile ":modalbox:0.4"
 
 		// plugins needed at runtime but not for compilation
+		runtime ":resources:1.2.14"
 		runtime ":jquery:1.11.1"
+		runtime ":jquery-ui:1.10.4"
+		
 
 		// Uncomment these to enable additional asset-pipeline capabilities
 		//compile ":sass-asset-pipeline:1.9.0"

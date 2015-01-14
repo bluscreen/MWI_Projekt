@@ -50,8 +50,8 @@ class IndexController {
 		int foundAmount = searchResult.size()
 		log.info "search returned " + foundAmount + " results, printing:"
 
-		String markerString = "";
-		String line
+		// Build a String containing all coordinates with their id in JSON
+		String markerString, line
 		searchResult.eachWithIndex { elem, idx->
 			line = "[" + elem.latitude + ", " + elem.longitude + ", \"" + elem.id + "\"]"
 			line += ((idx+1)<foundAmount) ? ",\n" : "\n"
@@ -59,6 +59,7 @@ class IndexController {
 		}
 		
 		log.debug "markerString: " + markerString
+		
 		[languages: GlobalDAO.instance.getLanguagesList(),
 			labels: GlobalDAO.instance,
 			institutes: searchResult,

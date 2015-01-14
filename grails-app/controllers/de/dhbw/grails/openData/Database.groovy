@@ -136,7 +136,7 @@ class Database {
 
 		try{
 			//TODO:String connector = database_path + "_" + database_schema;
-			String connector = database_path + database_schema;
+			String connector = database_path + "_" + database_schema;
 			con = DriverManager.getConnection("jdbc:mysql://" + connector , database_username, database_password);
 		} catch (SQLException e) {
 			log.error "SQL Exception trying to get Connection ", e
