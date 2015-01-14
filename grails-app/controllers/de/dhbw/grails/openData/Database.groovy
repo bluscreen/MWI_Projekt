@@ -63,6 +63,9 @@ class Database {
 			log.error "Problem reading File:", e
 		}
 
+		/**
+		 * [DH] TODO this could cause memory leaks...
+		 */
 		new Thread() {
 
 					@Override

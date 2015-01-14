@@ -6,21 +6,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>openData</title>
 		<g:javascript library="jquery"/>
-<r:require module="jquery-ui"/>
+		<r:require module="jquery-ui"/>
 		<asset:stylesheet src="leaflet.css" />
 		<asset:stylesheet src="screen.css" />
 		<asset:stylesheet src="main.css" />
 		<asset:stylesheet src="application.css" />
 		<asset:javascript src="application.js" />
-		<r:layoutResources/>
 		
-	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
-	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
-	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
-	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
-	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
-	
-	<script type="text/javascript">
+		<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+		<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
+		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+		<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+		<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+		
+		<script type="text/javascript">
 		// include coordinates from search here
 		<g:applyCodec encodeAs="none"> var koord = [ ${markers} ]; </g:applyCodec>
 			function calculateMiddlePoint(){
@@ -40,7 +39,19 @@
 				}
 			}
 
-  </script>
+			function updateModal(data){
+				 $("#dialog").html(data);
+				 $("#dialog").dialog("open");
+			 }
+
+			function popupInfos(event){
+				ev = event || window.event;
+				${remoteFunction( action:'popup',
+                        params: '\'id=\'+escape(ev.id)',
+						onSuccess: 'updateModal(data)')} 
+			}
+		  </script>
+		  <r:layoutResources/>
 	</head>
 	
 	<body onload="calculateMiddlePoint();">
@@ -113,6 +124,9 @@
 	
 				<div id="map"></div>
 	
+				<div id="dialog" style="display:none" title="Basic dialog">
+				  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+				</div>
 				<g:javascript>
 				    var markerArray = null;
 				    var markers = null;
@@ -137,7 +151,10 @@
 					//Objekte gruppieren
 					 function cluster(latitude, longitude, objid){
 						poly =  L.marker([latitude, longitude]);
-						poly.bindPopup('<font color=\"black\">ID: '+ objid +'<br><a href="<g:createLink action="popup" id="'+objid+'"/>" target="_blank">Read more...</a></font>');
+						link = '<button id="'+objid+'" onclick="popupInfos('+objid+')">ER KLICKE</button>';
+						d=document.createElement('div');
+					 	$(d).html("ID: "+objid+"<br/>"+link);
+					 	poly.bindPopup($(d).prop('outerHTML'));
 					 	markerArray.push(poly);
 						markers.addLayer(poly);
 					 }
@@ -152,16 +169,11 @@
 					 function showPopup(){
 					 	poly.openPopup();
 					 }
-					 
-					 $(function() {
-    $( "#dialog" ).dialog();
-  });
+					  $(function() {
+				 $("#dialog").dialog({autoOpen:false, modal: true, width: 800, height:500});
+				});
 				 </g:javascript>
 			</div>
-	<div id="dialog" title="Basic dialog">
-  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
-</div>
-
 		</section>
 		<r:layoutResources/>
 	</body>
