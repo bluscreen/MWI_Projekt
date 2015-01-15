@@ -43,11 +43,11 @@ class Database {
 	// DEV VALUE:		"C:\\TEMP\\alumnetConfig"
 	// PROD VALUE:		"/opt/wikidata/config"
 
-	public static final String confPath = "C:\\TEMP\\alumnetConfig"
-	public static final String filePath = "\\db_properties"
-	
-//	public static final String confPath = "/opt/wikidata/config"
-//	public static final String filePath = "/db_properties"
+//	public static final String confPath = "C:\\TEMP\\alumnetConfig"
+//	public static final String filePath = "\\db_properties"
+//	
+	public static final String confPath = "/opt/wikidata/config"
+	public static final String filePath = "/db_properties"
 
 	public Database() {
 
@@ -77,6 +77,8 @@ class Database {
 								// Create a watcher for changes in file system
 								WatchService watcher = myDir.getFileSystem().newWatchService();
 								myDir.register(watcher, StandardWatchEventKinds.ENTRY_MODIFY);
+								
+								log.info "watchservice registered"
 
 								WatchKey watckKey = watcher.take();
 
@@ -86,6 +88,7 @@ class Database {
 									// Changes in file "DB_PROPERTIES"? --> read file
 									if (event.context().toString()
 									.equalsIgnoreCase("DB_PROPERTIES")) {
+										log.info "reading updated file"
 
 										// Read db settings from file
 										parser = new ConfigScanner(myDir.toString()

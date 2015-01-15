@@ -29,6 +29,7 @@ public class ConfigScanner {
 
 	/** Template method that calls {@link #processLine(String)}. */
 	public final void processLineByLine() throws IOException {
+		log.info "processLineByLine() called"
 		String line = "";
 
 		try {
@@ -40,7 +41,7 @@ public class ConfigScanner {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error "couldnt instanciate scanner", e
 		}
 	}
 
@@ -48,6 +49,7 @@ public class ConfigScanner {
 	 * Overridable method for processing lines in different ways.
 	 */
 	protected void processLine(String line) {
+		log.info "processLine() called"
 		Scanner scanner = new Scanner(line);
 		scanner.useDelimiter("=");
 		if (scanner.hasNext()) {
@@ -60,20 +62,25 @@ public class ConfigScanner {
 			switch (property) {
 				case "DATABASE_PATH":
 					Database.setDatabasePath(value);
+					log.info "set new dbpath: " + value
 					break;
 				case "DB_USERNAME":
 					Database.setDatabaseUsername(value);
+					log.info "set new dbuser: " + value
 					break;
 				case "DB_PASSWORD":
 					Database.setDatabasePassword(value);
+					log.info "set new dbpw: *** "
 					break;
 				case "SCHEMA":
 					Database.setDatabaseSchema(value);
+					log.info "set new dbschema: " + value
 					break;
 			}
 		} else {
-			System.out.println("Empty or invalid line. Unable to process.");
+			log.info "Empty or invalid line. Unable to process."
 		}
 		scanner.close();
+		log.info "scanner closed"
 	}
 }

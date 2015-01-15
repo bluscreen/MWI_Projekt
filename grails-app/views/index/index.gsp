@@ -124,8 +124,8 @@
 	
 				<div id="map"></div>
 	
-				<div id="dialog" style="display:none" title="Basic dialog">
-				  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+				<div id="dialog" style="display:none" title="Details">
+				X
 				</div>
 				<g:javascript>
 				    var markerArray = null;
@@ -169,9 +169,14 @@
 					 function showPopup(){
 					 	poly.openPopup();
 					 }
-					  $(function() {
-				 $("#dialog").dialog({autoOpen:false, modal: true, width: 800, height:500});
-				});
+					$(function() {
+						 $("#dialog").dialog({
+						 autoOpen:false, 
+						 modal: true, 
+						 draggable: true, 
+						 width: 900, 
+						 height:700});
+					});
 				 </g:javascript>
 			</div>
 		</section>
