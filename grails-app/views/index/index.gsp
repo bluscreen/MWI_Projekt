@@ -9,7 +9,7 @@
 		<r:require module="jquery-ui"/>
 		<asset:stylesheet src="leaflet.css" />
 		<asset:stylesheet src="screen.css" />
-		<asset:stylesheet src="main.css" />
+		<asset:stylesheet src="NewFile.css" />
 		<asset:stylesheet src="application.css" />
 		<asset:javascript src="application.js" />
 		
@@ -67,19 +67,21 @@
 					sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
 					et dolore magna aliquyam erat, sed diam voluptua.<br />
 					<h2>[[ skrəʊl daʊn ]]</h2><br/>
-					<g:select class="languages" name="systemLanguage"
+					
+				</div>
+			</div>
+		</section> 
+	
+		<section class="module content">
+		
+			<div class="container">
+				<g:select class="languages" name="systemLanguage"
 					onchange="${remoteFunction( action:'updateLanguage',
 	                                          params: '\'lang=\'+escape(this.value)',
 											  onComplete: 'location.reload();')}"
 					from="${languages}" optionKey="languageId"
 					optionValue="languageName"
 					value="${session.getAttribute("systemLanguage")}" />
-				</div>
-			</div>
-		</section> 
-	
-		<section class="module content">
-			<div class="container">
 			
 				<a href="#page-body" class="skip"><g:message
 						code="default.link.skip.label" default="Skip to content&hellip;" /></a>
@@ -121,7 +123,7 @@
 					
 				</div>
 	
-	
+				
 				<div id="map"></div>
 	
 				<div id="dialog" style="display:none" title="Details">

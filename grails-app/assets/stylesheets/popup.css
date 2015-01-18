@@ -19,7 +19,7 @@
 #statisticBox{
 	
 	height: 90%;
-	width: 55%;
+	width: 50%;
 	float: right;	
 }
 
@@ -47,14 +47,4 @@
 	-moz-box-shadow: 10px 11px 56px -5px rgba(0,0,0,0.75);
 	box-shadow: 10px 11px 60px -5px rgba(0,0,0,0.75);
 	padding: 10px;
-}
-
-body {
-	max-width: 90%;
-	margin: 50px auto;
-	background-image: url("world-map.gif");
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
 }

@@ -5,7 +5,7 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 
-<body>
+<body class="b">
 	
 	<div class="container1">
 		<div id="textBox" class="box" ><b>Text Box</b> ${educationInstitute?.educationInstituteDescription}</div>
