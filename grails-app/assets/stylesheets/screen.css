@@ -55,10 +55,9 @@
 			}
 
 			.searchfields {
-				background: #2b303b ;
 				height: 40px;
 				font-size: 12pt;
-				
+				margin: 1px;
 				-webkit-border-radius: 5px;
 				-moz-border-radius: 5px;
 				border-radius: 5px;
@@ -67,10 +66,8 @@
 			#searchButton {
 				
 				float: right;
-				background: #2b303b url("lupe.png") no-repeat 8px 8px;
-				height: 40px;
-				font-size: 0.9em;
-				padding-left: 40px;
+				margin-top: 10px;
+				height: 2.3em;
 				-webkit-border-radius: 5px;
 				-moz-border-radius: 5px;
 				border-radius: 5px;

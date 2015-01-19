@@ -85,17 +85,7 @@ body {
 
 }
 
-.stripe2 {
-	
-	heigth: 250px;
-	background-color: rgba(43, 48, 59, 0.85);
-	
-}
 
-.popUp {
-	
-	margin-top: 120px;
-}
 /* ============================================================
   SECTIONS
 ============================================================ */
@@ -154,8 +144,16 @@ section.module.parallax-1 {
 	}
 }
 
-
-
+.tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #333;
+	background-color:#161616;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:12px Arial;
+}
 
 .test {
 	overflow: hidden
@@ -173,7 +171,7 @@ section.module.parallax-1 {
 }
 
 a:link,a:visited,a:hover {
-	color: #48802c;
+	color: gray;
 }
 
 a:hover,a:active {
@@ -198,9 +196,6 @@ img {
 	margin: 1em;
 }
 
-.content {
-	
-}
 
 .content h1 {
 	border-bottom: 1px solid #CCCCCC;

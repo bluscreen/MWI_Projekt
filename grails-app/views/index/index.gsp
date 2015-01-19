@@ -9,7 +9,7 @@
 		<r:require module="jquery-ui"/>
 		<asset:stylesheet src="leaflet.css" />
 		<asset:stylesheet src="screen.css" />
-		<asset:stylesheet src="NewFile.css" />
+		<asset:stylesheet src="main.css" />
 		<asset:stylesheet src="application.css" />
 		<asset:javascript src="application.js" />
 		
@@ -19,6 +19,30 @@
 		<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
 		<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
 		
+		<script type="text/javascript">
+				$(document).ready(function() {
+				// Tooltip only Text
+				$('.masterTooltip').hover(function(){
+				        // Hover over code
+				        var title = $(this).attr('title');
+				        $(this).data('tipText', title).removeAttr('title');
+				        $('<p class="tooltip"></p>')
+				        .text(title)
+				        .appendTo('body')
+				        .fadeIn('slow');
+				}, function() {
+				        // Hover out code
+				        $(this).attr('title', $(this).data('tipText'));
+				        $('.tooltip').remove();
+				}).mousemove(function(e) {
+				        var mousex = e.pageX + 20; //Get X coordinates
+				        var mousey = e.pageY + 10; //Get Y coordinates
+				        $('.tooltip')
+				        .css({ top: mousey, left: mousex })
+				});
+				});
+		</script>
+    
 		<script type="text/javascript">
 		// include coordinates from search here
 		<g:applyCodec encodeAs="none"> var koord = [ ${markers} ]; </g:applyCodec>
@@ -57,7 +81,7 @@
 	<body onload="calculateMiddlePoint();">
 		<section class="module parallax parallax-1 test">
 			<div class="stripe">
-				<div class="left">OpenData</div>
+				<div class="left">alumNET</div>
 				<div class="right">
 					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
 					nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
@@ -66,7 +90,7 @@
 					Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
 					sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
 					et dolore magna aliquyam erat, sed diam voluptua.<br />
-					<h2>[[ skrəʊl daʊn ]]</h2><br/>
+					<a href="#status" class="masterTooltip" title="Start your search!"><h2>[[ skrəʊl daʊn ]]</h2></a><br/>
 					
 				</div>
 			</div>
@@ -75,7 +99,7 @@
 		<section class="module content">
 		
 			<div class="container">
-				<g:select class="languages" name="systemLanguage"
+				<g:select class="languages masterTooltip" name="systemLanguage" title="Please select the language you wish the search is being performed"
 					onchange="${remoteFunction( action:'updateLanguage',
 	                                          params: '\'lang=\'+escape(this.value)',
 											  onComplete: 'location.reload();')}"
@@ -88,27 +112,34 @@
 				<div id="status">
 					<g:form action="index" method="get"> 
 					<ul>
-						<li><g:textField class="searchfields" 
+						<li><g:textField class="searchfields masterTooltip" 
+								title="Please enter the name of the state the educational institution is located in"
 								name="staat"
 								placeholder="${labels.getText(labels.TEXTID_State, session.getAttribute("systemLanguage"))}"
 								value="${params['staat']}" /></li>
-						<li><g:textField class="searchfields" 
+						<li><g:textField class="searchfields masterTooltip" 
+								title="Please enter the name of the city the educiotional institution is located in"
 								name="ort"
 								placeholder="${labels.getText(labels.TEXTID_City, session.getAttribute("systemLanguage")) }"
 								value="${params['ort']}" /></li>
-						<li><g:textField class="searchfields"
+						<li><g:textField class="searchfields masterTooltip"
+								title="Please enter the name of the educational institution"
 								name="bildungseinrichtung"
 								placeholder="${labels.getText(labels.TEXTID_Education_Institute, session.getAttribute("systemLanguage")) }"
 								value="${params['bildungseinrichtung']}"/></li>
-						<li><g:textField class="searchfields" 
+						<li><g:textField class="searchfields masterTooltip"
+								title="Please enter the name of the Alumni"
 								name="person"
 								placeholder="${labels.getText(labels.TEXTID_Person, session.getAttribute("systemLanguage")) }"
 								value="${params['person']}"/></li>
-						<li><g:textField class="searchfields" 
+						<li><g:textField class="searchfields masterTooltip" 
+								title="Please enter the profession of the Alumni" 
 								name="beruf"
 								placeholder="${labels.getText(labels.TEXTID_Job, session.getAttribute("systemLanguage")) }"
 								value="${params['beruf']}"/></li>
-						<li><g:submitButton id="searchButton" name="search"/></li>
+					
+						<li><g:actionSubmitImage id="searchButton" name="search" value="Update"
+                     src="${resource(dir: 'images', file: 'lupe.png')}" /></li>
 					</ul>
 					</g:form>
 					
