@@ -138,13 +138,13 @@
 								placeholder="${labels.getText(labels.TEXTID_Job, session.getAttribute("systemLanguage")) }"
 								value="${params['beruf']}"/></li>
 					
-						<li><g:actionSubmitImage id="searchButton" name="search" value="Update"
+						<li><g:actionSubmitImage id="searchButton" class="masterTooltip"  title="Go!" name="search" value="Update"
                      src="${resource(dir: 'images', file: 'lupe.png')}" /></li>
 					</ul>
 					</g:form>
 					
 					<ul>
-						<li>ergebnisse: ${session.getAttribute("systemLanguage")}</li>
+						<li class="masterTooltip" title="Your search returned following results:" >ergebnisse: ${session.getAttribute("systemLanguage")}</li>
 						<g:each var="i" in="${institutes}">
 							<li>
 								${i}
@@ -184,7 +184,7 @@
 					//Objekte gruppieren
 					 function cluster(latitude, longitude, objid){
 						poly =  L.marker([latitude, longitude]);
-						link = '<button id="'+objid+'" onclick="popupInfos('+objid+')">ER KLICKE</button>';
+						link = '<button id="'+objid+'" onclick="popupInfos('+objid+')">Read more</button>';
 						d=document.createElement('div');
 					 	$(d).html("ID: "+objid+"<br/>"+link);
 					 	poly.bindPopup($(d).prop('outerHTML'));

@@ -170,9 +170,6 @@ section.module.parallax-1 {
 	height: 100%;
 }
 
-a:link,a:visited,a:hover {
-	color: gray;
-}
 
 a:hover,a:active {
 	outline: none;
