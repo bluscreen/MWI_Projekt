@@ -111,6 +111,7 @@ section.module p:last-child {
 
 section.module.content {
 	padding: 70px 0;
+	height: 700px;
 }
 
 section.module.parallax {
