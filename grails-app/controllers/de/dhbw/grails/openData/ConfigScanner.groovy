@@ -19,8 +19,14 @@ public class ConfigScanner {
 	 * @param aFileName
 	 *            full name of an existing, readable file.
 	 */
-	public ConfigScanner(String fileName) throws FileNotFoundException {
-		filePath = new File(fileName);
+	public ConfigScanner(String fileName) {
+		try {
+			filePath = new File(fileName)
+			log.info "File Path is now: " + filePath
+		}
+		catch(FileNotFoundException e) {
+			log.error "File Not found: " + fileName, e
+		}
 	}
 
 	public File getFilePath() {

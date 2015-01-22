@@ -42,19 +42,20 @@ class Database {
 		Database.database_password = database_password
 	}
 
-//	public static final String confPath = "C:\\TEMP\\alumnetConfig"
-//	public static final String filePath = "\\db_properties"
+	//	public static final String confPath = "C:\\TEMP\\alumnetConfig"
+	//	public static final String filePath = "\\db_properties"
 
-		public static final String confPath = "/opt/wikidata/config"
-		public static final String filePath = "/db_properties"
+	public static final String confPath = "/opt/wikidata/config"
+	public static final String filePath = "/db_properties"
 
 	public Database() {
-		Path myDir = Paths
-				.get(confPath)
-
+		Path myDir = Paths.get(confPath)
 		// Read db settings from file
-		ConfigScanner parser = new ConfigScanner(myDir.toString()
-				+ filePath)
+		String actualPath = myDir.toString() + filePath
+		log.info "Config Scanner has Path: " + actualPath
+
+		ConfigScanner parser = new ConfigScanner(actualPath)
+
 		try {
 			parser.processLineByLine()
 		} catch (IOException e) {
@@ -84,11 +85,10 @@ class Database {
 									// Changes in file "DB_PROPERTIES"? --> read file
 									if (event.context().toString()
 									.equalsIgnoreCase("DB_PROPERTIES")) {
-										log.info "reading updated file"
+										log.info "reading updated file: " + actualPath
 
 										// Read db settings from file
-										parser = new ConfigScanner(myDir.toString()
-												+ filePath)
+										parser = new ConfigScanner(actualPath)
 										try {
 											parser.processLineByLine()
 										} catch (IOException e) {
