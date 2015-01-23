@@ -714,6 +714,7 @@ public class DatabaseInterface {
 
 					Language language = new Language(languageId, languageName);
 					languageList.add(language);
+					if(languageName == null) languageName = languageId;
 				}
 				try {
 					if (rs != null)
