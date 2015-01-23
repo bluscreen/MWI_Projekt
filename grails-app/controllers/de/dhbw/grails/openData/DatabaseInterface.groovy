@@ -496,6 +496,9 @@ public class DatabaseInterface {
 					.prepareStatement("SELECT longitude, latitude, id FROM "
 					+ VIEW_NAME_EDUCATION_INSTITUTE);
 
+				
+			List<String> ids = new ArrayList<>();
+				
 			if (pstmt.execute()) {
 				ResultSet rs = pstmt.getResultSet();
 				while (rs.next()) {
@@ -517,10 +520,9 @@ public class DatabaseInterface {
 						e.printStackTrace();
 					}
 
-					educationInstitutesBasicInformation
-							.add(new EducationInstituteBasicInformation(
-							longitude, latitude, id));
-				}
+					if(!ids.contains(id)) {
+						educationInstitutesBasicInformation.add(new EducationInstituteBasicInformation(longitude, latitude, id)); 
+						ids.add(id);}}
 				try {
 					if (rs != null)
 						rs.close();
@@ -533,8 +535,7 @@ public class DatabaseInterface {
 					pstmt.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
-		} catch (SQLException e) {
+			}}catch (SQLException e) {
 			e.printStackTrace();
 		}
 
