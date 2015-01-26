@@ -1,10 +1,4 @@
-<html>
-<head>
-<title>Informationen</title>
-
-</head>
-
-<body class="b">
+<div class="b">
 	
 	<div class="container1">
 		<div id="textBox" class="box" ><b>Text Box</b> ${educationInstitute?.educationInstituteDescription}</div>
@@ -34,10 +28,8 @@
 				
 			
 		</div>
-		
 		 <r:layoutResources/>
 	
-</body>
-</html>
+</div>
 
 
