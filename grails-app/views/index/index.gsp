@@ -12,7 +12,9 @@
 		<asset:stylesheet src="main.css" />
 		<asset:stylesheet src="application.css" />
 		<asset:javascript src="application.js" />
+		<asset:stylesheet src="popup.css" />
 		
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
 		<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
 		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>

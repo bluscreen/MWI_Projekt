@@ -1,8 +1,7 @@
 <html>
 <head>
 <title>Informationen</title>
-<asset:stylesheet src="popup.css" />
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 </head>
 
 <body class="b">
@@ -35,6 +34,8 @@
 				
 			
 		</div>
+		
+		 <r:layoutResources/>
 	
 </body>
 </html>
