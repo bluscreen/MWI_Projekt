@@ -97,15 +97,20 @@
 		</section> 
 	
 		<section class="module content">
-		
-			<div class="container">
-				<g:select class="languages masterTooltip" name="systemLanguage" title="Please select the language you wish the search is being performed"
-					onchange="${remoteFunction( action:'updateLanguage',
+		<div class="languageBox">
+			<a href='<g:createLink controller="index" action="info"/>'>bla</a>
+			<g:select class="languages masterTooltip" name="systemLanguage"
+				title="Please select the language you wish the search is being performed"
+				onchange="${remoteFunction( action:'updateLanguage',
 	                                          params: '\'lang=\'+escape(this.value)',
 											  onComplete: 'location.reload();')}"
-					from="${languages}" optionKey="languageId"
-					optionValue="languageName"
-					value="${session.getAttribute("systemLanguage")}" />
+				from="${languages}" optionKey="languageId"
+				optionValue="languageName"
+				value="${session.getAttribute("systemLanguage")}" />
+
+		</div>
+		<div class="container">
+				
 			
 				<a href="#page-body" class="skip"><g:message
 						code="default.link.skip.label" default="Skip to content&hellip;" /></a>
@@ -138,22 +143,22 @@
 								placeholder="${labels.getText(labels.TEXTID_Job, session.getAttribute("systemLanguage")) }"
 								value="${params['beruf']}"/></li>
 					
-						<li><g:actionSubmitImage id="searchButton" class="masterTooltip"  title="Go!" action="index" name="search" value="Update"
+						<li><g:actionSubmitImage id="searchButton" class="masterTooltip"  title="Go!" name="search" value="index"
                      src="${resource(dir: 'images', file: 'lupe.png')}" /></li>
 					</ul>
 					</g:form>
 					
-					<ul>
-						<li class="masterTooltip" title="Your search returned following results:" >ergebnisse: ${session.getAttribute("systemLanguage")}</li>
+					<ul style="height:200px; width:15em; overflow:auto;">
+						<li class="masterTooltip " title="Your search returned following results:" >ergebnisse: ${session.getAttribute("systemLanguage")}</li>
 						<g:each var="i" in="${institutes}">
-							<li>
+							<li class="results">
 								${i}
 							</li>
 						</g:each>
 					</ul>
 					
 				</div>
-	
+		
 				
 				<div id="map"></div>
 	

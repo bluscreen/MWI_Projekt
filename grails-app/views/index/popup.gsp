@@ -85,27 +85,24 @@
 <div class="b">
 	
 	<div class="container1">
-		<div id="textBox" class="box" ><b>Text Box</b> ${educationInstitute?.educationInstituteDescription}</div>
-		<div id="statisticBox" class="box">Statistic Box</div>
-		
-	</div>
-	
-	<div class="container2">
-	<table id="infoBox" class="box">
+		<div id="textBox" class="box" ><h1>${educationInstitute?.educationInstituteDescription}</h1>
+		<table>
 		<tr>
 			<td><b>Name der Bildungseinrichtung:</b> ${educationInstitute?.name}<br>
 			<br> <b>Typ der Bildungseinrichtung:</b> unklar<br>
 			<br> <b>Adresse:</b><br> ${educationInstitute?.streetAndHouseNumber}<br>
 				${educationInstitute?.zipCode} ${educationInstitute?.city }<br>
-			<br>
-
+	
 				<div id="anzahlAbsolventen"></div>
-				<br>
-				<div id="anzahlStudiengaenge"></div>
-				<br> <b>Studiengänge mit Absolventen:</b>
-				<div id="studiengaengeAbsolventen"></div></td>
+			
 		</tr>
-		</table>
+		</table></div>
+		<div id="statisticBox" class="box">Statistic Box</div>
+		
+	</div>
+	
+	<div class="container2">
+	
 		
 		<div id="alumniBox" class="box">Alumni Box </div>
 		
