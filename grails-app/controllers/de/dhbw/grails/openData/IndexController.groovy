@@ -139,4 +139,8 @@ class IndexController {
 		[educationInstitute: GlobalDAO.instance.getEducationInstituteById(id, session.getAttribute("systemLanguage")),
 			jobStatistics: GlobalDAO.instance.getJobStatisticDatasetsByEducationInstituteid(id, session.getAttribute("systemLanguage"))]
 	}
+	def info()
+	{
+		
+	}
 }

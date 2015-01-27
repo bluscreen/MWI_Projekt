@@ -1,10 +1,16 @@
 @CHARSET "ISO-8859-1";
 body {
-	background-color: #99CCFF;
+	
+	padding: 40px;
 }
 
 li
-{
+{	font-size: 15pt;
 	padding-left: 50px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	border-top: 1px solid #DFDFDF;
+}
+ul{
+	width: 700px; 
 }
