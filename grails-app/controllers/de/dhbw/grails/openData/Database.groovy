@@ -42,11 +42,11 @@ class Database {
 		Database.database_password = database_password
 	}
 
-	//	public static final String confPath = "C:\\TEMP\\alumnetConfig"
-	//	public static final String filePath = "\\db_properties"
+		public static final String confPath = "C:\\TEMP\\alumnetConfig"
+		public static final String filePath = "\\db_properties"
 
-	public static final String confPath = "/opt/wikidata/config"
-	public static final String filePath = "/db_properties"
+	//public static final String confPath = "/opt/wikidata/config"
+	//public static final String filePath = "/db_properties"
 
 	public Database() {
 		Path myDir = Paths.get(confPath)

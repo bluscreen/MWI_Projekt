@@ -140,7 +140,7 @@
 								placeholder="${labels.getText(labels.TEXTID_Job, session.getAttribute("systemLanguage")) }"
 								value="${params['beruf']}"/></li>
 					
-						<li><g:actionSubmitImage id="searchButton" class="masterTooltip"  title="Go!" name="search" value="Update"
+						<li><g:actionSubmitImage id="searchButton" class="masterTooltip"  title="Go!" action="index" name="search" value="Update"
                      src="${resource(dir: 'images', file: 'lupe.png')}" /></li>
 					</ul>
 					</g:form>
