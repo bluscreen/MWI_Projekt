@@ -1,19 +1,21 @@
 package de.dhbw.grails.openData
 
-import grails.converters.JSON
-
 import org.springframework.web.servlet.support.RequestContextUtils
 
 
 /**
  * @author dhammacher
  * UI presenter class for providing data from the GlobalDAO to the UI
+ * session scoped bean per default config.
  *
  */
 class IndexController {
 
 	/**
+	 * call of this method will render index.gsp
+	 * returning values defined within []
 	 * main method to provide the view with search results
+	 * this is initially called with no parameters on first visit
 	 * @return
 	 */
 	def index() {
@@ -26,10 +28,10 @@ class IndexController {
 
 		// Look if no search parameters are set
 		boolean searchAll = ((params['staat'] == null || params['staat'] == "")
-		&& (params['ort'] == null || params['ort'] == "")
-		&& (params['bildungseinrichtung'] == null || params['bildungseinrichtung'] == "")
-		&& (params['person'] == null || params['person'] == "")
-		&& (params['beruf'] == null ||params['beruf'] == ""))
+				&& (params['ort'] == null || params['ort'] == "")
+				&& (params['bildungseinrichtung'] == null || params['bildungseinrichtung'] == "")
+				&& (params['person'] == null || params['person'] == "")
+				&& (params['beruf'] == null ||params['beruf'] == ""))
 
 		List<EducationInstitute> searchResult = []
 		if(searchAll) {
@@ -39,12 +41,12 @@ class IndexController {
 		else {
 			// user entered search param(s)
 			searchResult = GlobalDAO.instance.searchEducationInstitutes(
-			params['staat'],
-			params['ort'],
-			params['bildungseinrichtung'],
-			params['person'],
-			params['beruf'],
-			session.getAttribute("systemLanguage"))
+					params['staat'],
+					params['ort'],
+					params['bildungseinrichtung'],
+					params['person'],
+					params['beruf'],
+					session.getAttribute("systemLanguage"))
 		}
 
 		int foundAmount = searchResult.size()
@@ -57,9 +59,9 @@ class IndexController {
 			line += ((idx+1)<foundAmount) ? ",\n" : "\n"
 			markerString += line
 		}
-		
+
 		log.debug "markerString: " + markerString
-		
+
 		[languages: GlobalDAO.instance.getLanguagesList(),
 			labels: GlobalDAO.instance,
 			institutes: searchResult,
@@ -92,7 +94,8 @@ class IndexController {
 	/**
 	 * AJAX Method to update search params stored in session
 	 * trigger = each param
-	 * TODO this might be obsolete soon, as it is more efficient holding these values in get request/URL	
+	 * this method has benn marked as deprecated and it is no longer used
+	 * as it is more efficient holding these values in get request/URL	
 	 * @return
 	 */
 
@@ -122,6 +125,14 @@ class IndexController {
 		}
 	}
 
+
+	/**
+	 * call of this method will render popup.gsp
+	 * returning values defined within []
+	 * this method provides detailed information about 
+	 * an educational institute and its alumni as well as job statistics
+	 * @return
+	 */
 	def popup() {
 		log.info "popup() called"
 
@@ -139,6 +150,7 @@ class IndexController {
 		[educationInstitute: GlobalDAO.instance.getEducationInstituteById(id, session.getAttribute("systemLanguage")),
 			jobStatistics: GlobalDAO.instance.getJobStatisticDatasetsByEducationInstituteid(id, session.getAttribute("systemLanguage"))]
 	}
+
 	def info()
 	{
 		
