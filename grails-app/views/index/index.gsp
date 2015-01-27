@@ -12,9 +12,7 @@
 		<asset:stylesheet src="main.css" />
 		<asset:stylesheet src="application.css" />
 		<asset:javascript src="application.js" />
-		<asset:stylesheet src="popup.css" />
-		
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 		<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
 		<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
 		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
@@ -186,7 +184,8 @@
 					//Objekte gruppieren
 					 function cluster(latitude, longitude, objid){
 						poly =  L.marker([latitude, longitude]);
-						link = '<button id="'+objid+'" onclick="popupInfos('+objid+')">Read more</button>';
+						link = '<a href="<g:createLink controller="index" action="popup" id="'+objid+'"/>" target="_blank">Details</a>';
+						//link = '<button id="'+objid+'" onclick="popupInfos('+objid+')">Read more</button>';
 						d=document.createElement('div');
 					 	$(d).html("ID: "+objid+"<br/>"+link);
 					 	poly.bindPopup($(d).prop('outerHTML'));

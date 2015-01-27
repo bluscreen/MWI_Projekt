@@ -1,5 +1,14 @@
-<head>
- <script type="text/javascript">
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>openData</title>
+		<asset:stylesheet src="popup.css" />
+		
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ 		<script type="text/javascript">
 
     //Beispieldaten
 		 var berufeAbsolventen = new Array();
@@ -68,9 +77,10 @@
 			document.getElementById("studiengaengeAbsolventen").innerHTML = studiengaengeAbsolventen;		     
 		}
    
-    </script>
-</head>
-<body>
+ 	   </script>
+    </head>
+    <body>
+
 
 <div class="b">
 	
@@ -106,4 +116,4 @@
 	
 </div>
 </body>
-
+</html>
