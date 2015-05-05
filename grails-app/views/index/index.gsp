@@ -149,10 +149,10 @@
 					</g:form>
 					
 					<ul style="height:200px; width:15em; overflow:auto;">
-						<li class="masterTooltip " title="Your search returned following results:" >ergebnisse: ${session.getAttribute("systemLanguage")}</li>
+						<li class="masterTooltip " title="Your search returned following results:" >${institutes.size()}</li>
 						<g:each var="i" in="${institutes}">
 							<li class="results">
-								${i}
+								${i.toString()}
 							</li>
 						</g:each>
 					</ul>

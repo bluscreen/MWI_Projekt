@@ -40,8 +40,8 @@ public class EducationInstituteBasicInformation {
 
 	@Override
 	public String toString() {
-		return "EducationInstituteBasicInformation [longitude=" + longitude
-				+ ", latitude=" + latitude + ", id=" + id + "]";
+		return ("EducationInstituteBasicInformation [longitude=" + longitude
+				+ ", latitude=" + latitude + ", id=" + id + "]")
 	}
 	
 	

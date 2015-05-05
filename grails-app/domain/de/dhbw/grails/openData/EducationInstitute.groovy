@@ -121,14 +121,14 @@ public class EducationInstitute extends EducationInstituteBasicInformation {
 
 	@Override
 	public String toString() {
-		return "EducationInstitute [name=" + name + ", state=" + state
+		return ("EducationInstitute [name=" + name + ", state=" + state
 				+ ", city=" + city + ", zipCode=" + zipCode
 				+ ", streetAndHouseNumber=" + streetAndHouseNumber + ", phone="
 				+ phone + ", email=" + email + ", yearOfFoundation="
 				+ yearOfFoundation + ", educationInstituteDescription="
 				+ educationInstituteDescription + ", wikipediaHyperlink="
 				+ wikipediaHyperlink + ", jobStatisticList=" + jobStatisticList
-				+ ", alumnusList=" + alumnusList + "]";
+				+ ", alumnusList=" + alumnusList + "]")
 	}
 	
 	
