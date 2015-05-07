@@ -88,17 +88,17 @@ public class DatabaseInterface {
 					if (rs != null)
 						rs.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error "Exception",e
 				}
 			}
 			try {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error "Exception",e
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error "SQLException",e
 		}
 
 		return itemId;

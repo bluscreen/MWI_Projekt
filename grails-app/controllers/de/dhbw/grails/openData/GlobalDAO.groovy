@@ -205,8 +205,9 @@ public class GlobalDAO {
 			String educationInstituteid, String languageid) {
 		log.info "getEducationInstitutesById() called"
 		DatabaseInterface dbi = DatabaseInterface.getInstance();
+		log.info "findEducatonInstituteById(" + educationInstituteid + "," + languageid + ")"
 		EducationInstitute ei = dbi.findEducationInstituteById(educationInstituteid, languageid);
-		log.info "educationinstitute.toString()" + ei
+		log.info "educationinstitute.toString(): " + ei
 		return ei
 	}
 
@@ -222,8 +223,12 @@ public class GlobalDAO {
 			String educationInstituteid, String languageid) {
 		log.info "getJobStatisticDatasetsByEducationInstituteId() called"
 		DatabaseInterface dbi = DatabaseInterface.getInstance();
-		JobStatisticDataset jsd = dbi.findJobStatisticDatasetsByEducationInstituteid(educationInstituteid, languageid)
-		log.info "jsd: " + jsd
+		List<JobStatisticDataset> jsd = dbi.findJobStatisticDatasetsByEducationInstituteid(educationInstituteid, languageid)
+		log.info "printing jobstatisticdatasets:"
+		jsd.each { j ->
+			log.info j
+		}
+		log.info "...done"
 		return jsd
 	}
 }
