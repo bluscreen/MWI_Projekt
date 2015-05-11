@@ -153,9 +153,8 @@
 					</ul>
 					</g:form>
 					<g:if test="${renderList}">
-					<!-- das hier einfuegen -->
 					<ul style="height:200px; width:15em; overflow:auto;">
-						<li class="masterTooltip " title="Your search returned ${institutes.size()} results:" ></li>
+						<li class="masterTooltip " title="Your search returned ${institutes.size()} results:" >&nbsp;</li>
 						<g:javascript>
 						${indexCounter = -1}
 						</g:javascript>
