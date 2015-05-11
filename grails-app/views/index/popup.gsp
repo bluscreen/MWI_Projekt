@@ -10,8 +10,16 @@
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
  		<script type="text/javascript">
 
-    //Beispieldaten
+    
+// TEST...  STH MUST BE HERE.... SOMEHOW.. IF THERE IS ANYTHING COMING FROM DB!!
+
+// size of jobstatisticlist: ${educationInstitute?.jobStatisticList?.size()}
+		 ${educationInstitute?.jobStatisticList.eachWithIndex{ num, idx ->  println "$idx: $num" }}
+
+
+		//Beispieldaten
 		 var berufeAbsolventen = new Array();
+		 
 			berufeAbsolventen[0] = new Array();
 		    berufeAbsolventen[0][0] = "BWL";
 		    berufeAbsolventen[0][1] = "Stefan Raab";
@@ -80,26 +88,27 @@
     </head>
     <body>
 
-
 <div class="b">
-	
 	<div class="container1">
-		<div id="textBox" class="box"><b>Name der Bildungseinrichtung:</b> ${educationInstitute?.name}<br>
-		<b>${educationInstitute?.educationInstituteDescription}<br>
-		<b>Gründungsjahr:</b> ${educationInstitute?.yearOfFoundation}<br>
-		<b>Adresse:</b><br> ${educationInstitute?.streetAndHouseNumber}<br>
-			${educationInstitute?.zipCode} ${educationInstitute?.city }<br>
-		<b>Wiki-Link:</b> <a href="${educationInstitute?.wikipediaHyperlink}" target="_blank">${educationInstitute?.wikipediaHyperlink}</a><br>
-		<b>Email:</b> ${educationInstitute?.email}<br>	
-			
+		<div id="textBox" class="box">
+			<b>Name:</b> ${educationInstitute?.name}<br>
+			<b>Beschreibung:</b> ${educationInstitute?.educationInstituteDescription}<br>
+			<b>Gründungsjahr:</b> ${educationInstitute?.yearOfFoundation}<br>
+			<b>Wiki-Link:</b> <a href="${educationInstitute?.wikipediaHyperlink}" target="_blank">${educationInstitute?.wikipediaHyperlink}</a><br>
+			<b>Email:</b> ${educationInstitute?.email}<br>	
+			<b>Adresse:</b><br> ${educationInstitute?.streetAndHouseNumber}<br>
+			 ${educationInstitute?.zipCode} ${educationInstitute?.city }<br>
 		</div>
 		
-		<div id="statisticBox" class="box">Statistic Box</div>
+		<div id="statisticBox" class="box">
+			Statistic Box
+		</div>
 	</div>
 	
 	<div class="container2">
-		<div id="alumniBox" class="box">Alumni Box <br>
-		<b>Anzahl Absolventen</b>: ${educationInstitute?.alumnusList?.size()}
+		<div id="alumniBox" class="box">
+			Alumni Box <br>
+			<b>Anzahl Absolventen</b>: ${educationInstitute?.alumnusList?.size()}<br>
 			<g:each var="i" in="${educationInstitute?.alumnusList}">
 				${i.name} ${i.jobTitle} ${i.wikipediaHyperlink} 
 			</g:each>
