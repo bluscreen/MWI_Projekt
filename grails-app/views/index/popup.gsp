@@ -70,6 +70,7 @@
 		    	 var data = google.visualization.arrayToDataTable(forData);
 	
 		        var options = {
+		        		backgroundColor: 'transparent',
 		          title: 'Statistik der Berufe:',
 		          is3D: true,
 		        };
