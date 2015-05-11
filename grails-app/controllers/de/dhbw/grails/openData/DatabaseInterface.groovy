@@ -457,7 +457,7 @@ public class DatabaseInterface {
 
 			if (pstmt.execute()) {
 				ResultSet rs = pstmt.getResultSet();
-				while (rs.next()) {
+				while (rs.next()) {		
 					educationInstituteids.add(rs.getString(1));
 				}
 				try {
