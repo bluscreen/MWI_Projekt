@@ -155,7 +155,7 @@
 					<g:if test="${renderList}">
 					<!-- das hier einfuegen -->
 					<ul style="height:200px; width:15em; overflow:auto;">
-						<li class="masterTooltip " title="Your search returned following results:" >${institutes.size()}</li>
+						<li class="masterTooltip " title="Your search returned ${institutes.size()} results:" ></li>
 						<g:javascript>
 						${indexCounter = -1}
 						</g:javascript>
