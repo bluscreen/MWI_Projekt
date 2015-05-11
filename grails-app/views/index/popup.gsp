@@ -84,12 +84,11 @@
 <div class="b">
 	
 	<div class="container1">
-		<div id="textBox" class="box" ><h1>${educationInstitute?.educationInstituteDescription}</h1><br>
-		<b>Name der Bildungseinrichtung:</b> ${educationInstitute?.name}<br>
+		<div id="textBox" class="box"><b>Name der Bildungseinrichtung:</b> ${educationInstitute?.name}<br>
+		<b>${educationInstitute?.educationInstituteDescription}<br>
 		<b>Gründungsjahr:</b> ${educationInstitute?.yearOfFoundation}<br>
 		<b>Adresse:</b><br> ${educationInstitute?.streetAndHouseNumber}<br>
 			${educationInstitute?.zipCode} ${educationInstitute?.city }<br>
-		<b>Beschreibung:</b> ${educationInstitute?.educationInstituteDescription}<br>
 		<b>Wiki-Link:</b> <a href="${educationInstitute?.wikipediaHyperlink}" target="_blank">${educationInstitute?.wikipediaHyperlink}</a><br>
 		<b>Email:</b> ${educationInstitute?.email}<br>	
 			
