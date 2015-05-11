@@ -7,7 +7,6 @@
 }
 
 #textBox{
-	
 	height: 90%;
 	width: 40%;
 	float: left;	
@@ -15,14 +14,12 @@
 
 
 #statisticBox{
-	
 	height: 90%;
 	width: 54%;
 	float: right;	
 }
 
 #alumniBox{
-	
 	height: 90%;
 	width: 40%;
 	float: left;
@@ -30,7 +27,6 @@
 
 
 #infoBox{
-	
 	height: 90%;
 	width: 50%;
 	float: right;

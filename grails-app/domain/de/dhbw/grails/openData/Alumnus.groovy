@@ -41,8 +41,8 @@ public class Alumnus {
 
 	@Override
 	public String toString() {
-		return "Alumnus [alumniName=" + alumniName + ", jobTitle=" + jobTitle
-				+ ", wikipediaHyperlink=" + wikipediaHyperlink + "]";
+		return ("Alumnus [alumniName=" + alumniName + ", jobTitle=" + jobTitle
+				+ ", wikipediaHyperlink=" + wikipediaHyperlink + "]");
 	}
 	
 	

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,7 +7,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>openData</title>
 		<asset:stylesheet src="popup.css" />
-		
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
  		<script type="text/javascript">
 
@@ -72,7 +72,6 @@
 			
 		//Nach laden des Fensters werden die Strings angezeigt
 		window.onload = function () {
-		    document.getElementById("anzahlAbsolventen").innerHTML = "<b>Anzahl der Absolventen: </b>" + anzahlAbsolventen;
 			document.getElementById("anzahlStudiengaenge").innerHTML = "<b>Anzahl der Studiengänge: </b>" + berufeAbsolventen.length;
 			document.getElementById("studiengaengeAbsolventen").innerHTML = studiengaengeAbsolventen;		     
 		}
@@ -85,32 +84,29 @@
 <div class="b">
 	
 	<div class="container1">
-		<div id="textBox" class="box" ><h1>${educationInstitute?.educationInstituteDescription}</h1>
-		<table>
-		<tr>
-			<td><b>Name der Bildungseinrichtung:</b> ${educationInstitute?.name}<br>
-			<br> <b>Typ der Bildungseinrichtung:</b> unklar<br>
-			<br> <b>Adresse:</b><br> ${educationInstitute?.streetAndHouseNumber}<br>
-				${educationInstitute?.zipCode} ${educationInstitute?.city }<br>
-	
-				<div id="anzahlAbsolventen"></div>
+		<div id="textBox" class="box" ><h1>${educationInstitute?.educationInstituteDescription}</h1><br>
+		<b>Name der Bildungseinrichtung:</b> ${educationInstitute?.name}<br>
+		<b>Gründungsjahr:</b> ${educationInstitute?.yearOfFoundation}<br>
+		<b>Adresse:</b><br> ${educationInstitute?.streetAndHouseNumber}<br>
+			${educationInstitute?.zipCode} ${educationInstitute?.city }<br>
+		<b>Beschreibung:</b> ${educationInstitute?.educationInstituteDescription}<br>
+		<b>Wiki-Link:</b> <a href="${educationInstitute?.wikipediaHyperlink}" target="_blank">${educationInstitute?.wikipediaHyperlink}</a><br>
+		<b>Email:</b> ${educationInstitute?.email}<br>	
 			
-		</tr>
-		</table></div>
-		<div id="statisticBox" class="box">Statistic Box</div>
+		</div>
 		
+		<div id="statisticBox" class="box">Statistic Box</div>
 	</div>
 	
 	<div class="container2">
-	
-		
-		<div id="alumniBox" class="box">Alumni Box </div>
-		
-				
-			
+		<div id="alumniBox" class="box">Alumni Box <br>
+		<b>Anzahl Absolventen</b>: ${educationInstitute?.alumnusList?.size()}
+			<g:each var="i" in="${educationInstitute?.alumnusList}">
+				${i.name} ${i.jobTitle} ${i.wikipediaHyperlink} 
+			</g:each>
 		</div>
-		 <r:layoutResources/>
-	
+	</div>
 </div>
+ <r:layoutResources/>
 </body>
 </html>
