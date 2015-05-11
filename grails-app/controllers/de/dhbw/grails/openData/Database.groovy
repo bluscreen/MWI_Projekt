@@ -55,23 +55,28 @@ class Database {
 		log.info "Config Scanner has Path: " + actualPath
 
 		ConfigScanner parser = new ConfigScanner(actualPath)
+		
+		if(ConfigScanner.configfileexists) {
 
 		try {
 			parser.processLineByLine()
 		} catch (IOException e) {
-			log.error "Problem reading File:", e
+			log.error "Problem reading File"
+			return
 		}
 
-		/**
-		 * [DH] TODO this could cause memory leaks...
-		 */
-		new Thread() {
 
+		new Thread() {
+				
 					@Override
 					public void run() {
+						
+						log.info "Thread gestartet"
+						
 						log.info "Thread for ConfigScanner is running. Filepath is:" + Database.confPath
-						while(true) {
-							try {
+						while(ConfigScanner.configfileexists) {
+							try {						
+								
 								// Create a watcher for changes in file system
 								WatchService watcher = myDir.getFileSystem().newWatchService()
 								myDir.register(watcher, StandardWatchEventKinds.ENTRY_MODIFY)
@@ -92,22 +97,23 @@ class Database {
 										try {
 											parser.processLineByLine()
 										} catch (IOException e) {
-											log.error "Problem reading File:", e
+											log.error "Problem reading File"
+											return
 										}
 
-										// TODO [DH] this looks kind of invalid
 										Database.this.rebuildConnection()
 									}
 								}
 							} catch (Exception e) {
-								/**
-						 *  TODO [DH] This should have some real exception handling
-						 */
-								log.error "Something went wrong:", e
+								//log.error "Something went wrong:", e
+								e.printStackTrace()
+								return
 							}
 						}
 					}
 				}.start()
+				
+		}
 	}
 
 	public Connection getConnection() {
@@ -133,6 +139,7 @@ class Database {
 			Class.forName(driverClass)
 		} catch (ClassNotFoundException e) {
 			log.error "Driver not found ", e
+			return
 		}
 
 		try{
@@ -141,7 +148,7 @@ class Database {
 			log.info "DB Trying to connect to: "+ connector
 			con = DriverManager.getConnection(connector , database_username, database_password)
 		} catch (SQLException e) {
-			log.error "SQL Exception trying to get Connection ", e
+			log.error "SQL Exception trying to get Connection "
 		}
 	}
 

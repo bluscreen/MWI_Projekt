@@ -2,7 +2,7 @@ package de.dhbw.grails.openData;
 
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
-
+import java.nio.file.NoSuchFileException
 /**
  *
  * @author Marco K.
@@ -12,6 +12,7 @@ public class ConfigScanner {
 
 	private final File filePath;
 	private final static Charset ENCODING = StandardCharsets.UTF_8;
+	static boolean configfileexists = true;
 
 	/**
 	 * Constructor.
@@ -20,12 +21,16 @@ public class ConfigScanner {
 	 *            full name of an existing, readable file.
 	 */
 	public ConfigScanner(String fileName) {
+		
+		if(configfileexists) {		
 		try {
 			filePath = new File(fileName)
 			log.info "File Path is now: " + filePath
 		}
-		catch(FileNotFoundException e) {
-			log.error "File Not found: " + fileName, e
+		catch(NoSuchFileException | FileNotFoundException e) {
+			configfileexists = false;
+			log.error "File Not found: " + fileName
+		}
 		}
 	}
 
@@ -37,7 +42,7 @@ public class ConfigScanner {
 	public final void processLineByLine() throws IOException {
 		log.info "processLineByLine() called"
 		String line = "";
-
+		if (this.configfileexists){
 		try {
 			Scanner scanner = new Scanner(filePath, ENCODING.name())
 			while (scanner.hasNextLine()) {
@@ -47,7 +52,8 @@ public class ConfigScanner {
 				}
 			}
 		} catch (Exception e) {
-			log.error "couldnt instanciate scanner", e
+			log.error "couldnt instanciate scanner"
+		}
 		}
 	}
 

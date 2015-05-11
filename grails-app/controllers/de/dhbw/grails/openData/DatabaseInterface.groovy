@@ -32,7 +32,7 @@ public class DatabaseInterface {
 	public static final String CATEGORY_JOBS = "jobs_";
 	public static final String CATEGORY_STATES = "states_";
 	public static final String CATEGORY_CITIES = "cities_";
-	public static final String CATEGORY_EDUCATION_INSTITUTES = "education_institutes_";
+	public static final String CATEGORY_EDUCATION_INSTITUTES = "educationinstitutes_";
 
 	public static final String VIEW_NAME_SUFU = "sufu_mview";
 	public static final String VIEW_NAME_PERSON = "persons_mview";
@@ -457,7 +457,7 @@ public class DatabaseInterface {
 
 			if (pstmt.execute()) {
 				ResultSet rs = pstmt.getResultSet();
-				while (rs.next()) {
+				while (rs.next()) {		
 					educationInstituteids.add(rs.getString(1));
 				}
 				try {
