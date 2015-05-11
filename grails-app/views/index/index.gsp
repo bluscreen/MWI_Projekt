@@ -94,42 +94,32 @@
 	</head>
 	
 	<body onload="calculateMiddlePoint();">
-		<section class="module parallax parallax-1 test">
+		<div class="banner test">
 			<div class="stripe">
 				<div class="left">alumNET</div>
-				<div class="right">
-					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-					nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-					erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-					et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-					Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-					sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-					et dolore magna aliquyam erat, sed diam voluptua.. <a id="infoLink" href='<g:createLink controller="index" action="info"/>'>Info</a><br /> 
-					<a href="#status" class="masterTooltip" title="Start your search!"><h2>[[ skrəʊl daʊn ]]</h2></a><br/>
-					
-				</div>
+					<div class="right">
+					<a id="infoLink" href='<g:createLink controller="index" action="info"/>'>/Info/</a>
+					<a id="impressum" href='<g:createLink controller="index" action="impressum"/>'>Impressum/</a>
+					<g:select class="languages masterTooltip" name="systemLanguage"
+								title="Please select the language you wish the search is being performed"
+								onchange="${remoteFunction( action:'updateLanguage',
+					                                          params: '\'lang=\'+escape(this.value)',
+															  onComplete: 'location.reload();')}"
+								from="${languages}" optionKey="languageId"
+								optionValue="languageName"
+								value="${session.getAttribute("systemLanguage")}" />
+				
+					</div>
 			</div>
-		</section> 
+		</div> 
 	
-		<section class="module content">
-		<div class="languageBox">
-			
-			<g:select class="languages masterTooltip" name="systemLanguage"
-				title="Please select the language you wish the search is being performed"
-				onchange="${remoteFunction( action:'updateLanguage',
-	                                          params: '\'lang=\'+escape(this.value)',
-											  onComplete: 'location.reload();')}"
-				from="${languages}" optionKey="languageId"
-				optionValue="languageName"
-				value="${session.getAttribute("systemLanguage")}" />
-
-		</div>
+	
 		<div class="container">
 				
-			
 				<a href="#page-body" class="skip"><g:message
 						code="default.link.skip.label" default="Skip to content&hellip;" /></a>
-				<div id="status">
+			
+				<div id="searchBox" class="Box">
 					<g:form action="index" method="get"> 
 					<ul>
 						<li><g:textField class="searchfields masterTooltip" 
@@ -177,15 +167,18 @@
 							</li>
 						</g:each>
 					</ul>
+
 					</g:if>
 				</div>
-		
-				
+			<div id="mapBox">
 				<div id="map"></div>
-	
+			</div>
+				
+				
+				
 				<div id="dialog" style="display:none" title="Details">
 				X
-				</div>
+		</div>
 				<g:javascript>
 				    var markerArray = null;
 				    var markers = null;
@@ -252,8 +245,8 @@
 						 height:700});
 					});
 				 </g:javascript>
-			</div>
-		</section>
+			
+		
 		<r:layoutResources/>
 	</body>
 </html>

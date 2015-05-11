@@ -173,6 +173,11 @@ class IndexController {
 		
 	}
 	
+	def impressum()
+	{
+		
+	}
+	
 	def checkLanguageSet(){
 		if(session.getAttribute("systemLanguage") == null || session.getAttribute("systemLanguage") == "") {
 			log.debug "systemLanguage is null or empty: call updateLanguage to try to determine it"

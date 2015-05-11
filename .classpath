@@ -4,7 +4,7 @@
 	<classpathentry kind="src" path="lib"/>
 	<classpathentry kind="src" path="grails-app/controllers"/>
 	<classpathentry kind="src" path="grails-app/domain"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_07"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_51"/>
 	<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT"/>
 	<classpathentry exported="true" kind="con" path="GROOVY_SUPPORT"/>
 	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-5.1.16.jar"/>

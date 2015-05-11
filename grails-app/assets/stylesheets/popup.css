@@ -17,7 +17,7 @@
 #statisticBox{
 	
 	height: 90%;
-	width: 55%;
+	width: 54%;
 	float: right;	
 }
 
@@ -51,9 +51,9 @@
 body {
 	max-width: 90%;
 	margin: 50px auto;
-	background-image: url("world-map.gif");
+	background-image: url("worl-map.jpg");
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
+	background-attachment: scroll;
 	background-size: cover;
 }
