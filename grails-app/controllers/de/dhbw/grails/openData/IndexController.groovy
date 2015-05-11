@@ -30,7 +30,9 @@ class IndexController {
 				&& (params['beruf'] == null ||params['beruf'] == ""))
 
 		List<EducationInstitute> searchResult = []
+		boolean rendList = true;
 		if(searchAll) {
+			rendList = false;
 			// user is here for the first time
 			searchResult = GlobalDAO.instance.getAllEducationInstitutes()
 		}
@@ -61,7 +63,8 @@ class IndexController {
 		[languages: GlobalDAO.instance.getLanguagesList(),
 			labels: GlobalDAO.instance,
 			institutes: searchResult,
-			markers: markerString ]
+			markers: markerString,
+			renderList: rendList ]
 	}
 
 	/**
@@ -144,8 +147,25 @@ class IndexController {
 			id=1;
 		}
 
-		[educationInstitute: GlobalDAO.instance.getEducationInstituteById(id, session.getAttribute("systemLanguage")),
-			jobStatistics: GlobalDAO.instance.getJobStatisticDatasetsByEducationInstituteid(id, session.getAttribute("systemLanguage"))]
+		[educationInstitute: GlobalDAO.instance.getEducationInstituteById(id, session.getAttribute("systemLanguage"))]
+	}
+	
+	@Deprecated
+	def fetchName(){
+		log.info "fetchName() called"
+		
+		def id = params['id']
+		
+		log.info "params:"
+		params.each {i->
+			log.info "__"+ i
+		}
+
+		if(id == null){
+			id=1;
+		}
+		[educationInstitute: GlobalDAO.instance.getEducationInstituteById(id, session.getAttribute("systemLanguage"))]
+		
 	}
 
 	def info()

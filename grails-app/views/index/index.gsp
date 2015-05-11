@@ -64,9 +64,24 @@
 			}
 
 			function updateModal(data){
-				 $("#dialog").html(data);
-				 $("#dialog").dialog("open");
+				alert(data);
+<%--				 $("#dialog").html(data);--%>
+<%--				 $("#dialog").dialog("open");--%>
 			 }
+
+			 function updateContent(data)
+			 {
+				var blabla = data.split("%");
+				$("#"+blabla[0]).html(data);
+				alert(data);
+			 }
+
+			function fetchName(event){
+				ev = event || window.event;
+				${remoteFunction( action:'fetchName',
+                        params: '\'id=\'+escape(ev)',
+						onSuccess: 'updateContent(data)')} 
+			}
 
 			function popupInfos(event){
 				ev = event || window.event;
@@ -147,16 +162,22 @@
                      src="${resource(dir: 'images', file: 'lupe.png')}" /></li>
 					</ul>
 					</g:form>
-					
+					<g:if test="${renderList}">
+					<!-- das hier einfuegen -->
 					<ul style="height:200px; width:15em; overflow:auto;">
 						<li class="masterTooltip " title="Your search returned following results:" >${institutes.size()}</li>
+						<g:javascript>
+						${indexCounter = -1}
+						</g:javascript>
+    
+		
 						<g:each var="i" in="${institutes}">
-							<li class="results">
-								${i.toString()}
+						<li class="results" onclick="zoomToMarker(${++indexCounter})">
+								${i.name}, ${i.city}
 							</li>
 						</g:each>
 					</ul>
-					
+					</g:if>
 				</div>
 		
 				
@@ -191,9 +212,15 @@
 						poly =  L.marker([latitude, longitude]);
 						link = '<a href="<g:createLink controller="index" action="popup" id="'+objid+'"/>" target="_blank">Details</a>';
 						//link = '<button id="'+objid+'" onclick="popupInfos('+objid+')">Read more</button>';
+						
 						d=document.createElement('div');
+						$(d).attr('id', objid);
 					 	$(d).html("ID: "+objid+"<br/>"+link);
 					 	poly.bindPopup($(d).prop('outerHTML'));
+					 	
+						//Schau mal, ob das hier funktioniert
+						poly.on("click", fetchName(objid));
+						
 					 	markerArray.push(poly);
 						markers.addLayer(poly);
 					 }
@@ -208,6 +235,14 @@
 					 function showPopup(){
 					 	poly.openPopup();
 					 }
+					 
+					  //und das hier einfuegen
+					 function zoomToMarker(index){
+						 markers.zoomToShowLayer(markerArray[index], function() {
+					        markerArray[index].openPopup();
+					    });
+					 }
+					 
 					$(function() {
 						 $("#dialog").dialog({
 						 autoOpen:false, 
