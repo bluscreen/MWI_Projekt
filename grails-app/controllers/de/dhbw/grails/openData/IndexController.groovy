@@ -20,11 +20,7 @@ class IndexController {
 	 */
 	def index() {
 		log.info "index() called"
-		if(session.getAttribute("systemLanguage") == null || session.getAttribute("systemLanguage") == "") {
-			log.debug "systemLanguage is null or empty: call updateLanguage to try to determine it"
-			updateLanguage()
-		}
-		log.debug "system language:" + session.getAttribute("systemLanguage")
+		checkLanguageSet()
 
 		// Look if no search parameters are set
 		boolean searchAll = ((params['staat'] == null || params['staat'] == "")
@@ -135,6 +131,7 @@ class IndexController {
 	 */
 	def popup() {
 		log.info "popup() called"
+		checkLanguageSet()
 
 		def id = params['id']
 
@@ -154,5 +151,13 @@ class IndexController {
 	def info()
 	{
 		
+	}
+	
+	def checkLanguageSet(){
+		if(session.getAttribute("systemLanguage") == null || session.getAttribute("systemLanguage") == "") {
+			log.debug "systemLanguage is null or empty: call updateLanguage to try to determine it"
+			updateLanguage()
+		}
+		log.debug "system language:" + session.getAttribute("systemLanguage")
 	}
 }
