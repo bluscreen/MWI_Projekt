@@ -49,7 +49,7 @@
 
 <div class="b">
 	<div class="container1">
-		<div id="textBox" class="box">
+		<div id="textBox" class="box">Education Institute Box <br>
 			<b>Name:</b> ${educationInstitute?.name}<br>
 			<b>Beschreibung:</b> ${educationInstitute?.educationInstituteDescription}<br>
 			<b>Gründungsjahr:</b> ${educationInstitute?.yearOfFoundation}<br>
