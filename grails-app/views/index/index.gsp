@@ -211,7 +211,7 @@
 					 	poly.bindPopup($(d).prop('outerHTML'));
 					 	
 						//Schau mal, ob das hier funktioniert
-						poly.on("click", fetchName(objid));
+<%--						poly.on("click", fetchName(objid));--%>
 						
 					 	markerArray.push(poly);
 						markers.addLayer(poly);
