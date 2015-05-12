@@ -63,12 +63,6 @@
 				}
 			}
 
-			function updateModal(data){
-				alert(data);
-<%--				 $("#dialog").html(data);--%>
-<%--				 $("#dialog").dialog("open");--%>
-			 }
-
 			 function updateContent(data)
 			 {
 				var blabla = data.split("%");
@@ -83,12 +77,6 @@
 						onSuccess: 'updateContent(data)')} 
 			}
 
-			function popupInfos(event){
-				ev = event || window.event;
-				${remoteFunction( action:'popup',
-                        params: '\'id=\'+escape(ev.id)',
-						onSuccess: 'updateModal(data)')} 
-			}
 		  </script>
 		  <r:layoutResources/>
 	</head>
@@ -98,19 +86,18 @@
 			<div class="stripe">
 				<div class="left">alumNET</div>
 					<div class="right">
-					<a id="infoLink" href='<g:createLink controller="index" action="info"/>'>/Info/</a>
-					<a id="impressum" href='<g:createLink controller="index" action="impressum"/>'>Impressum/</a>
-					<g:select class="languages masterTooltip" name="systemLanguage"
-								title="Please select the language you wish the search is being performed"
-								onchange="${remoteFunction( action:'updateLanguage',
-					                                          params: '\'lang=\'+escape(this.value)',
-															  onComplete: 'location.reload();')}"
-								from="${languages}" optionKey="languageId"
-								optionValue="languageName"
-								value="${session.getAttribute("systemLanguage")}" />
-				
+						<div class="right-top">
+					
+						</div>
+						<div class ="right-infocontainer">
+							<a id="infoLink" href='<g:createLink controller="index" action="info"/>'>Info</a>
+							<b>/</b>
+							<a id="impressum" href='<g:createLink controller="index" action="impressum"/>'>Impressum</a>
+						</div>
+			
 					</div>
 			</div>
+			<a id="lizenzBild" href="http://www.freepik.com">Designed by Freepik</a>
 		</div> 
 	
 	
@@ -121,7 +108,14 @@
 			
 				<div id="searchBox" class="Box">
 					<g:form action="index" method="get"> 
-					<ul>
+					<ul><li><g:select id="language" class="searchfields masterTooltip" name="systemLanguage"
+								title="Please select the language you wish the search is being performed"
+								onchange="${remoteFunction( action:'updateLanguage',
+					                                          params: '\'lang=\'+escape(this.value)',
+															  onComplete: 'location.reload();')}"
+								from="${languages}" optionKey="languageId"
+								optionValue="languageName"
+								value="${session.getAttribute("systemLanguage")}" /></li>
 						<li><g:textField class="searchfields masterTooltip" 
 								title="Please enter the name of the state the educational institution is located in"
 								name="staat"
@@ -153,10 +147,17 @@
 					</ul>
 					</g:form>
 					<g:if test="${renderList}">
+					<!-- das hier einfuegen -->
 					<ul style="height:200px; width:15em; overflow:auto;">
 						<li class="masterTooltip " title="Your search returned ${institutes.size()} results:">${institutes.size()} results</li>
+						<g:javascript>
 						${indexCounter = -1}
-					
+						</g:javascript>
+    
+		
+						<g:javascript>
+						${indexCounter = -1}
+						</g:javascript>
     
 		
 						<g:each var="i" in="${institutes}">
@@ -210,7 +211,7 @@
 					 	poly.bindPopup($(d).prop('outerHTML'));
 					 	
 						//Schau mal, ob das hier funktioniert
-					//	poly.on("click", fetchName(objid));
+						poly.on("click", fetchName(objid));
 						
 					 	markerArray.push(poly);
 						markers.addLayer(poly);
