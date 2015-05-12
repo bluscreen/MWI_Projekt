@@ -26,12 +26,11 @@
 	       		 
 		        var options = {
 		          backgroundColor: 'transparent',
-		          width: '450',
-		          title: 'Statistik der Berufe:',
+		          width: '500',
 		          is3D: true,
 		        };
 	
-		        var chart = new google.visualization.PieChart(document.getElementById('statisticBox'));
+		        var chart = new google.visualization.PieChart(document.getElementById('statistenBox'));
 		        chart.draw(data, options);
 		     }
 			
@@ -60,7 +59,8 @@
 		</div>
 		
 		<div id="statisticBox" class="box">
-			Statistic Box
+			Statistic Box<br>
+			<div id="statistenBox"></div>
 		</div>
 	</div>
 	
