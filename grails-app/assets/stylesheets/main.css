@@ -43,9 +43,6 @@ body {
 	margin: 0 auto;
 	overflow-x: hidden;
 	/* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
-	-moz-box-shadow: 0 0 0.3em #255b17;
-	-webkit-box-shadow: 0 0 0.3em #255b17;
-	box-shadow: 0 0 0.3em #255b17;
 }
 
 /* ============================================================
@@ -60,7 +57,7 @@ body {
 
 .banner {
 	height: 210px;
-	background-position: 0% 75%;
+	background-position: 0% 50%;
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-size: cover;
@@ -69,7 +66,7 @@ body {
 .stripe {
 	height: 180px;
 	margin-top: 10px;
-	background-color: rgba(43, 48, 59, 0.75);
+	background-color: rgba(43, 48, 59, 0.65);
 	padding-left: 5%;
 	padding-right: 5%;
 }
@@ -81,10 +78,11 @@ body {
 	color: #eee; 
 	text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 	float: left;
+	background-attachment: scroll;
 
 }
-
-.right {
+.right{}
+.right-infocontainer {
 	font-family: "Monospace";
 	height:100%;
 	font-size: 20px; 
@@ -93,54 +91,10 @@ body {
 	padding-left: 30px; 
 }
 
-
-/* ============================================================
-  SECTIONS
-============================================================ */
-/*section.module:last-child {
-	margin-bottom: 0;
+.right-top{
+	height: 2.5em;
 }
 
-section.module h2 {
-	margin-bottom: 40px;
-	font-family: "Roboto Slab", serif;
-	font-size: 30px;
-}
-
-section.module p {
-	margin-bottom: 40px;
-	font-size: 16px;
-	font-weight: 300;
-}
-
-section.module p:last-child {
-	margin-bottom: 0;
-}
-
-*/
-
-
-
-
-/*
-@media all and (min-width: 600px) {
-	section.module h2 {
-		font-size: 42px;
-	}
-	section.module p {
-		font-size: 20px;
-	}
-	section.module.parallax h1 {
-		font-size: 96px;
-	}
-}
-
-@media all and (min-width: 960px) {
-	section.module.parallax h1 {
-		font-size: 150px;
-	}
-}
-*/
 .tooltip {
 	display:none;
 	position:absolute;
@@ -158,7 +112,6 @@ section.module p:last-child {
 
 /* replace with .no-boxshadow body if you have modernizr available */
 .ie6 body,.ie7 body,.ie8 body {
-	border-color: #255b17;
 	border-style: solid;
 	border-width: 0 1px;
 }
@@ -281,7 +234,6 @@ label {
 
 input,select,textarea {
 	background-color: #fcfcfc;
-	border: 1px solid #cccccc;
 	font-size: 1em;
 	padding: 0.2em 0.4em;
 }
@@ -289,6 +241,8 @@ input,select,textarea {
 select {
 	padding: 0.2em 0.2em 0.2em 0;
 }
+
+
 
 select[multiple] {
 	vertical-align: top;

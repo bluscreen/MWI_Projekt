@@ -156,6 +156,9 @@
 					<ul style="height:200px; width:15em; overflow:auto;">
 						<li class="masterTooltip " title="Your search returned ${institutes.size()} results:">${institutes.size()} results</li>
 						${indexCounter = -1}
+					
+    
+		
 						<g:each var="i" in="${institutes}">
 						<li class="results" onclick="zoomToMarker(${++indexCounter})">
 								${i.name}, ${i.city}

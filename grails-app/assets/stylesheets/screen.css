@@ -37,27 +37,31 @@
 	width: 13em;
 	height: 40px;
 	font-size: 12pt;
-	margin: 1px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-}
+	border-top: 1px solid #cccccc;;
+    border-right-style: none;
+    border-bottom: 1px solid #cccccc;;
+    border-left-style: none;
 
+	
+}
+#searchbox li:hover{
+	background-color: #cccccc;
+	
+}
 #searchButton {
 	float: right;
 	margin-top: 10px;
 	height: 2.3em;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+
 }
 
 
 
-.languages {
-	width: 8em;
-	background-color: rgba(43, 48, 59, 0.75);
-	
+#language {
+	  width: 13.94em;
+	   background-color: #AAA8AC;
+  	color: #FFFFFF;
+  	margin-bottom: 0.5em;
 }
 
 
@@ -68,4 +72,8 @@
 .results {
 	border-top: 1px solid #DFDFDF;
 	margin-top: 0.5em;
+}
+
+#lizenzBild {
+	color: grey; 
 }
