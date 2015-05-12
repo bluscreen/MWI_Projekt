@@ -27,6 +27,7 @@
 		        var options = {
 		          backgroundColor: 'transparent',
 		          width: '500',
+		          height: '375',
 		          is3D: true,
 		        };
 	
@@ -70,8 +71,8 @@
 			<b>Anzahl Absolventen</b>: ${educationInstitute?.alumnusList?.size()}<br>
 			<table>
 				<tr>
-					<td width="25%">Name</td>
-					<td width="25%">Beruf</td>
+					<td>Name</td>
+					<td>Beruf</td>
 					<td>Wiki-Link</td>
 				</tr>
 			<g:each var="i" in="${educationInstitute?.alumnusList}">
