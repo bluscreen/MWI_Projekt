@@ -3,25 +3,25 @@
 }
 
 .container2{
-	height: 400px;
+	height: 300px;
 }
 
 #textBox{
 	height: 90%;
-	width: 40%;
+	width: 45%;
 	float: left;	
 }
 
 
 #statisticBox{
 	height: 90%;
-	width: 54%;
+	width: 45%;
 	float: right;	
 }
 
 #alumniBox{
 	height: 90%;
-	width: 40%;
+	width: 97.5%;
 	float: left;
 }
 

@@ -30,7 +30,7 @@
 						code="default.link.skip.label" default="Skip to content&hellip;" /></a>
 			
 				<div id="searchBox" class="Box">
-					<g:renderException exception="${exception}" />
+					Sorry!<br> The requested resource ${request.forwardURI} could not be found.
 				</div>
 		
 		<r:layoutResources/>

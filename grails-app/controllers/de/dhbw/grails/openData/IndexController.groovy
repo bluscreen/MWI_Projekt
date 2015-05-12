@@ -147,15 +147,51 @@ class IndexController {
 			id=1;
 		}
 
-		[educationInstitute: GlobalDAO.instance.getEducationInstituteById(id, session.getAttribute("systemLanguage"))]
+		// DH 12.05. still no data from DB.. mocking it for ID Q219563
+
+		EducationInstitute edu = GlobalDAO.instance.getEducationInstituteById(id, session.getAttribute("systemLanguage"))
+		if(edu.id == "Q219563")
+		{
+			log.info "Q219563 MOCKMOCKMOCK!!! BOCK"
+			JobStatisticDataset js1 = new JobStatisticDataset("Doenermann", 2)
+			JobStatisticDataset js2 = new JobStatisticDataset("Gyrosmann", 3)
+			JobStatisticDataset js3 = new JobStatisticDataset("Taxifahrer", 1)
+			
+			List<JobStatisticDataset> jsdl = new ArrayList<JobStatisticDataset>()
+			jsdl.addAll(js1,js2,js3)
+			
+			Alumnus a1 = new Alumnus("Sir Dönalot", "Doenermann", "http://www.doener.de")
+			Alumnus a2 = new Alumnus("YUFKALORD", "Doenermann", "http://www.yufka.de")
+			
+			Alumnus a3 = new Alumnus("GYROSLAND", "Gyrosmann", "http://www.gyros.de")
+			Alumnus a4 = new Alumnus("Sir Taki", "Gyrosmann", "http://www.sir-taki.de")
+			Alumnus a5 = new Alumnus("AGGRO-POLICE", "Gyrosmann", "http://www.aggro-police.de")
+			
+			Alumnus a6 = new Alumnus("Mahatma Taxi", "Taxifahrer", "http://www.mahatma.de")
+			
+			List<Alumnus> al = new ArrayList<Alumnus>()
+			al.addAll(a1,a2,a3,a4,a5,a6)
+			
+			edu.jobStatisticList = jsdl
+			edu.alumnusList = al
+		}
+		
+		String jobStats = "";
+		edu.jobStatisticList.eachWithIndex {num,idx ->
+			jobStats += "['" + num.jobTitle + "'," + num.number + "]"		
+			if(idx<edu.jobStatisticList.size()-1) jobStats += ",\n"	
+		}
+		
+		[educationInstitute: edu,
+			jsdString: jobStats]
 	}
-	
+
 	@Deprecated
 	def fetchName(){
 		log.info "fetchName() called"
-		
+
 		def id = params['id']
-		
+
 		log.info "params:"
 		params.each {i->
 			log.info "__"+ i
@@ -165,19 +201,19 @@ class IndexController {
 			id=1;
 		}
 		[educationInstitute: GlobalDAO.instance.getEducationInstituteById(id, session.getAttribute("systemLanguage"))]
-		
+
 	}
 
 	def info()
 	{
-		
+
 	}
-	
+
 	def impressum()
 	{
-		
+
 	}
-	
+
 	def checkLanguageSet(){
 		if(session.getAttribute("systemLanguage") == null || session.getAttribute("systemLanguage") == "") {
 			log.debug "systemLanguage is null or empty: call updateLanguage to try to determine it"
