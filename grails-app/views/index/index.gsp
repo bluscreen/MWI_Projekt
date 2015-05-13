@@ -50,9 +50,11 @@
 				clearMarkers();
 				for(var i=0; i<koord.length; i++){
 					cluster(koord[i][0], koord[i][1], koord[i][2], koord[i][3], koord[i][4]);
-<%--					if(koord.length == 1){show}--%>
 				}
 				fitTheBounds();
+				if(koord.length == 1){
+					showPopup();
+				}
 			}
 		  </script>
 		  <r:layoutResources/>
