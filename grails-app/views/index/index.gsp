@@ -68,9 +68,9 @@
 						<div class="right-top">
 						</div>
 						<div class ="right-infocontainer">
-							<a id="infoLink" href='<g:createLink controller="index" action="info"/>'>Info</a>
+							<a id="infoLink" href='<g:createLink controller="index" action="info"/>'>${labels.getText(textId.TEXTID_AboutUs.getTextid(), session.getAttribute("systemLanguage"))}</a>
 							<b>/</b>
-							<a id="impressum" href='<g:createLink controller="index" action="impressum"/>'>Impressum</a>
+							<a id="impressum" href='<g:createLink controller="index" action="impressum"/>'>${labels.getText(textId.TEXTID_Imprint.getTextid(), session.getAttribute("systemLanguage"))}</a>
 						</div>
 					</div>
 			</div>
@@ -120,7 +120,7 @@
 					</g:form>
 					
 					<g:if test="${renderList}">
-					<ul style="height:200px; width:15em; overflow:auto;">
+					<ul style="width:15em; overflow:auto;cursor: pointer">
 						<li class="masterTooltip " title="Your search returned ${institutes.size()} results:">${institutes.size()} results</li>
 <!--						${indexCounter = -1}  -->
 						<g:each var="i" in="${institutes}">

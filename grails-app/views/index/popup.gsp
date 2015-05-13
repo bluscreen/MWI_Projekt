@@ -50,22 +50,30 @@
 	<div id="container" class="b">
 
 		<div id="textBox" class="heading box">
-			<p>${labels.getText(textId.TEXTID_Education_Institute.getTextid(), session.getAttribute("systemLanguage"))}</p>
+			<p>
+				${labels.getText(textId.TEXTID_Education_Institute.getTextid(), session.getAttribute("systemLanguage"))}
+			</p>
 			<table>
 				<tr>
-					<td>${labels.getText(textId.TEXTID_Name.getTextid(), session.getAttribute("systemLanguage"))}:</td>
+					<td>
+						${labels.getText(textId.TEXTID_Name.getTextid(), session.getAttribute("systemLanguage"))}:
+					</td>
 					<td>
 						${educationInstitute?.name}
 					</td>
 				</tr>
 				<tr>
-					<td>${labels.getText(textId.TEXTID_Description.getTextid(), session.getAttribute("systemLanguage"))}:</td>
+					<td>
+						${labels.getText(textId.TEXTID_Description.getTextid(), session.getAttribute("systemLanguage"))}:
+					</td>
 					<td>
 						${educationInstitute?.educationInstituteDescription}
 					</td>
 				</tr>
 				<tr>
-					<td>${labels.getText(textId.TEXTID_Year_Of_Foundation.getTextid(), session.getAttribute("systemLanguage"))}:</td>
+					<td>
+						${labels.getText(textId.TEXTID_Year_Of_Foundation.getTextid(), session.getAttribute("systemLanguage"))}:
+					</td>
 					<td>
 						${educationInstitute?.yearOfFoundation}
 					</td>
@@ -73,18 +81,21 @@
 				<tr>
 					<td>Wiki-Link:</td>
 					<td><a href="${educationInstitute?.wikipediaHyperlink}"
-						target="_blank">
-							${educationInstitute?.wikipediaHyperlink}
+						target="_blank"> ${educationInstitute?.wikipediaHyperlink}
 					</a></td>
 				</tr>
 				<tr>
-					<td>${labels.getText(textId.TEXTID_EMail.getTextid(), session.getAttribute("systemLanguage"))}:</td>
+					<td>
+						${labels.getText(textId.TEXTID_EMail.getTextid(), session.getAttribute("systemLanguage"))}:
+					</td>
 					<td>
 						${educationInstitute?.email}
 					</td>
 				</tr>
 				<tr>
-					<td>${labels.getText(textId.TEXTID_Address.getTextid(), session.getAttribute("systemLanguage"))}:</td>
+					<td>
+						${labels.getText(textId.TEXTID_Address.getTextid(), session.getAttribute("systemLanguage"))}:
+					</td>
 					<td>
 						${educationInstitute?.streetAndHouseNumber}
 					</td>
@@ -93,33 +104,37 @@
 					</td>
 				</tr>
 			</table>
-
-			<div id="alumniBox" class="box">
-				<p>${labels.getText(textId.TEXTID_Alumni.getTextid(), session.getAttribute("systemLanguage"))} ${educationInstitute?.alumnusList?.size()}</p>
-				<table>
-					<tr>
-						<td>${labels.getText(textId.TEXTID_Name.getTextid(), session.getAttribute("systemLanguage"))}</td>
-						<td>${labels.getText(textId.TEXTID_Job.getTextid(), session.getAttribute("systemLanguage"))}</td>
-						<td>Wiki-Link</td>
-					</tr>
-					<g:each var="i" in="${educationInstitute?.alumnusList}">
-						<tr>
-							<td>
-								${i.alumniName}
-							</td>
-							<td>
-								${i.jobTitle}
-							</td>
-							<td><a href="${i.wikipediaHyperlink}" target="_blank">
-									${i.wikipediaHyperlink}
-							</a></td>
-						</tr>
-					</g:each>
-				</table>
-			</div>
-
 		</div>
 
+		<div id="alumniBox" class="box">
+			<p>
+				${labels.getText(textId.TEXTID_Alumni.getTextid(), session.getAttribute("systemLanguage"))}:
+				${educationInstitute?.alumnusList?.size()}
+			</p>
+			<table>
+				<tr>
+					<td>
+						${labels.getText(textId.TEXTID_Name.getTextid(), session.getAttribute("systemLanguage"))}
+					</td>
+					<td>
+						${labels.getText(textId.TEXTID_Job.getTextid(), session.getAttribute("systemLanguage"))}
+					</td>
+					<td>Wiki-Link</td>
+				</tr>
+				<g:each var="i" in="${educationInstitute?.alumnusList}">
+					<tr>
+						<td>
+							${i.alumniName}
+						</td>
+						<td>
+							${i.jobTitle}
+						</td>
+						<td><a href="${i.wikipediaHyperlink}" target="_blank"> ${i.wikipediaHyperlink}
+						</a></td>
+					</tr>
+				</g:each>
+			</table>
+		</div>
 
 		<div id="statisticBox" class="box">
 			<p>Statistics</p>
@@ -128,6 +143,5 @@
 
 	</div>
 	<r:layoutResources />
-	<a id="lizenzBild" href="http://www.freepik.com">Designed by Freepik</a>
 </body>
 </html>

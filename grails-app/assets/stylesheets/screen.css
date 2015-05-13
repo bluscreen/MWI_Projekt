@@ -68,9 +68,10 @@
 	height: 400px;
 }
 
-.results {
+#results li {
 	border-top: 1px solid #DFDFDF;
 	margin-top: 0.5em;
+	cursor: pointer; 
 }
 
 #lizenzBild {

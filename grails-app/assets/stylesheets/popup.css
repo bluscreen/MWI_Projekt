@@ -9,23 +9,28 @@ p {
 	font-family: "Courier New";
 	font-size: 20pt;
 	color: #eee;
- 	margin: 0 0 1em;
+	margin: 0 0 1em;
 	background-color: #ACA2A2;
 }
 
 #container {
-	width: 90em;
-	padding-left: 3.5em;
+	position: relative;
+	max-width: 90%;
+	margin: auto;
+	max-width: 90%;
 }
 
 #textBox {
+	position: relative;
+	width: 50%;
 	height: 15em;
-	width: 60em;
 }
 
 #statisticBox {
-	width: 60em;
-	background-color: rgba(43, 48, 59, 0.85)
+	position: relative;
+	margin-top: 10px;
+	background-color: rgba(43, 48, 59, 0.85);
+	width: 50%;
 }
 
 #statistenBox {
@@ -33,11 +38,12 @@ p {
 }
 
 #alumniBox {
-	position: relative;
-	width: 30em;
-	left: 35em;
-	  bottom: 3em;
-	background-color: rgba(43, 48, 59, 0.85)
+	position: absolute;
+	height: 100%;
+	width: 46%;
+	top: 0;
+	left: 53%;
+	background-color: rgba(43, 48, 59, 0.85);
 }
 
 .box {
@@ -72,8 +78,4 @@ a: hover {
 
 a: visited {
 	color: #cccccc;
-}
-
-#lizenzBild {
-	color: black; 
 }

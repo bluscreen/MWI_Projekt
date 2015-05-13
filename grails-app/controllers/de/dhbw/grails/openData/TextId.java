@@ -12,7 +12,9 @@ public enum TextId {
 	TEXTID_Alumni("Q508719"),
 	TEXTID_Address("P319608"),
 	TEXTID_EMail("P968"),
-	TEXTID_Description(""); // TODO Define this
+	TEXTID_Description(""), // TODO Define this
+	TEXTID_AboutUs(""), // TODO Define this
+	TEXTID_Imprint(""); // TODO Define this
 	
 	private final String textid;
 	
