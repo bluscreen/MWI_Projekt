@@ -139,17 +139,17 @@ public class DatabaseInterface {
 					if (rs != null)
 						rs.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error "DBI Error: ", e
 				}
 			}
 			try {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error "DBI Error: ", e
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error "DBI Error: ", e
 		}
 
 		return label;
@@ -187,17 +187,17 @@ public class DatabaseInterface {
 					if (rs != null)
 						rs.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error "DBI Error: ", e
 				}
 			}
 			try {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error "DBI Error: ", e
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error "DBI Error: ", e
 		}
 
 		return link;
@@ -238,17 +238,17 @@ public class DatabaseInterface {
 					if (rs != null)
 						rs.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error "DBI Error: ", e
 				}
 			}
 			try {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error "DBI Error: ", e
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error "DBI Error: ", e
 		}
 
 		return description;
@@ -291,17 +291,17 @@ public class DatabaseInterface {
 	//					if (rs != null)
 	//						rs.close();
 	//				} catch (Exception e) {
-	//					e.printStackTrace();
+	//					log.error "DBI Error: ", e
 	//				}
 	//			}
 	//			try {
 	//				if (pstmt != null)
 	//					pstmt.close();
 	//			} catch (Exception e) {
-	//				e.printStackTrace();
+	//				log.error "DBI Error: ", e
 	//			}
 	//		} catch (SQLException e) {
-	//			e.printStackTrace();
+	//			log.error "DBI Error: ", e
 	//		}
 	//
 	//		return itemIds;
@@ -341,17 +341,17 @@ public class DatabaseInterface {
 					if (rs != null)
 						rs.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error "DBI Error: ", e
 				}
 			}
 			try {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error "DBI Error: ", e
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error "DBI Error: ", e
 		}
 
 		return values;
@@ -464,17 +464,17 @@ public class DatabaseInterface {
 					if (rs != null)
 						rs.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error "DBI Error: ", e
 				}
 			}
 			try {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error "DBI Error: ", e
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error "DBI Error: ", e
 		}
 
 		return educationInstituteids;
@@ -507,17 +507,17 @@ public class DatabaseInterface {
 					try {
 						longitude = rs.getDouble("longitude");
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 					try {
 						latitude = rs.getDouble("latitude");
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 					try {
 						id = rs.getString("id");
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 
 					if(!ids.contains(id)) {
@@ -527,16 +527,16 @@ public class DatabaseInterface {
 					if (rs != null)
 						rs.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error "DBI Error: ", e
 				}
 			}
 			try {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error "DBI Error: ", e
 			}}catch (SQLException e) {
-			e.printStackTrace();
+			log.error "DBI Error: ", e
 		}
 
 		return educationInstitutesBasicInformation;
@@ -572,12 +572,12 @@ public class DatabaseInterface {
 					try {
 						longitude = rs.getDouble("longitude");
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 					try {
 						latitude = rs.getDouble("latitude");
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 					try {
 						name = rs.getString("name");
@@ -585,7 +585,7 @@ public class DatabaseInterface {
 							name = "";
 						}
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 					try {
 						state = rs.getString("state");
@@ -593,7 +593,7 @@ public class DatabaseInterface {
 							state = "";
 						}
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 					try {
 						city = rs.getString("city");
@@ -601,7 +601,7 @@ public class DatabaseInterface {
 							city = "";
 						}
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 					try {
 						zipCode = rs.getString("zip_code");
@@ -609,7 +609,7 @@ public class DatabaseInterface {
 							zipCode = "";
 						}
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 					try {
 						streetAndHouseNumber = rs
@@ -618,7 +618,7 @@ public class DatabaseInterface {
 							streetAndHouseNumber = "";
 						}
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 					try {
 						phone = rs.getString("phone");
@@ -626,7 +626,7 @@ public class DatabaseInterface {
 							phone = "";
 						}
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 					try {
 						email = rs.getString("email");
@@ -634,7 +634,7 @@ public class DatabaseInterface {
 							email = "";
 						}
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 					try {
 						yearOfFoundation = rs.getString("year_of_foundation");
@@ -642,7 +642,7 @@ public class DatabaseInterface {
 							yearOfFoundation = "";
 						}
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 					try {
 						educationInstituteDescription = rs
@@ -651,7 +651,7 @@ public class DatabaseInterface {
 							educationInstituteDescription = "";
 						}
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 					try {
 						wikipediaHyperlink = rs
@@ -660,7 +660,7 @@ public class DatabaseInterface {
 							wikipediaHyperlink = "";
 						}
 					} catch (SQLException e) {
-						e.printStackTrace();
+						log.error "DBI Error: ", e
 					}
 
 					List<Alumnus> alumni = this.findAlumniByEducationInstituteid(educationInstituteid, languageid);
@@ -676,17 +676,17 @@ public class DatabaseInterface {
 					if (rs != null)
 						rs.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error "DBI Error: ", e
 				}
 			}
 			try {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error "DBI Error: ", e
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error "DBI Error: ", e
 		}
 
 		return educationInstitute;
@@ -718,23 +718,22 @@ public class DatabaseInterface {
 
 					Language language = new Language(languageId, languageName);
 					languageList.add(language);
-					if(languageName == null) languageName = languageId;
 				}
 				try {
 					if (rs != null)
 						rs.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error "DBI Error: ", e
 				}
 			}
 			try {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error "DBI Error: ", e
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error "DBI Error: ", e
 		}
 
 		return languageList;
@@ -783,17 +782,17 @@ public class DatabaseInterface {
 						rs.close();
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error "DBI Error: ", e
 				}
 			}
 			try {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error "DBI Error: ", e
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error "DBI Error: ", e
 		}
 
 		return jobStatisticDatasets;
@@ -836,17 +835,17 @@ public class DatabaseInterface {
 					if (rs != null)
 						rs.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error "DBI Error: ", e
 				}
 			}
 			try {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error "DBI Error: ", e
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error "DBI Error: ", e
 		}
 
 		return alumni;
@@ -890,17 +889,17 @@ public class DatabaseInterface {
 					if (rs != null)
 						rs.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error "DBI Error: ", e
 				}
 			}
 			try {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error "DBI Error: ", e
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error "DBI Error: ", e
 		}
 
 		// No text at all? Use english as fallback
