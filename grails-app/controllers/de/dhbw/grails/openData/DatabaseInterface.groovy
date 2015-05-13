@@ -394,7 +394,7 @@ public class DatabaseInterface {
 			int locationJobId = 0;
 			int currentId = 0;
 
-			String sql = "SELECT UNI_ID FROM " + VIEW_NAME_SUFU + " WHERE ";
+			String sql = "SELECT DISTINCT UNI_ID FROM " + VIEW_NAME_SUFU + " WHERE ";
 			if (state_id != null) {
 				sql += "STATE_ID = ? ";
 				locationStateId = ++currentId;
@@ -735,6 +735,7 @@ public class DatabaseInterface {
 		} catch (SQLException e) {
 			log.error "DBI Error: ", e
 		}
+		languageList.sort()
 
 		return languageList;
 	}

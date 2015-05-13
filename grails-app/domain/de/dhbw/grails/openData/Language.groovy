@@ -1,11 +1,12 @@
 package de.dhbw.grails.openData;
 
+
 /**
  * @author Raffaela F., Benny R.
  *
  * Class for storing a dataset of a language, containing a language name and the corresponding language id
  */
-public class Language {
+public class Language implements Comparable<Language> {
 
 	private String languageName;
 	private String languageId;
@@ -33,6 +34,10 @@ public class Language {
 	public String toString() {
 		return "Language [languageName=" + languageName + ", languageId="
 				+ languageId + "]";
+	}
+	
+	public int compareTo(Language other){
+		return languageName.compareTo(other.languageName)
 	}
 	
 	

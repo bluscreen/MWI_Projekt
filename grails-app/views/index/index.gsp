@@ -20,31 +20,29 @@
 		<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
 		
 		<script type="text/javascript">
-				$(document).ready(function() {
+			$(document).ready(function() {
 				// Tooltip only Text
 				$('.masterTooltip').hover(function(){
-				        // Hover over code
-				        var title = $(this).attr('title');
-				        $(this).data('tipText', title).removeAttr('title');
-				        $('<p class="tooltip"></p>')
-				        .text(title)
-				        .appendTo('body')
-				        .fadeIn('slow');
-				}, function() {
-				        // Hover out code
-				        $(this).attr('title', $(this).data('tipText'));
-				        $('.tooltip').remove();
-				}).mousemove(function(e) {
-				        var mousex = e.pageX + 20; //Get X coordinates
-				        var mousey = e.pageY + 10; //Get Y coordinates
-				        $('.tooltip')
-				        .css({ top: mousey, left: mousex })
+				// Hover over code
+			    var title = $(this).attr('title');
+				$(this).data('tipText', title).removeAttr('title');
+				$('<p class="tooltip"></p>')
+				.text(title)
+				.appendTo('body')
+				.fadeIn('slow');
+			}, function() {
+				// Hover out code
+				$(this).attr('title', $(this).data('tipText'));
+				$('.tooltip').remove();
+			}).mousemove(function(e) {
+				var mousex = e.pageX + 20; //Get X coordinates
+				var mousey = e.pageY + 10; //Get Y coordinates
+				$('.tooltip')
+				.css({ top: mousey, left: mousex })
 				});
-				});
-		</script>
-    
-		<script type="text/javascript">
-		// include coordinates from search here
+			});
+
+			// include coordinates from search here
 			var koord = [ ${raw(markers)} ];
 			function calculateMiddlePoint(){
 				clearMarkers();
@@ -135,7 +133,6 @@
 					<div id="map"></div>
 				</div>
 				
-<%--				<div id="dialog" style="display:none" title="Details">X</div>--%>
 				<g:javascript>
 				    var markerArray = null;
 				    var markers = null;
@@ -181,14 +178,6 @@
 					    });
 					 }
 					 
-<%--					$(function() {--%>
-<%--						 $("#dialog").dialog({--%>
-<%--						 autoOpen:false, --%>
-<%--						 modal: true, --%>
-<%--						 draggable: true, --%>
-<%--						 width: 900, --%>
-<%--						 height:700});--%>
-<%--					});--%>
 				 </g:javascript>
 		<r:layoutResources/>
 	</body>
