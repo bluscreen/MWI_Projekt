@@ -42,11 +42,11 @@ class Database {
 		Database.database_password = database_password
 	}
 
-		public static final String confPath = "C:\\TEMP\\alumnetConfig"
-		public static final String filePath = "\\db_properties"
+	public static final String confPath = "C:\\TEMP\\alumnetConfig"
+	public static final String filePath = "\\db_properties"
 
-	//public static final String confPath = "/opt/wikidata/config"
-	//public static final String filePath = "/db_properties"
+	//	public static final String confPath = "/opt/wikidata/config"
+	//	public static final String filePath = "/db_properties"
 
 	public Database() {
 		Path myDir = Paths.get(confPath)
@@ -55,64 +55,64 @@ class Database {
 		log.info "Config Scanner has Path: " + actualPath
 
 		ConfigScanner parser = new ConfigScanner(actualPath)
-		
+
 		if(ConfigScanner.configfileexists) {
 
-		try {
-			parser.processLineByLine()
-		} catch (IOException e) {
-			log.error "Problem reading File"
-			return
-		}
+			try {
+				parser.processLineByLine()
+			} catch (IOException e) {
+				log.error "Problem reading File"
+				return
+			}
 
 
-		new Thread() {
-				
-					@Override
-					public void run() {
-						
-						log.info "Thread gestartet"
-						
-						log.info "Thread for ConfigScanner is running. Filepath is:" + Database.confPath
-						while(ConfigScanner.configfileexists) {
-							try {						
-								
-								// Create a watcher for changes in file system
-								WatchService watcher = myDir.getFileSystem().newWatchService()
-								myDir.register(watcher, StandardWatchEventKinds.ENTRY_MODIFY)
-								log.info "watchservice registered"
+			new Thread() {
 
-								WatchKey watckKey = watcher.take()
+						@Override
+						public void run() {
 
-								List<WatchEvent<?>> events = watckKey.pollEvents()
-								for (WatchEvent event : events) {
+							log.info "Thread gestartet"
 
-									// Changes in file "DB_PROPERTIES"? --> read file
-									if (event.context().toString()
-									.equalsIgnoreCase("DB_PROPERTIES")) {
-										log.info "reading updated file: " + actualPath
+							log.info "Thread for ConfigScanner is running. Filepath is:" + Database.confPath
+							while(ConfigScanner.configfileexists) {
+								try {
 
-										// Read db settings from file
-										parser = new ConfigScanner(actualPath)
-										try {
-											parser.processLineByLine()
-										} catch (IOException e) {
-											log.error "Problem reading File"
-											return
+									// Create a watcher for changes in file system
+									WatchService watcher = myDir.getFileSystem().newWatchService()
+									myDir.register(watcher, StandardWatchEventKinds.ENTRY_MODIFY)
+									log.info "watchservice registered"
+
+									WatchKey watckKey = watcher.take()
+
+									List<WatchEvent<?>> events = watckKey.pollEvents()
+									for (WatchEvent event : events) {
+
+										// Changes in file "DB_PROPERTIES"? --> read file
+										if (event.context().toString()
+										.equalsIgnoreCase("DB_PROPERTIES")) {
+											log.info "reading updated file: " + actualPath
+
+											// Read db settings from file
+											parser = new ConfigScanner(actualPath)
+											try {
+												parser.processLineByLine()
+											} catch (IOException e) {
+												log.error "Problem reading File"
+												return
+											}
+
+											Database.this.rebuildConnection()
 										}
-
-										Database.this.rebuildConnection()
 									}
+								} catch (Exception e) {
+									//log.error "Something went wrong:", e
+									e.printStackTrace()
+									return
 								}
-							} catch (Exception e) {
-								//log.error "Something went wrong:", e
-								e.printStackTrace()
-								return
 							}
 						}
-					}
-				}.start()
-				
+					}.start()
+
 		}
 	}
 

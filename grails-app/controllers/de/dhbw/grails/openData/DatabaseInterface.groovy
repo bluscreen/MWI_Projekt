@@ -457,7 +457,7 @@ public class DatabaseInterface {
 
 			if (pstmt.execute()) {
 				ResultSet rs = pstmt.getResultSet();
-				while (rs.next()) {		
+				while (rs.next()) {
 					educationInstituteids.add(rs.getString(1));
 				}
 				try {
@@ -496,9 +496,9 @@ public class DatabaseInterface {
 					.prepareStatement("SELECT longitude, latitude, id FROM "
 					+ VIEW_NAME_EDUCATION_INSTITUTE);
 
-				
+
 			List<String> ids = new ArrayList<>();
-				
+
 			if (pstmt.execute()) {
 				ResultSet rs = pstmt.getResultSet();
 				while (rs.next()) {
@@ -521,7 +521,7 @@ public class DatabaseInterface {
 					}
 
 					if(!ids.contains(id)) {
-						educationInstitutesBasicInformation.add(new EducationInstituteBasicInformation(longitude, latitude, id)); 
+						educationInstitutesBasicInformation.add(new EducationInstituteBasicInformation(longitude, latitude, id));
 						ids.add(id);}}
 				try {
 					if (rs != null)
@@ -906,9 +906,17 @@ public class DatabaseInterface {
 		// No text at all? Use english as fallback
 		if (text == null || text.isEmpty()) {
 			if (!languageid.equals("en")) {
-				text = findText(textid, "en");
+				text = findText(textid, "en")
 			} else {
-				text = "#ERROR#";
+				// no english text: show ERROR MULTILINGUAL!!! UGGH!!!
+
+//				String txt = findText(TextId.TEXTID_Error.getTextid(), languageid)
+//				if(txt == null || txt.isEmpty()){
+					return "ERROR"
+//				}
+//				else{
+//					return txt
+//				}
 			}
 		}
 

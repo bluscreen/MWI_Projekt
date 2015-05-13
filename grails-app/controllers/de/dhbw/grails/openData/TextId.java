@@ -14,7 +14,8 @@ public enum TextId {
 	TEXTID_EMail("P968"),
 	TEXTID_Description(""), // TODO Define this
 	TEXTID_AboutUs(""), // TODO Define this
-	TEXTID_Imprint(""); // TODO Define this
+	TEXTID_Imprint(""), // TODO Define this
+	TEXTID_Error("Q29485");
 	
 	private final String textid;
 	

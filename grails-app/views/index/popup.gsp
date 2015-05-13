@@ -26,8 +26,10 @@
 	       		 
 		        var options = {
 		          backgroundColor: 'transparent',
-		          width: '500',
-		          height: '375',
+		          width: '600',
+		          height: '400',
+		          color: 'white',
+		          legend: {textStyle: {color: 'white', fontSize: '14'}},
 		          is3D: true,
 		        };
 	
@@ -111,6 +113,7 @@
 				${labels.getText(textId.TEXTID_Alumni.getTextid(), session.getAttribute("systemLanguage"))}:
 				${educationInstitute?.alumnusList?.size()}
 			</p>
+			<g:if test="${educationInstitute?.alumnusList?.size() > 0}">
 			<table>
 				<tr>
 					<td>
@@ -134,6 +137,7 @@
 					</tr>
 				</g:each>
 			</table>
+			</g:if>
 		</div>
 
 		<div id="statisticBox" class="box">
