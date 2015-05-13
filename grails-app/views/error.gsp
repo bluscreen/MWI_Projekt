@@ -30,7 +30,8 @@
 						code="default.link.skip.label" default="Skip to content&hellip;" /></a>
 			
 				<div id="searchBox" class="Box">
-					<g:renderException exception="${exception}" />
+				<b>Fehler!</b><br/><br/>Leider ist ein Fehler aufgetreten.<br/>Bitte versuchen Sie es später nochmal.
+<%--					<g:renderException exception="${exception}" />--%>
 				</div>
 		
 		<r:layoutResources/>

@@ -50,22 +50,22 @@
 	<div id="container" class="b">
 
 		<div id="textBox" class="heading box">
-			<p>Education Institute Box</p>
+			<p>${labels.getText(labels.TEXTID_Education_Institute, session.getAttribute("systemLanguage"))}</p>
 			<table>
 				<tr>
-					<td>Name:</td>
+					<td>${labels.getText(labels.TEXTID_Name, session.getAttribute("systemLanguage"))}:</td>
 					<td>
 						${educationInstitute?.name}
 					</td>
 				</tr>
 				<tr>
-					<td>Beschreibung:</td>
+					<td>${labels.getText(labels.TEXTID_Description, session.getAttribute("systemLanguage"))}:</td>
 					<td>
 						${educationInstitute?.educationInstituteDescription}
 					</td>
 				</tr>
 				<tr>
-					<td>Gründungsjahr:</td>
+					<td>${labels.getText(labels.TEXTID_Year_Of_Foundation, session.getAttribute("systemLanguage"))}:</td>
 					<td>
 						${educationInstitute?.yearOfFoundation}
 					</td>
@@ -78,13 +78,13 @@
 					</a></td>
 				</tr>
 				<tr>
-					<td>Email:</td>
+					<td>${labels.getText(labels.TEXTID_EMail, session.getAttribute("systemLanguage"))}:</td>
 					<td>
 						${educationInstitute?.email}
 					</td>
 				</tr>
 				<tr>
-					<td>Adresse:</td>
+					<td>${labels.getText(labels.TEXTID_Address, session.getAttribute("systemLanguage"))}:</td>
 					<td>
 						${educationInstitute?.streetAndHouseNumber}
 					</td>
@@ -95,13 +95,11 @@
 			</table>
 
 			<div id="alumniBox" class="box">
-				<p>Alumni Box</p>
-				<b>Anzahl Absolventen</b>:
-				${educationInstitute?.alumnusList?.size()}<br>
+				<p>${labels.getText(labels.TEXTID_Alumni, session.getAttribute("systemLanguage"))} ${educationInstitute?.alumnusList?.size()}</p>
 				<table>
 					<tr>
-						<td>Name</td>
-						<td>Beruf</td>
+						<td>${labels.getText(labels.TEXTID_Name, session.getAttribute("systemLanguage"))}</td>
+						<td>${labels.getText(labels.TEXTID_Job, session.getAttribute("systemLanguage"))}</td>
 						<td>Wiki-Link</td>
 					</tr>
 					<g:each var="i" in="${educationInstitute?.alumnusList}">
@@ -124,7 +122,7 @@
 
 
 		<div id="statisticBox" class="box">
-			<p>Statistic Box</p>
+			<p>Statistics</p>
 			<div id="statistenBox"></div>
 		</div>
 

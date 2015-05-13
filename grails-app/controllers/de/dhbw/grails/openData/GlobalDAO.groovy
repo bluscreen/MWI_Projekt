@@ -53,6 +53,12 @@ public class GlobalDAO {
 	public final static String TEXTID_Alumni = "Q508719";
 	public final static String TEXTID_Address = "P319608";
 	public final static String TEXTID_EMail = "P968";
+	
+	
+	/**
+	 * TODO find these pls
+	 */
+	public final static String TEXTID_Description = ""
 
 	private class MaxSizeHashMap<K, V> extends LinkedHashMap<K, V> {
 		private static final long serialVersionUID = 1L;
