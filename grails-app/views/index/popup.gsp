@@ -50,22 +50,22 @@
 	<div id="container" class="b">
 
 		<div id="textBox" class="heading box">
-			<p>${labels.getText(labels.TEXTID_Education_Institute, session.getAttribute("systemLanguage"))}</p>
+			<p>${labels.getText(textId.TEXTID_Education_Institute.getTextid(), session.getAttribute("systemLanguage"))}</p>
 			<table>
 				<tr>
-					<td>${labels.getText(labels.TEXTID_Name, session.getAttribute("systemLanguage"))}:</td>
+					<td>${labels.getText(textId.TEXTID_Name.getTextid(), session.getAttribute("systemLanguage"))}:</td>
 					<td>
 						${educationInstitute?.name}
 					</td>
 				</tr>
 				<tr>
-					<td>${labels.getText(labels.TEXTID_Description, session.getAttribute("systemLanguage"))}:</td>
+					<td>${labels.getText(textId.TEXTID_Description.getTextid(), session.getAttribute("systemLanguage"))}:</td>
 					<td>
 						${educationInstitute?.educationInstituteDescription}
 					</td>
 				</tr>
 				<tr>
-					<td>${labels.getText(labels.TEXTID_Year_Of_Foundation, session.getAttribute("systemLanguage"))}:</td>
+					<td>${labels.getText(textId.TEXTID_Year_Of_Foundation.getTextid(), session.getAttribute("systemLanguage"))}:</td>
 					<td>
 						${educationInstitute?.yearOfFoundation}
 					</td>
@@ -78,13 +78,13 @@
 					</a></td>
 				</tr>
 				<tr>
-					<td>${labels.getText(labels.TEXTID_EMail, session.getAttribute("systemLanguage"))}:</td>
+					<td>${labels.getText(textId.TEXTID_EMail.getTextid(), session.getAttribute("systemLanguage"))}:</td>
 					<td>
 						${educationInstitute?.email}
 					</td>
 				</tr>
 				<tr>
-					<td>${labels.getText(labels.TEXTID_Address, session.getAttribute("systemLanguage"))}:</td>
+					<td>${labels.getText(textId.TEXTID_Address.getTextid(), session.getAttribute("systemLanguage"))}:</td>
 					<td>
 						${educationInstitute?.streetAndHouseNumber}
 					</td>
@@ -95,11 +95,11 @@
 			</table>
 
 			<div id="alumniBox" class="box">
-				<p>${labels.getText(labels.TEXTID_Alumni, session.getAttribute("systemLanguage"))} ${educationInstitute?.alumnusList?.size()}</p>
+				<p>${labels.getText(textId.TEXTID_Alumni.getTextid(), session.getAttribute("systemLanguage"))} ${educationInstitute?.alumnusList?.size()}</p>
 				<table>
 					<tr>
-						<td>${labels.getText(labels.TEXTID_Name, session.getAttribute("systemLanguage"))}</td>
-						<td>${labels.getText(labels.TEXTID_Job, session.getAttribute("systemLanguage"))}</td>
+						<td>${labels.getText(textId.TEXTID_Name.getTextid(), session.getAttribute("systemLanguage"))}</td>
+						<td>${labels.getText(textId.TEXTID_Job.getTextid(), session.getAttribute("systemLanguage"))}</td>
 						<td>Wiki-Link</td>
 					</tr>
 					<g:each var="i" in="${educationInstitute?.alumnusList}">

@@ -42,24 +42,6 @@ public class GlobalDAO {
 		return languageList;
 	}
 
-	public final static String TEXTID_State = "P17";
-	public final static String TEXTID_City = "Q515";
-	public final static String TEXTID_Person = "Q215627";
-	public final static String TEXTID_Name = "Q82799";
-	public final static String TEXTID_Education_Institute = "Q2385804";
-	public final static String TEXTID_Job = "P106";
-	public final static String TEXTID_Year_Of_Foundation = "P571";
-	public final static String TEXTID_Phone = "P1329";
-	public final static String TEXTID_Alumni = "Q508719";
-	public final static String TEXTID_Address = "P319608";
-	public final static String TEXTID_EMail = "P968";
-	
-	
-	/**
-	 * TODO find these pls
-	 */
-	public final static String TEXTID_Description = ""
-
 	private class MaxSizeHashMap<K, V> extends LinkedHashMap<K, V> {
 		private static final long serialVersionUID = 1L;
 		private final int maxSize;

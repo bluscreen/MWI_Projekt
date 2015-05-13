@@ -72,6 +72,7 @@ class IndexController {
 
 		[languages: GlobalDAO.instance.getLanguagesList(),
 			labels: GlobalDAO.instance,
+			textId: TextId,
 			institutes: searchResult,
 			markers: markerString,
 			renderList: rendList ]
@@ -209,7 +210,8 @@ class IndexController {
 		log.info "controller popup() call finished. return."
 		[educationInstitute: edu,
 			jsdString: jobStats,
-			labels: GlobalDAO.instance]
+			labels: GlobalDAO.instance,
+			textId: TextId]
 	}
 
 	@Deprecated
