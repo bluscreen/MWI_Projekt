@@ -33,7 +33,7 @@ public class EducationInstitute extends EducationInstituteBasicInformation {
 		this.jobStatisticList = jobStatisticList;
 		this.alumnusList = alumnusList;
 	}
-
+	
 	@Override
 	public String toString() {
 		return ("EducationInstitute [name=" + name + ", state=" + state

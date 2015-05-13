@@ -712,6 +712,9 @@ public class DatabaseInterface {
 				while (rs.next()) {
 					String languageId = rs.getString("language");
 					String languageName = rs.getString("text");
+					if(languageName == null || languageName.isEmpty()){
+						languageName = languageId
+					}
 
 					Language language = new Language(languageId, languageName);
 					languageList.add(language);

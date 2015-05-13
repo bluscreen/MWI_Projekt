@@ -45,38 +45,15 @@
     
 		<script type="text/javascript">
 		// include coordinates from search here
-		<g:applyCodec encodeAs="none"> var koord = [ ${markers} ]; </g:applyCodec>
+			var koord = [ ${raw(markers)} ];
 			function calculateMiddlePoint(){
 				clearMarkers();
-				if(koord.length != 1){
-					for(var i=0; i<koord.length; i++){
-						cluster(koord[i][0], koord[i][1], koord[i][2]);
-					}
-					fitTheBounds();
+				for(var i=0; i<koord.length; i++){
+					cluster(koord[i][0], koord[i][1], koord[i][2], koord[i][3], koord[i][4]);
+<%--					if(koord.length == 1){show}--%>
 				}
-			
-				//Nur eine Position
-				else{
-					showMarker(koord[0][0], koord[0][1],koord[i][2]);
-					fitTheBounds();
-					showPopup();
-				}
+				fitTheBounds();
 			}
-
-			 function updateContent(data)
-			 {
-				var blabla = data.split("%");
-				$("#"+blabla[0]).html(data);
-				alert(data);
-			 }
-
-			function fetchName(event){
-				ev = event || window.event;
-				${remoteFunction( action:'fetchName',
-                        params: '\'id=\'+escape(ev)',
-						onSuccess: 'updateContent(data)')} 
-			}
-
 		  </script>
 		  <r:layoutResources/>
 	</head>
@@ -87,25 +64,19 @@
 				<div class="left">alumNET</div>
 					<div class="right">
 						<div class="right-top">
-					
 						</div>
 						<div class ="right-infocontainer">
 							<a id="infoLink" href='<g:createLink controller="index" action="info"/>'>Info</a>
 							<b>/</b>
 							<a id="impressum" href='<g:createLink controller="index" action="impressum"/>'>Impressum</a>
 						</div>
-			
 					</div>
 			</div>
-			<a id="lizenzBild" href="http://www.freepik.com">Designed by Freepik</a>
 		</div> 
 	
-	
 		<div class="container">
-				
 				<a href="#page-body" class="skip"><g:message
 						code="default.link.skip.label" default="Skip to content&hellip;" /></a>
-			
 				<div id="searchBox" class="Box">
 					<g:form action="index" method="get"> 
 					<ul><li><g:select id="language" class="searchfields masterTooltip" name="systemLanguage"
@@ -141,43 +112,28 @@
 								name="beruf"
 								placeholder="${labels.getText(labels.TEXTID_Job, session.getAttribute("systemLanguage")) }"
 								value="${params['beruf']}"/></li>
-					
 						<li><g:actionSubmitImage id="searchButton" class="masterTooltip"  title="Go!" name="search" value="index"
                      src="${resource(dir: 'images', file: 'lupe.png')}" /></li>
 					</ul>
 					</g:form>
+					
 					<g:if test="${renderList}">
-					<!-- das hier einfuegen -->
 					<ul style="height:200px; width:15em; overflow:auto;">
 						<li class="masterTooltip " title="Your search returned ${institutes.size()} results:">${institutes.size()} results</li>
-						<g:javascript>
-						${indexCounter = -1}
-						</g:javascript>
-    
-		
-						<g:javascript>
-						${indexCounter = -1}
-						</g:javascript>
-    
-		
+<!--						${indexCounter = -1}  -->
 						<g:each var="i" in="${institutes}">
 						<li class="results" onclick="zoomToMarker(${++indexCounter})">
 								${i.name}, ${i.city}
-							</li>
+						</li>
 						</g:each>
 					</ul>
-
 					</g:if>
 				</div>
-			<div id="mapBox">
-				<div id="map"></div>
-			</div>
+				<div id="mapBox">
+					<div id="map"></div>
+				</div>
 				
-				
-				
-				<div id="dialog" style="display:none" title="Details">
-				X
-		</div>
+<%--				<div id="dialog" style="display:none" title="Details">X</div>--%>
 				<g:javascript>
 				    var markerArray = null;
 				    var markers = null;
@@ -192,27 +148,16 @@
 						markerArray = new Array();
 						markers = new L.MarkerClusterGroup();			
 					 }
-					 
-					// add a marker in the given location, attach some popup content to it and open the popup
-					function showMarker(latitude, longitude){
-						poly =  L.marker([latitude, longitude]);
-						markerArray.push(poly);
-					}
 						
 					//Objekte gruppieren
-					 function cluster(latitude, longitude, objid){
+					 function cluster(latitude, longitude, objid, name, ort){
 						poly =  L.marker([latitude, longitude]);
 						link = '<a href="<g:createLink controller="index" action="popup" id="'+objid+'"/>" target="_blank">Details</a>';
-						//link = '<button id="'+objid+'" onclick="popupInfos('+objid+')">Read more</button>';
-						
 						d=document.createElement('div');
 						$(d).attr('id', objid);
-					 	$(d).html("ID: "+objid+"<br/>"+link);
+					 	$(d).html(name + "<br/>" + ort + "<br/>" + link);
 					 	poly.bindPopup($(d).prop('outerHTML'));
 					 	
-						//Schau mal, ob das hier funktioniert
-<%--						poly.on("click", fetchName(objid));--%>
-						
 					 	markerArray.push(poly);
 						markers.addLayer(poly);
 					 }
@@ -228,24 +173,21 @@
 					 	poly.openPopup();
 					 }
 					 
-					  //und das hier einfuegen
 					 function zoomToMarker(index){
 						 markers.zoomToShowLayer(markerArray[index], function() {
 					        markerArray[index].openPopup();
 					    });
 					 }
 					 
-					$(function() {
-						 $("#dialog").dialog({
-						 autoOpen:false, 
-						 modal: true, 
-						 draggable: true, 
-						 width: 900, 
-						 height:700});
-					});
+<%--					$(function() {--%>
+<%--						 $("#dialog").dialog({--%>
+<%--						 autoOpen:false, --%>
+<%--						 modal: true, --%>
+<%--						 draggable: true, --%>
+<%--						 width: 900, --%>
+<%--						 height:700});--%>
+<%--					});--%>
 				 </g:javascript>
-			
-		
 		<r:layoutResources/>
 	</body>
 </html>

@@ -1,59 +1,79 @@
-.container1 {
-	height: 400px;
+#header {
+	font-family: "Courier New";
+	font-size: 100px;
+	color: #eee;
+	text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.container2{
-	height: 400px;
+p {
+	font-family: "Courier New";
+	font-size: 20pt;
+	color: #eee;
+ 	margin: 0 0 1em;
+	background-color: #ACA2A2;
 }
 
-#textBox{
+#container {
+	width: 90em;
+	padding-left: 3.5em;
+}
+
+#textBox {
+	height: 15em;
+	width: 60em;
+}
+
+#statisticBox {
+	width: 60em;
+	background-color: rgba(43, 48, 59, 0.85)
+}
+
+#statistenBox {
 	
-	height: 90%;
-	width: 40%;
-	float: left;	
 }
 
-
-#statisticBox{
-	
-	height: 90%;
-	width: 54%;
-	float: right;	
+#alumniBox {
+	position: relative;
+	width: 30em;
+	left: 35em;
+	  bottom: 3em;
+	background-color: rgba(43, 48, 59, 0.85)
 }
 
-#alumniBox{
-	
-	height: 90%;
-	width: 40%;
-	float: left;
-}
-
-
-#infoBox{
-	
-	height: 90%;
-	width: 50%;
-	float: right;
-}
-
-.box{
+.box {
 	color: white;
 	font-size: 14pt;
-	background-color: rgba(43, 48, 59, 0.6);
+	background-color: rgba(43, 48, 59, 0.8);
 	border: 1px solid gray;
 	border-radius: 2px 2px 2px 2px;
-	-webkit-box-shadow: 10px 11px 56px -5px rgba(0,0,0,0.75);
-	-moz-box-shadow: 10px 11px 56px -5px rgba(0,0,0,0.75);
-	box-shadow: 10px 11px 60px -5px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 10px 11px 56px -5px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 10px 11px 56px -5px rgba(0, 0, 0, 0.75);
+	box-shadow: 10px 11px 60px -5px rgba(0, 0, 0, 0.75);
 	padding: 10px;
 }
 
 body {
 	max-width: 90%;
-	margin: 50px auto;
+	margin: auto;
 	background-image: url("worl-map.jpg");
-	background-position: 50% 50%;
+	background-position: 50% 70%;
 	background-repeat: no-repeat;
-	background-attachment: scroll;
 	background-size: cover;
+	padding-bottom: 2em;
+}
+
+a {
+	color: white;
+}
+
+a: hover {
+	color: #cccccc;
+}
+
+a: visited {
+	color: #cccccc;
+}
+
+#lizenzBild {
+	color: black; 
 }

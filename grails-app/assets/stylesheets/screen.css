@@ -44,17 +44,13 @@
 
 	
 }
-#searchbox li:hover{
-	background-color: #cccccc;
-	
-}
+
 #searchButton {
 	float: right;
 	margin-top: 10px;
 	height: 2.3em;
 
 }
-
 
 
 #language {
@@ -64,6 +60,9 @@
   	margin-bottom: 0.5em;
 }
 
+#language: hover{
+	background-color: #cccccc;
+}
 
 #map {
 	height: 400px;
@@ -75,5 +74,5 @@
 }
 
 #lizenzBild {
-	color: grey; 
+	color: black; 
 }

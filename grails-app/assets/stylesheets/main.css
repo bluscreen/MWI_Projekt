@@ -52,7 +52,7 @@ body {
 	max-width: 1000px;
 	margin: 0 auto;
 	padding-top: 50px;
-	padding-bottom: 50px; 
+	padding-bottom: 50px;
 }
 
 .banner {
@@ -63,6 +63,7 @@ body {
 	background-size: cover;
 	background-image: url("worl-map.jpg");
 }
+
 .stripe {
 	height: 180px;
 	margin-top: 10px;
@@ -74,36 +75,39 @@ body {
 .left {
 	font-family: "Courier New";
 	height: 100%;
-	font-size: 150px; 
-	color: #eee; 
+	font-size: 150px;
+	color: #eee;
 	text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 	float: left;
 	background-attachment: scroll;
-
 }
-.right{}
+
+.right {
+	
+}
+
 .right-infocontainer {
 	font-family: "Monospace";
-	height:100%;
-	font-size: 20px; 
-	color: rgba( 250, 250, 250, 0.8);
-	display: inline; 
-	padding-left: 30px; 
+	height: 100%;
+	font-size: 20px;
+	color: rgba(250, 250, 250, 0.8);
+	display: inline;
+	padding-left: 30px;
 }
 
-.right-top{
+.right-top {
 	height: 2.5em;
 }
 
 .tooltip {
-	display:none;
-	position:absolute;
-	border:1px solid #333;
-	background-color:#161616;
-	border-radius:5px;
-	padding:10px;
-	color:#fff;
-	font-size:12px Arial;
+	display: none;
+	position: absolute;
+	border: 1px solid #333;
+	background-color: #161616;
+	border-radius: 5px;
+	padding: 10px;
+	color: #fff;
+	font-size: 12px Arial;
 }
 
 .test {
@@ -121,9 +125,9 @@ body {
 }
 
 a {
-	color : rgba( 250, 250, 250, 0.8);  
- 	}
- 	 
+	color: rgba(250, 250, 250, 0.8);
+}
+
 a:hover,a:active {
 	outline: none;
 	/* prevents outline in webkit on active links but retains it for tab focus */
@@ -135,7 +139,6 @@ h1 {
 	font-size: 1.25em;
 }
 
-
 img {
 	border: 0;
 }
@@ -145,7 +148,6 @@ img {
 	display: inline-block;
 	margin: 1em;
 }
-
 
 .content h1 {
 	border-bottom: 1px solid #CCCCCC;
@@ -190,7 +192,6 @@ img {
 	top: 0;
 	text-indent: -9999px;
 }
-
 
 /* CREATE/EDIT FORMS AND SHOW PAGES */
 fieldset,.property-list {
@@ -241,8 +242,6 @@ input,select,textarea {
 select {
 	padding: 0.2em 0.2em 0.2em 0;
 }
-
-
 
 select[multiple] {
 	vertical-align: top;

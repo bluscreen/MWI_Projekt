@@ -1,5 +1,7 @@
 package de.dhbw.grails.openData
 
+import javax.websocket.Session;
+
 import org.springframework.web.servlet.support.RequestContextUtils
 
 
@@ -34,7 +36,15 @@ class IndexController {
 		if(searchAll) {
 			rendList = false;
 			// user is here for the first time
-			searchResult = GlobalDAO.instance.getAllEducationInstitutes()
+			List<EducationInstituteBasicInformation> allResults = GlobalDAO.instance.getAllEducationInstitutes()
+			allResults.each { e->
+				EducationInstitute ei = GlobalDAO.instance.getEducationInstituteById(e.id, session.getAttribute("systemLanguage"))
+				if(ei == null){
+					log.info "could not find ei for " + e + " , language: " + session.getAttribute("systemLanguage")
+				}else{
+					searchResult.add(ei)
+				}
+			}
 		}
 		else {
 			// user entered search param(s)
@@ -53,7 +63,7 @@ class IndexController {
 		// Build a String containing all coordinates with their id in JSON
 		String markerString = "", line = ""
 		searchResult.eachWithIndex { elem, idx->
-			line = "[" + elem.latitude + ", " + elem.longitude + ", \"" + elem.id + "\"]"
+			line = "[" + elem.latitude + ", " + elem.longitude + ", \"" + elem.id + "\", \"" + elem.name +"\", \"" + elem.city + "\"]"
 			line += ((idx+1)<foundAmount) ? ",\n" : "\n"
 			markerString += line
 		}
@@ -156,32 +166,32 @@ class IndexController {
 			JobStatisticDataset js1 = new JobStatisticDataset("Doenermann", 2)
 			JobStatisticDataset js2 = new JobStatisticDataset("Gyrosmann", 3)
 			JobStatisticDataset js3 = new JobStatisticDataset("Taxifahrer", 1)
-			
+
 			List<JobStatisticDataset> jsdl = new ArrayList<JobStatisticDataset>()
 			jsdl.addAll(js1,js2,js3)
-			
+
 			Alumnus a1 = new Alumnus("Sir Dönalot", "Doenermann", "http://www.doener.de")
 			Alumnus a2 = new Alumnus("YUFKALORD", "Doenermann", "http://www.yufka.de")
-			
+
 			Alumnus a3 = new Alumnus("GYROSLAND", "Gyrosmann", "http://www.gyros.de")
 			Alumnus a4 = new Alumnus("Sir Taki", "Gyrosmann", "http://www.sir-taki.de")
 			Alumnus a5 = new Alumnus("AGGRO-POLICE", "Gyrosmann", "http://www.aggro-police.de")
-			
+
 			Alumnus a6 = new Alumnus("Mahatma Taxi", "Taxifahrer", "http://www.mahatma.de")
-			
+
 			List<Alumnus> al = new ArrayList<Alumnus>()
 			al.addAll(a1,a2,a3,a4,a5,a6)
-			
+
 			edu.jobStatisticList = jsdl
 			edu.alumnusList = al
 		}
-		
-		String jobStats = "";
+
+		String jobStats = ""
 		edu.jobStatisticList.eachWithIndex {num,idx ->
-			jobStats += "['" + num.jobTitle + "'," + num.number + "]"		
-			if(idx<edu.jobStatisticList.size()-1) jobStats += ",\n"	
+			jobStats += "['" + num.jobTitle + "'," + num.number + "]"
+			if(idx<edu.jobStatisticList.size()-1) jobStats += ",\n"
 		}
-		
+		log.info "controller popup() call finished. return."
 		[educationInstitute: edu,
 			jsdString: jobStats]
 	}
